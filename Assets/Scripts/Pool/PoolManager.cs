@@ -41,7 +41,7 @@ public class PoolManager : MonoBehaviour
         factoryList.Add(enemyFactory);
         factoryList.Add(explosionFactory);
 
-        //InitializePool(PoolEnums.Bullet, amountBullet);
+        InitializePool(PoolEnums.Bullet, amountBullet);
         InitializePool(PoolEnums.Enemy, amountEnemy);
         InitializePool(PoolEnums.Explosion, amountExplosion);
     }

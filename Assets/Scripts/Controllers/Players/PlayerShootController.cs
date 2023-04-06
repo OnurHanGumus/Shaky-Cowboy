@@ -13,9 +13,6 @@ namespace Controllers
 {
     public class PlayerShootController : MonoBehaviour
     {
-        [Inject] private PlayerSignals PlayerSignals { get; set; }
-        [Inject] private PoolSignals PoolSignals { get; set; }
-
         [SerializeField] Vector3 playerCurrentPos;
         [SerializeField] private Transform bulletHolder;
 

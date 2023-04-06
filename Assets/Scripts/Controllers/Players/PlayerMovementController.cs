@@ -10,8 +10,6 @@ namespace Controllers
 {
     public class PlayerMovementController : MonoBehaviour
     {
-        [Inject] private InputSignals InputSignals { get; set; }
-        [Inject] private PlayerSignals PlayerSignals { get; set; }
         [Inject] private PlayerSettings PlayerSettings { get; set; }
 
         private RoutineHelper _onPosUpdate;
@@ -23,33 +21,10 @@ namespace Controllers
             _mySettings = PlayerSettings.PlayerMovementSettings;
         }
 
-        #region Event Subscription
-        private void OnEnable()
-        {
-            RegisterEvents();
-        }
-        
-
-        private void RegisterEvents()
-        {
-
-        }
-
-       
-
-        private void UnRegisterEvents()
-        {
-
-        }
-        private void OnDisable()
-        {
-            UnRegisterEvents();
-        }
-        #endregion
-
         public void OnPlay()
         {
             _isStarted = true;
+            Debug.Log(this.name);
         }
         public void OnRestartLevel()
         {
