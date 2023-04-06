@@ -10,7 +10,7 @@ namespace Installers.Prefabs
         
         public override void InstallBindings()
         {
-            _playerSettings = Resources.Load<PlayerSettings>("PlayerSettings");
+            _playerSettings = Resources.Load<PlayerSettings>("Data/MetaData/PlayerSettings");
 
             Container.BindInstance(_playerSettings).AsSingle();
             

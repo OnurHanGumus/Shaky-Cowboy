@@ -26,8 +26,6 @@ namespace Managers
         #region Serialized Variables
         [SerializeField] private PlayerMovementController movementController;
         [SerializeField] private PlayerShootController shootController;
-        [SerializeField] private PlayerCameraController cameraController;
-
         #endregion
 
         #region Private Variables
