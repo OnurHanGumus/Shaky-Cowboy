@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 124712519}
   - component: {fileID: 124712520}
+  - component: {fileID: 7586988698694999243}
   m_Layer: 0
   m_Name: Revolver
   m_TagString: Untagged
@@ -47,6 +48,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7586988698694999243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124712518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb152d86f460e34585f08f7bdcd551d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCurrentPos: {x: 0, y: 0, z: 0}
+  bulletHolder: {fileID: 0}
 --- !u!1 &14848039423996837
 GameObject:
   m_ObjectHideFlags: 0
@@ -3526,12 +3541,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8549495318211459234}
+  - component: {fileID: 3730930585850939292}
   - component: {fileID: 8549495318211459237}
   - component: {fileID: 8549495318211459236}
   - component: {fileID: 8549495318211459233}
   - component: {fileID: 8549495318211459232}
   - component: {fileID: 8549495318211459235}
-  - component: {fileID: 3730930585850939292}
   - component: {fileID: 3828421993738561262}
   m_Layer: 0
   m_Name: Player
@@ -3560,6 +3575,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &3730930585850939292
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8549495318211459239}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &8549495318211459237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3630,26 +3665,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCurrentPos: {x: 0, y: 0, z: 0}
   bulletHolder: {fileID: 0}
---- !u!95 &3730930585850939292
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8549495318211459239}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &3828421993738561262
 MonoBehaviour:
   m_ObjectHideFlags: 0

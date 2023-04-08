@@ -1,4 +1,3 @@
-using Events.External;
 using Zenject;
 using UnityEngine;
 using Data.MetaData;

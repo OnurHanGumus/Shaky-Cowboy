@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Components.Enemies;
 using Data.MetaData;
-using Events.External;
 using UnityEngine;
 using Zenject;
 using Enums;

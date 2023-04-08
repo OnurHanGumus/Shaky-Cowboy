@@ -1,6 +1,6 @@
 ﻿using System;
 using Data.MetaData;
-using Events.External;
+using Signals;
 using UnityEngine;
 using Zenject;
 

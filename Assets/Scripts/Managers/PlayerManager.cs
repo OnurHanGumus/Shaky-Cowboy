@@ -17,6 +17,7 @@ namespace Managers
         #region Injected Variables
         [Inject] private PoolSignals PoolSignals { get; set; }
         [Inject] private CoreGameSignals CoreGameSignals { get; set; }
+        [Inject] private InputSignals InputSignals { get; set; }
         #endregion
 
         #region Public Variables
@@ -56,12 +57,14 @@ namespace Managers
         {
             CoreGameSignals.onPlay += movementController.OnPlay;
             CoreGameSignals.onRestart += movementController.OnRestartLevel;
+            InputSignals.onClicked += shootController.OnClicked;
         }
 
         private void UnsubscribeEvents()
         {
             CoreGameSignals.onPlay -= movementController.OnPlay;
             CoreGameSignals.onRestart -= movementController.OnRestartLevel;
+            InputSignals.onClicked -= shootController.OnClicked;
         }
 
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using Controllers;
 using Data.MetaData;
-using Events.External;
 using UnityEngine;
 using Zenject;
 

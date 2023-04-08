@@ -4,7 +4,6 @@ using Controllers;
 using Data.UnityObject;
 using Data.ValueObject;
 using Enums;
-using Events.External;
 using Signals;
 using UnityEngine;
 using Zenject;

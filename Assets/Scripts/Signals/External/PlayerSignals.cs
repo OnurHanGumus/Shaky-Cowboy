@@ -3,14 +3,14 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Events.External
+namespace Signals
 {
     [UsedImplicitly]
     public class PlayerSignals
     {
         public UnityAction<Vector3> onPlayerMove;
         public UnityAction<IAttackable> onEnemyShooted;
-        public UnityAction<Vector3> onAttackedToEnemy;
+        public UnityAction onShoot;
 
     }
 }

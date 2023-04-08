@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-using Events.External;
 using Enums;
 using Signals;
 
@@ -91,7 +90,6 @@ public class PoolManager : MonoBehaviour
             if (!poolDictionary[type][i].activeInHierarchy)
             {
                 poolDictionary[type][i].transform.position = position;
-                poolDictionary[type][i].gameObject.SetActive(true);
 
                 return poolDictionary[type][i];
             }

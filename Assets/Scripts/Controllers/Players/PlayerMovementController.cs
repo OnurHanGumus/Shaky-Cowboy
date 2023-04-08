@@ -1,5 +1,4 @@
 ﻿using Data.MetaData;
-using Events.External;
 using Signals;
 using System;
 using UnityEngine;
