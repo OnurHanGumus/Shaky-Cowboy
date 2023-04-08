@@ -18,6 +18,7 @@ public class RevolverManager : MonoBehaviour, IGun
     #region Public Variables
     #endregion
     #region Serializefield Variables
+    [SerializeField] private Transform bulletPointTransform;
     #endregion
     #region Private Variables
     #endregion
@@ -54,7 +55,7 @@ public class RevolverManager : MonoBehaviour, IGun
     public void OnShoot()
     {
         GameObject bullet = PoolSignals.onGetObject?.Invoke(PoolEnums.Bullet, transform.position);
-        bullet.transform.position = transform.position;
+        bullet.transform.position = bulletPointTransform.position;
         bullet.transform.eulerAngles = transform.eulerAngles;
         bullet.SetActive(true);
         //AudioSignals.onPlaySound?.Invoke(SoundEnums.Fire);
