@@ -24,7 +24,11 @@ public class RevolverMovementController : MonoBehaviour
 
     private void Start()
     {
-        revolverTargetTransform.DOPath(new Vector3[2] { new Vector3(revolverTargetTransform.position.x, 2.5f, revolverTargetTransform.position.z), new Vector3(revolverTargetTransform.position.x, -1.5f, revolverTargetTransform.position.z) }, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        revolverTargetTransform.DOPath(new Vector3[2] 
+        { 
+            new Vector3(revolverTargetTransform.position.x, 2.5f, revolverTargetTransform.position.z), 
+            new Vector3(revolverTargetTransform.position.x, -1.5f, revolverTargetTransform.position.z) 
+        }, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
     }
 
 }

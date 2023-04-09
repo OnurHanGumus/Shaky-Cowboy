@@ -45,12 +45,14 @@ namespace Controllers
         }
         private void Shoot()
         {
+            if (_currentGun.CurrentBulletCount <= 0)
+            {
+                _currentGun.Reload();
+                return;
+            }
             PlayerSignals.onShoot?.Invoke();
         }
-        private void Reload()
-        {
 
-        }
         private void ChangeGun()
         {
             _currentGun = (IGun)gunList[_selectedGunId];

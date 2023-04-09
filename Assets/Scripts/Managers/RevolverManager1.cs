@@ -5,7 +5,7 @@ using UnityEngine;
 using Zenject;
 using Enums;
 
-public class RevolverManager : MonoBehaviour, IGun
+public class RevolverManager1 : MonoBehaviour, IGun
 {
     #region Self Variables
     #region Inject Variables
