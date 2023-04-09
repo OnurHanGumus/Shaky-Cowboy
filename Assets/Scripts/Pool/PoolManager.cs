@@ -100,6 +100,7 @@ public class PoolManager : MonoBehaviour
     private GameObject ExplandPool(PoolEnums type, Vector3 position)
     {
         GameObject expandObject = factoryList[(int)type].OnCreate();
+        expandObject.SetActive(false);
         expandObject.transform.position = position;
         expandObject.transform.parent = transform;
         poolDictionary[type].Add(expandObject);
