@@ -57,6 +57,7 @@ namespace Managers
             UISignals.onClosePanel += OnClosePanel;
             UISignals.onSetChangedText += levelPanelController.OnScoreUpdateText;
             CoreGameSignals.onPlay += OnPlay;
+            CoreGameSignals.onPlay += levelPanelController.OnPlay;
             CoreGameSignals.onLevelFailed += OnLevelFailed;
             CoreGameSignals.onLevelSuccessful += OnLevelSuccessful;
             CoreGameSignals.onRestart += levelPanelController.OnRestartLevel;
@@ -69,6 +70,7 @@ namespace Managers
             UISignals.onClosePanel -= OnClosePanel;
             UISignals.onSetChangedText -= levelPanelController.OnScoreUpdateText;
             CoreGameSignals.onPlay -= OnPlay;
+            CoreGameSignals.onPlay -= levelPanelController.OnPlay;
             CoreGameSignals.onLevelFailed -= OnLevelFailed;
             CoreGameSignals.onLevelSuccessful -= OnLevelSuccessful;
             CoreGameSignals.onRestart -= levelPanelController.OnRestartLevel;

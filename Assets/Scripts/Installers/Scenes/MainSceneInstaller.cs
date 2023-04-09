@@ -30,7 +30,7 @@ namespace Installers.Scenes
             Container.Bind<AudioSignals>().AsSingle();
             Container.Bind<PlayerSignals>().AsSingle();
 
-            Container.BindInterfacesAndSelfTo<EnemySpawnManager>().AsSingle();
+            //Container.BindInterfacesAndSelfTo<EnemySpawnManager>().AsSingle();
 
             Container.BindFactory<BulletManager, BulletManager.Factory>().FromComponentInNewPrefab(bulletPrefab);
             Container.BindFactory<EnemyManager, EnemyManager.Factory>().FromComponentInNewPrefab(enemyPrefab);

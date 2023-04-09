@@ -7,17 +7,24 @@ using TMPro;
 using System;
 using Data.UnityObject;
 using DG.Tweening;
+using System.Threading.Tasks;
+using Zenject;
 
 public class LevelPanelController : MonoBehaviour
 {
     #region Self Variables
+    #region Inject Variables
+    [Inject] private LevelSignals LevelSignals { get; set; }
+
+    #endregion
+
     #region Public Variables
     #endregion
     #region SerializeField Variables
-    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI gemText, counterText;
     #endregion
     #region Private Variables
-
+    private int _counterValue, _counterDefaultValue = 3;
 
     #endregion
     #endregion
@@ -28,16 +35,39 @@ public class LevelPanelController : MonoBehaviour
     private void Init()
     {
 
-
     }
     public void OnScoreUpdateText(ScoreTypeEnums type, int score)
     {
         if (type.Equals(ScoreTypeEnums.Gem))
         {
-            scoreText.text = score.ToString();
+            gemText.text = score.ToString();
         }
     }
 
+    private async Task Counter()
+    {
+        while (true)
+        {
+            await Task.Delay(1000);
+            counterText.text = _counterValue.ToString();
+
+            --_counterValue;
+            if (_counterValue < 0)
+            {
+                LevelSignals.onStageComplated?.Invoke();
+                _counterValue = _counterDefaultValue;
+                continue;
+            }
+        }
+
+    }
+    public void OnPlay()
+    {
+        _counterValue = _counterDefaultValue;
+        counterText.text = _counterValue.ToString();
+        Counter();
+
+    }
     public void OnRestartLevel()
     {
     }

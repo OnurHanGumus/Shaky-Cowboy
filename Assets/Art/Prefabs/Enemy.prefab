@@ -1598,9 +1598,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7097459859590748510}
-  - component: {fileID: 3651919940615576628}
   - component: {fileID: 6698316384329007261}
   - component: {fileID: 1576879709222569188}
+  - component: {fileID: 714910721}
   m_Layer: 0
   m_Name: Revolver
   m_TagString: Untagged
@@ -1624,19 +1624,6 @@ Transform:
   m_Father: {fileID: 5803188353528402544}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3651919940615576628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3785682897657198773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bb152d86f460e34585f08f7bdcd551d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPointTransform: {fileID: 7064322489082807775}
 --- !u!114 &6698316384329007261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1662,6 +1649,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &714910721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3785682897657198773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367aeb926612d7b46a6195df4c335e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPointTransform: {fileID: 7064322489082807775}
 --- !u!1 &3796901219073093381
 GameObject:
   m_ObjectHideFlags: 0
@@ -3273,6 +3273,7 @@ GameObject:
   - component: {fileID: 5001984864687572378}
   - component: {fileID: 7851368060313264897}
   - component: {fileID: 975950562249602645}
+  - component: {fileID: 2023775056}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -3379,6 +3380,22 @@ MonoBehaviour:
   - m_Rig: {fileID: 4492203147487638415}
     m_Active: 1
   m_Effectors: []
+--- !u!114 &2023775056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7009404533559161122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bfaaa80d6395a488a3a30301720f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletHolder: {fileID: 0}
+  gunList:
+  - {fileID: 714910721}
+  gunMeshes: []
 --- !u!1 &7122161771937918710
 GameObject:
   m_ObjectHideFlags: 0
