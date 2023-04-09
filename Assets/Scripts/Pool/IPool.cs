@@ -1,4 +1,4 @@
-using Events.InternalEvents;
+using Signals;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;

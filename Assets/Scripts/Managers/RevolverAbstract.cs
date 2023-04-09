@@ -5,12 +5,12 @@ using UnityEngine;
 using Zenject;
 using Enums;
 
-public class RevolverManager1 : MonoBehaviour, IGun
+public abstract class RevolverAbstract : MonoBehaviour
 {
     #region Self Variables
     #region Inject Variables
     //[Inject] private PlayerSettings PlayerSettings { get; set; }
-    [Inject] private PlayerSignals PlayerSignals { get; set; }
+    //[Inject] private PlayerSignals PlayerSignals { get; set; }
     [Inject] private PoolSignals PoolSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
     [Inject] private InputSignals InputSignals { get; set; }
@@ -36,12 +36,12 @@ public class RevolverManager1 : MonoBehaviour, IGun
 
     private void SubscribeEvents()
     {
-        PlayerSignals.onShoot += OnShoot;
+        //PlayerSignals.onShoot += OnShoot;
     }
 
     private void UnsubscribeEvents()
     {
-        PlayerSignals.onShoot -= OnShoot;
+        //PlayerSignals.onShoot -= OnShoot;
     }
 
 
@@ -52,7 +52,7 @@ public class RevolverManager1 : MonoBehaviour, IGun
 
     #endregion
 
-    public void OnShoot()
+    public virtual void OnShoot()
     {
         GameObject bullet = PoolSignals.onGetObject?.Invoke(PoolEnums.Bullet, transform.position);
         bullet.transform.position = bulletPointTransform.position;
@@ -61,7 +61,7 @@ public class RevolverManager1 : MonoBehaviour, IGun
         //AudioSignals.onPlaySound?.Invoke(SoundEnums.Fire);
     }
 
-    public void Reload()
+    public virtual void Reload()
     {
     }
 }

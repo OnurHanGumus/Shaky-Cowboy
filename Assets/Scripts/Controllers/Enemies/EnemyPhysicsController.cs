@@ -1,4 +1,3 @@
-using Events.InternalEvents;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
@@ -11,10 +10,10 @@ namespace Controllers {
     {
         private int _enemyHits = 2;
         [Inject] private LevelSignals LevelSignals { get; set;}
-        [Inject] private EnemyInternalEvents EnemyInternalEvents { get; set; }
+        [Inject] private EnemySignals EnemyInternalEvents { get; set; }
         [SerializeField] private EnemyManager enemy;
 
-        public EnemyInternalEvents GetInternalEvents()
+        public EnemySignals GetInternalEvents()
         {
             return EnemyInternalEvents;
         }
@@ -29,7 +28,7 @@ namespace Controllers {
 
             if (_enemyHits == 0)
             {
-                EnemyInternalEvents.OnDeath?.Invoke(this);
+                EnemyInternalEvents.onDeath?.Invoke(this);
                 LevelSignals.onEnemyDied.Invoke();
                 //PoolSignals.onRemove?.Invoke(PoolEnums.Enemy, enemy);
 

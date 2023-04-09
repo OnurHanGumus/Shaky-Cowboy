@@ -4,19 +4,18 @@ using UnityEngine;
 using Zenject;
 using Enums;
 using System;
-using Data.MetaData;
-using Components.Enemies;
 using Signals;
 using System.Threading.Tasks;
+using Random = UnityEngine.Random;
 
 namespace Controllers
 {
-    public class PlayerShootController : MonoBehaviour
+    public class EnemyShootController : MonoBehaviour
     {
         #region Self Variables
         #region Inject Variables
-        [Inject] private PlayerSettings PlayerSettings { get; set; }
-        [Inject] private PlayerSignals PlayerSignals { get; set; }
+        [Inject] private EnemySettings EnemySettings { get; set; }
+        [Inject] private EnemySignals EnemySignals { get; set; }
         #endregion
         #region Public Variables
         #endregion
@@ -35,13 +34,12 @@ namespace Controllers
 
         private void Awake()
         {
-            _mySettings = PlayerSettings.PlayerShootManagerSettings;
+            _mySettings = EnemySettings.EnemyShootSettings;
             _currentGun = (IGun) gunList[0];
         }
-
-        public void OnClicked()
+        private void Start()
         {
-            Shoot();
+            ShootDelay();
         }
         private void Shoot()
         {
@@ -50,17 +48,17 @@ namespace Controllers
                 _currentGun.Reload();
                 return;
             }
-            PlayerSignals.onShoot?.Invoke();
+            EnemySignals.onShoot?.Invoke();
         }
 
-        private void ChangeGun()
+        private async Task ShootDelay()
         {
-            _currentGun = (IGun)gunList[_selectedGunId];
-            for (int i = 0; i < gunList.Count; i++)
+            Debug.Log(this.name);
+            while (true)
             {
-                gunMeshes[i].SetActive(false);
+                await Task.Delay((int)(Random.Range(0.15f, 0.85f) * 1000));
+                Shoot();
             }
-            gunMeshes[_selectedGunId].SetActive(true);
         }
 
         [Serializable]

@@ -1,4 +1,4 @@
-﻿using Events.InternalEvents;
+﻿using Signals;
 using UnityEngine.Events;
 
 namespace Components.Enemies
@@ -6,6 +6,6 @@ namespace Components.Enemies
     public interface IAttackable
     {
         void OnWeaponTriggerEnter();
-        EnemyInternalEvents GetInternalEvents();
+        EnemySignals GetInternalEvents();
     }
 }

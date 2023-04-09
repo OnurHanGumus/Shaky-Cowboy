@@ -3797,7 +3797,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCurrentPos: {x: 0, y: 0, z: 0}
   bulletHolder: {fileID: 0}
-  gunList: []
+  gunList:
+  - {fileID: 7586988698694999243}
   gunMeshes: []
 --- !u!114 &3828421993738561262
 MonoBehaviour:
