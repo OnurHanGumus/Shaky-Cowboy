@@ -1241,6 +1241,7 @@ GameObject:
   - component: {fileID: 2774950852739523669}
   - component: {fileID: 6770273871027503646}
   - component: {fileID: 485187434770830818}
+  - component: {fileID: 1279618230}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1298,6 +1299,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1279618230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299251445941190383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c470912663e0f2945bfc19a43a3e55c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 485187434770830818}
 --- !u!1 &3318346952753896884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,7 +1676,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPointTransform: {fileID: 7064322489082807775}
+  playerTransform: {fileID: 5803188353528402544}
   movementController: {fileID: 6698316384329007261}
+  revolverInitializePos: {x: 0.069, y: 1.123, z: -0.11}
+  revolverInitializeRot: {x: -3.195, y: -10.45, z: 0.45}
 --- !u!1 &3796901219073093381
 GameObject:
   m_ObjectHideFlags: 0
@@ -3275,6 +3292,7 @@ GameObject:
   - component: {fileID: 7851368060313264897}
   - component: {fileID: 975950562249602645}
   - component: {fileID: 2023775056}
+  - component: {fileID: 1394508031}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -3343,6 +3361,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a4563fcaa7d014aa8913031fe68047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  riggingController: {fileID: 1394508031}
+  animationController: {fileID: 1279618230}
+  shootController: {fileID: 2023775056}
 --- !u!95 &7851368060313264897
 Animator:
   serializedVersion: 4
@@ -3370,7 +3391,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7009404533559161122}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
   m_Name: 
@@ -3394,9 +3415,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletHolder: {fileID: 0}
+  playerLeftHand: {fileID: 8877798504029427325}
+  revolver: {fileID: 7097459859590748510}
   gunList:
   - {fileID: 714910721}
   gunMeshes: []
+--- !u!114 &1394508031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7009404533559161122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1693470abc57cf4fa2f1966cbba06f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigBuilder: {fileID: 975950562249602645}
 --- !u!1 &7122161771937918710
 GameObject:
   m_ObjectHideFlags: 0

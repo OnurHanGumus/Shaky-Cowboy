@@ -21,6 +21,8 @@ namespace Controllers
         #endregion
         #region Serializefield Variables
         [SerializeField] private Transform bulletHolder;
+        [SerializeField] private Transform playerLeftHand;
+        [SerializeField] private Transform revolver;
         [SerializeField] private List<Component> gunList; //We use "Component" reference to see interfaces in Unity Inspector. Or we can also use their common base class "GunController". 
         [SerializeField] private List<GameObject> gunMeshes;
 
@@ -54,7 +56,12 @@ namespace Controllers
                 Shoot();
             }
         }
-
+        public void OnReload()
+        {
+            revolver.parent = playerLeftHand;
+            revolver.localPosition = new Vector3(-0.357f, -0.361f, 0.219f);
+            revolver.localEulerAngles = new Vector3(-55.102f, 130.775f, -211.855f);
+        }
         [Serializable]
         public class Settings
         {

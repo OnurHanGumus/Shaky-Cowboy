@@ -24,6 +24,8 @@ public class EnemyManager : MonoBehaviour
 
     #region Serialized Variables
     [SerializeField] private EnemyRiggingController riggingController;
+    [SerializeField] private EnemyAnimationController animationController;
+    [SerializeField] private EnemyShootController shootController;
 
     #endregion
 
@@ -48,7 +50,9 @@ public class EnemyManager : MonoBehaviour
         CoreGameSignals.onPlay += riggingController.OnPlay;
         CoreGameSignals.onRestart += OnRestartLevel;
 
+        EnemySignals.onReload += OnReload;
         EnemySignals.onReload += riggingController.OnReload;
+        EnemySignals.onReload += shootController.OnReload;
         EnemySignals.onReloaded += riggingController.OnReloaded;
 
     }
@@ -58,7 +62,9 @@ public class EnemyManager : MonoBehaviour
         CoreGameSignals.onPlay -= riggingController.OnPlay;
         CoreGameSignals.onRestart -= OnRestartLevel;
 
+        EnemySignals.onReload -= OnReload;
         EnemySignals.onReload -= riggingController.OnReload;
+        EnemySignals.onReload -= shootController.OnReload;
         EnemySignals.onReloaded -= riggingController.OnReloaded;
 
     }
@@ -68,7 +74,10 @@ public class EnemyManager : MonoBehaviour
         UnsubscribeEvents();
     }
     #endregion
-
+    private void OnReload()
+    {
+        animationController.OnChangeAnimation(PlayerAnimationStates.Reload);
+    }
     private void OnRestartLevel()
     {
         gameObject.SetActive(false);

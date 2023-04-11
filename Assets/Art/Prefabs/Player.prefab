@@ -50,6 +50,8 @@ MonoBehaviour:
   bulletPointTransform: {fileID: 771517754}
   playerTransform: {fileID: 8549495318211459234}
   movementController: {fileID: 4707765954347216196}
+  revolverInitializePos: {x: 0.069, y: 1.123, z: -0.11}
+  revolverInitializeRot: {x: -3.195, y: -10.45, z: 0.45}
 --- !u!114 &4707765954347216196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1761,11 +1763,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1697230898}
-  revolver: {fileID: 124712519}
-  playerTransform: {fileID: 8549495318211459234}
-  playerLeftHandTransform: {fileID: 8064296699387272533}
-  revolverInitializePos: {x: -3, y: -10, z: 0.45}
-  revolverInitializeRot: {x: -3.195, y: -10.45, z: 0.45}
 --- !u!1 &4238810101162120860
 GameObject:
   m_ObjectHideFlags: 0
@@ -3774,7 +3771,7 @@ MonoBehaviour:
   movementController: {fileID: 8549495318211459232}
   shootController: {fileID: 8549495318211459235}
   animationController: {fileID: 1588787912}
-  riggingController: {fileID: 0}
+  riggingController: {fileID: 268653201}
 --- !u!114 &8549495318211459232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3800,6 +3797,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletHolder: {fileID: 771517754}
+  playerLeftHand: {fileID: 8064296699387272533}
+  revolver: {fileID: 124712519}
   gunList:
   - {fileID: 7586988698694999243}
   gunMeshes: []
@@ -3835,8 +3834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42716599ec017194788db47ebd6c0a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 8549495318211459233}
-  rigBuilder: {fileID: 0}
+  rigBuilder: {fileID: 2090131915130323647}
 --- !u!114 &2090131915130323647
 MonoBehaviour:
   m_ObjectHideFlags: 0
