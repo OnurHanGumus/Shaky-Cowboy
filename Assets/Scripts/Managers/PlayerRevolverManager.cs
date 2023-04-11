@@ -70,7 +70,7 @@ public class PlayerRevolverManager : RevolverAbstract, IGun
         {
             _isReloading = true;
             PlayerSignals.onReload?.Invoke();
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(2.4f);
             transform.parent = base.playerTransform;
             transform.localPosition = revolverInitializePos;
             transform.localEulerAngles = revolverInitializeRot;

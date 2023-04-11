@@ -48,6 +48,7 @@ public class EnemyManager : MonoBehaviour
     private void SubscribeEvents()
     {
         CoreGameSignals.onPlay += riggingController.OnPlay;
+        CoreGameSignals.onPlay += shootController.OnPlay;
         CoreGameSignals.onRestart += OnRestartLevel;
 
         EnemySignals.onReload += OnReload;
@@ -60,6 +61,7 @@ public class EnemyManager : MonoBehaviour
     private void UnsubscribeEvents()
     {
         CoreGameSignals.onPlay -= riggingController.OnPlay;
+        CoreGameSignals.onPlay += shootController.OnPlay;
         CoreGameSignals.onRestart -= OnRestartLevel;
 
         EnemySignals.onReload -= OnReload;

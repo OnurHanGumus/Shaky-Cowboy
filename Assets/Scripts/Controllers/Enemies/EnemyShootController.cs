@@ -41,6 +41,9 @@ namespace Controllers
         }
         private void Start()
         {
+        }
+        public void OnPlay()
+        {
             ShootDelay();
         }
         private void Shoot()
