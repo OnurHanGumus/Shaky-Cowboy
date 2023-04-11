@@ -29,6 +29,7 @@ namespace Installers.Scenes
             Container.Bind<PoolSignals>().AsSingle();
             Container.Bind<AudioSignals>().AsSingle();
             Container.Bind<PlayerSignals>().AsSingle();
+            Container.Bind<RevolverSignals>().AsSingle();
 
             //Container.BindInterfacesAndSelfTo<EnemySpawnManager>().AsSingle();
 

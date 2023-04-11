@@ -23,7 +23,6 @@ namespace Controllers
         public void OnPlay()
         {
             _isStarted = true;
-            Debug.Log(this.name);
         }
         public void OnRestartLevel()
         {

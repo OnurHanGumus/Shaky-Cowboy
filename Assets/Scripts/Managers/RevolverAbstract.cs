@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using Enums;
+using System.Threading.Tasks;
 
 public abstract class RevolverAbstract : MonoBehaviour
 {
@@ -14,16 +15,25 @@ public abstract class RevolverAbstract : MonoBehaviour
     [Inject] private PoolSignals PoolSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
     [Inject] private InputSignals InputSignals { get; set; }
+    [Inject] private PlayerSignals PlayerSignals { get; set; }
     #endregion
     #region Public Variables
     #endregion
     #region Serializefield Variables
-    [SerializeField] private Transform bulletPointTransform;
+    [SerializeField] protected Transform bulletPointTransform;
+    [SerializeField] protected Transform playerTransform;
+    [SerializeField] private RevolverMovementController movementController;
+    [SerializeField] protected Vector3 revolverInitializePos = new Vector3(0.069f, 1.123f, -0.11f);
+    [SerializeField] protected Vector3 revolverInitializeRot = new Vector3(-3.195f, -10.45f, 0.45f);
+    #endregion
+    #region Protected Variables
+    protected bool _isReloading = false;
+
     #endregion
     #region Private Variables
     #endregion
     #region Properties
-    public int AmmoCapacity { get; set; }
+    public int AmmoCapacity { get; set; } = 3;
     public int CurrentBulletCount { get; set; } = 3;
     #endregion
     #endregion
@@ -34,14 +44,14 @@ public abstract class RevolverAbstract : MonoBehaviour
         SubscribeEvents();
     }
 
-    private void SubscribeEvents()
+    protected virtual void SubscribeEvents()
     {
-        //PlayerSignals.onShoot += OnShoot;
+        CoreGameSignals.onPlay += movementController.OnPlay;
     }
 
-    private void UnsubscribeEvents()
+    protected virtual void UnsubscribeEvents()
     {
-        //PlayerSignals.onShoot -= OnShoot;
+        CoreGameSignals.onPlay -= movementController.OnPlay;
     }
 
 
@@ -54,14 +64,30 @@ public abstract class RevolverAbstract : MonoBehaviour
 
     public virtual void OnShoot()
     {
+        if (_isReloading)
+        {
+            return;
+        }
+        if (CurrentBulletCount <= 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+
         GameObject bullet = PoolSignals.onGetObject?.Invoke(PoolEnums.Bullet, transform.position);
         bullet.transform.position = bulletPointTransform.position;
         bullet.transform.eulerAngles = transform.eulerAngles;
         bullet.SetActive(true);
-        //AudioSignals.onPlaySound?.Invoke(SoundEnums.Fire);
+        --CurrentBulletCount;
     }
 
-    public virtual void Reload()
+    public virtual IEnumerator Reload()
     {
+
+        yield break; 
     }
+    //public virtual async Task Reload()
+    //{
+
+    //}
 }

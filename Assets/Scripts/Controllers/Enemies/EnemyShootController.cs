@@ -43,17 +43,11 @@ namespace Controllers
         }
         private void Shoot()
         {
-            if (_currentGun.CurrentBulletCount <= 0)
-            {
-                _currentGun.Reload();
-                return;
-            }
             EnemySignals.onShoot?.Invoke();
         }
 
         private async Task ShootDelay()
         {
-            Debug.Log(this.name);
             while (true)
             {
                 await Task.Delay((int)(Random.Range(0.15f, 0.85f) * 1000));

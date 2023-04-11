@@ -7,5 +7,7 @@ namespace Signals
     {
         public UnityAction<IAttackable> onDeath = delegate { };
         public UnityAction onShoot = delegate { };
+        public UnityAction onReload = delegate { };
+        public UnityAction onReloaded = delegate { };
     }
 }

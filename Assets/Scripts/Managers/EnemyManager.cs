@@ -4,12 +4,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using Controllers;
 
 public class EnemyManager : MonoBehaviour
 {
+    #region Self Variables
+    #region Injected Variables
     [Inject] private PoolSignals PoolSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
-    [Inject] 
+    [Inject] private InputSignals InputSignals { get; set; }
+    [Inject] private RevolverSignals RevolverSignals { get; set; }
+    [Inject] private EnemySignals EnemySignals { get; set; }
+
+    #endregion
+
+    #region Public Variables
+
+    #endregion
+
+    #region Serialized Variables
+    [SerializeField] private EnemyRiggingController riggingController;
+
+    #endregion
+
+    #region Private Variables
+    #endregion
+
+    #endregion
     public void Construct(PoolSignals poolSignals, CoreGameSignals coreGameSignals)
     {
         PoolSignals = poolSignals;
@@ -24,12 +45,22 @@ public class EnemyManager : MonoBehaviour
 
     private void SubscribeEvents()
     {
+        CoreGameSignals.onPlay += riggingController.OnPlay;
         CoreGameSignals.onRestart += OnRestartLevel;
+
+        EnemySignals.onReload += riggingController.OnReload;
+        EnemySignals.onReloaded += riggingController.OnReloaded;
+
     }
 
     private void UnsubscribeEvents()
     {
+        CoreGameSignals.onPlay -= riggingController.OnPlay;
         CoreGameSignals.onRestart -= OnRestartLevel;
+
+        EnemySignals.onReload -= riggingController.OnReload;
+        EnemySignals.onReloaded -= riggingController.OnReloaded;
+
     }
 
     private void OnDisable()

@@ -6,8 +6,8 @@ namespace Enums
     public enum PlayerAnimationStates
     {
         Idle,
-        Throw,
-        Catch,
-        BuildBoomerang,
+        Aim,
+        Reload,
+        Die,
     }
 }

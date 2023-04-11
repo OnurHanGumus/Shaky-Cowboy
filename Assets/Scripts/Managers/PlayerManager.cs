@@ -18,6 +18,8 @@ namespace Managers
         [Inject] private PoolSignals PoolSignals { get; set; }
         [Inject] private CoreGameSignals CoreGameSignals { get; set; }
         [Inject] private InputSignals InputSignals { get; set; }
+        [Inject] private PlayerSignals PlayerSignals { get; set; }
+        [Inject] private RevolverSignals RevolverSignals { get; set; }
         #endregion
 
         #region Public Variables
@@ -27,6 +29,8 @@ namespace Managers
         #region Serialized Variables
         [SerializeField] private PlayerMovementController movementController;
         [SerializeField] private PlayerShootController shootController;
+        [SerializeField] private PlayerAnimationController animationController;
+        [SerializeField] private PlayerRiggingController riggingController;
         #endregion
 
         #region Private Variables
@@ -56,15 +60,31 @@ namespace Managers
         private void SubscribeEvents()
         {
             CoreGameSignals.onPlay += movementController.OnPlay;
+            CoreGameSignals.onPlay += riggingController.OnPlay;
             CoreGameSignals.onRestart += movementController.OnRestartLevel;
+
             InputSignals.onClicked += shootController.OnClicked;
+
+            PlayerSignals.onReload += OnReload;
+            PlayerSignals.onReload += shootController.OnReload;
+            PlayerSignals.onReload += riggingController.OnReload;
+
+            PlayerSignals.onReloaded += riggingController.OnReloaded;
         }
 
         private void UnsubscribeEvents()
         {
             CoreGameSignals.onPlay -= movementController.OnPlay;
+            CoreGameSignals.onPlay -= riggingController.OnPlay;
             CoreGameSignals.onRestart -= movementController.OnRestartLevel;
+
             InputSignals.onClicked -= shootController.OnClicked;
+
+            PlayerSignals.onReload -= OnReload;
+            PlayerSignals.onReload -= shootController.OnReload;
+            PlayerSignals.onReload -= riggingController.OnReload;
+
+            PlayerSignals.onReloaded -= riggingController.OnReloaded;
         }
 
 
@@ -74,13 +94,9 @@ namespace Managers
         }
 
         #endregion
-        private void OnPlay()
+        private void OnReload()
         {
-
-        }
-        private void OnResetLevel()
-        {
-
+            animationController.OnChangeAnimation(PlayerAnimationStates.Reload);
         }
     }
 }

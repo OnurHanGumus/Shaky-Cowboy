@@ -22,7 +22,7 @@ public class RevolverMovementController : MonoBehaviour
     #endregion
     #endregion
 
-    private void Start()
+    public void OnPlay()
     {
         revolverTargetTransform.DOPath(new Vector3[2] 
         { 

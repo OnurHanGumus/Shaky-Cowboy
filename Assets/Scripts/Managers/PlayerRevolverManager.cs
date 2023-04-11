@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using Enums;
+using System.Threading.Tasks;
 
 public class PlayerRevolverManager : RevolverAbstract, IGun
 {
@@ -33,14 +34,16 @@ public class PlayerRevolverManager : RevolverAbstract, IGun
         SubscribeEvents();
     }
 
-    private void SubscribeEvents()
+    protected override void SubscribeEvents()
     {
         PlayerSignals.onShoot += OnShoot;
+        base.SubscribeEvents();
     }
 
-    private void UnsubscribeEvents()
+    private new void UnsubscribeEvents()
     {
         PlayerSignals.onShoot -= OnShoot;
+        base.UnsubscribeEvents();
     }
 
 
@@ -56,8 +59,27 @@ public class PlayerRevolverManager : RevolverAbstract, IGun
         base.OnShoot();
     }
 
-    public override void Reload()
+    //public override async Task Reload()
+    //{
+    //PlayerSignals.onReload?.Invoke();
+    //    base.Reload();
+    //}
+    public override IEnumerator Reload()
     {
-        base.Reload();
+        if (!_isReloading)
+        {
+            _isReloading = true;
+            PlayerSignals.onReload?.Invoke();
+            yield return new WaitForSeconds(2);
+            transform.parent = base.playerTransform;
+            transform.localPosition = revolverInitializePos;
+            transform.localEulerAngles = revolverInitializeRot;
+
+            yield return new WaitForSeconds(0.5f);
+            PlayerSignals.onReloaded?.Invoke();
+
+            _isReloading = false;
+            CurrentBulletCount = AmmoCapacity;
+        }
     }
 }

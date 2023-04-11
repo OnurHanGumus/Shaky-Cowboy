@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public interface IGun
@@ -7,5 +8,5 @@ public interface IGun
     public int AmmoCapacity { get; set; }
     public int CurrentBulletCount { get; set; }
     public void OnShoot();
-    public void Reload();
+    public async Task Reload() { }
 }
