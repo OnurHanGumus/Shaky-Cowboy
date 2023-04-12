@@ -10,10 +10,23 @@ using Signals;
 
 public class BulletPhysicsController : MonoBehaviour, IPoolType
 {
+    #region Self Variables
+    #region Inject Variables
     [Inject] private PlayerSignals PlayerSignals { get; set; }
     [Inject] private PoolSignals PoolSignals { get; set; }
-
+    #endregion
+    #region Public Variables
+    #endregion
+    #region Serializefield Variables
+    #endregion
+    #region Private Variables
     private Settings _mySettings;
+
+    #endregion
+    #region Properties
+
+    #endregion
+    #endregion
 
     [Inject]
     public void Constractor(BulletSettings bulletSettings)
@@ -37,6 +50,7 @@ public class BulletPhysicsController : MonoBehaviour, IPoolType
             particle.SetActive(false);
             particle.transform.position = transform.position;
             particle.SetActive(true);
+            Debug.Log("Enemy Shootded");
         }
     }
 

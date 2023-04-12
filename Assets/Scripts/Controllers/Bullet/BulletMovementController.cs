@@ -7,6 +7,9 @@ using Zenject;
 public class BulletMovementController : MonoBehaviour
 {
     #region Self Variables
+    #region Inject Variables
+
+    #endregion
     #region Public Variables
     #endregion
     #region Serializefield Variables

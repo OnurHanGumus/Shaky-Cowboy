@@ -7,8 +7,22 @@ using Signals;
 
 public class BulletManager : MonoBehaviour
 {
+    #region Self Variables
+    #region Inject Variables
     [Inject] private PoolSignals PoolSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
+    #endregion
+    #region Public Variables
+    #endregion
+    #region Serializefield Variables
+    #endregion
+    #region Private Variables
+    #endregion
+    #region Properties
+
+    #endregion
+    #endregion
+
     [Inject]
     public void Construct(PoolSignals poolSignals, CoreGameSignals coreGameSignals)
     {

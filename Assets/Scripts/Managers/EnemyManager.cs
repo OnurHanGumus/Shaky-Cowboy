@@ -33,6 +33,7 @@ public class EnemyManager : MonoBehaviour
     #endregion
 
     #endregion
+    [Inject]
     public void Construct(PoolSignals poolSignals, CoreGameSignals coreGameSignals)
     {
         PoolSignals = poolSignals;

@@ -1243,7 +1243,7 @@ GameObject:
   - component: {fileID: 485187434770830818}
   - component: {fileID: 1279618230}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1263,7 +1263,6 @@ Transform:
   m_Children:
   - {fileID: 7697436632436868289}
   - {fileID: 5112936407132588316}
-  - {fileID: 8745107333265845443}
   m_Father: {fileID: 5803188353528402544}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1378,7 +1377,7 @@ Transform:
   - {fileID: 2920471603252709556}
   - {fileID: 8663837366063142653}
   m_Father: {fileID: 5803188353528402544}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2936133295694605674
 MonoBehaviour:
@@ -1636,7 +1635,7 @@ Transform:
   m_Children:
   - {fileID: 3739955857236367360}
   m_Father: {fileID: 5803188353528402544}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6698316384329007261
 MonoBehaviour:
@@ -2037,7 +2036,7 @@ Transform:
   m_Children:
   - {fileID: 2520851061726554996}
   m_Father: {fileID: 5803188353528402544}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4492203147487638415
 MonoBehaviour:
@@ -3313,6 +3312,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2774950852739523669}
+  - {fileID: 8745107333265845443}
   - {fileID: 7097459859590748510}
   - {fileID: 5103255032574880017}
   - {fileID: 325933999269851722}
@@ -3958,6 +3958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8745107333265845443}
   - component: {fileID: 873994756359193012}
+  - component: {fileID: 4734556752962038848}
   m_Layer: 0
   m_Name: Physics
   m_TagString: Untagged
@@ -3977,8 +3978,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2774950852739523669}
-  m_RootOrder: 2
+  m_Father: {fileID: 5803188353528402544}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &873994756359193012
 MonoBehaviour:
@@ -3993,6 +3994,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 5001984864687572378}
+--- !u!65 &4734556752962038848
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8977994633112175926}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4186441, y: 1.6605736, z: 0.42091534}
+  m_Center: {x: 0.016267076, y: 0.8440886, z: -0.0008993745}
 --- !u!1001 &4654586298818011640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4006,7 +4020,7 @@ PrefabInstance:
       objectReference: {fileID: 5803188353528402544}
     - target: {fileID: 1304907991050808971, guid: 4dc6beb6fcb1a4a4ab5475f89324ff0d, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1304907991050808971, guid: 4dc6beb6fcb1a4a4ab5475f89324ff0d, type: 3}
       propertyPath: m_LocalScale.x
