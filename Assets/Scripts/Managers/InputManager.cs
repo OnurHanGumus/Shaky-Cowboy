@@ -88,6 +88,10 @@ namespace Managers
 
         private void Update()
         {
+            if (IsPointerOverUIElement())
+            {
+                return;
+            }
             if (Input.GetMouseButtonDown(0))
             {
                 _ray = Camera.main.ScreenPointToRay(Input.mousePosition);

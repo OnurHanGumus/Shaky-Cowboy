@@ -54,9 +54,8 @@ public class LevelPanelController : MonoBehaviour
             --_counterValue;
             if (_counterValue < 0)
             {
-                LevelSignals.onStageComplated?.Invoke();
-                _counterValue = _counterDefaultValue;
-                continue;
+                counterText.text = "START!";
+                break;
             }
         }
 

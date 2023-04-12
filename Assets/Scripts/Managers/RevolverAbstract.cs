@@ -68,17 +68,17 @@ public abstract class RevolverAbstract : MonoBehaviour
         {
             return;
         }
-        if (CurrentBulletCount <= 0)
-        {
-            StartCoroutine(Reload());
-            return;
-        }
 
         GameObject bullet = PoolSignals.onGetObject?.Invoke(PoolEnums.Bullet, transform.position);
         bullet.transform.position = bulletPointTransform.position;
         bullet.transform.eulerAngles = transform.eulerAngles;
         bullet.SetActive(true);
         --CurrentBulletCount;
+        if (CurrentBulletCount <= 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
     }
 
     public virtual IEnumerator Reload()
