@@ -6,17 +6,16 @@ using Signals;
 using Components.Enemies;
 
 namespace Controllers {
-    public class EnemyPhysicsController : MonoBehaviour, IAttackable
+    public class PlayerPhysicsController : MonoBehaviour, IAttackable
     {
         #region Self Variables
         #region Inject Variables
         [Inject] private LevelSignals LevelSignals { get; set; }
-        [Inject] private EnemySignals EnemySignals { get; set; }
+        [Inject] private PlayerSignals PlayerSignals { get; set; }
         #endregion
         #region Public Variables
         #endregion
         #region Serializefield Variables
-        [SerializeField] private EnemyManager enemy;
         [SerializeField] private int criticalDamageValue = 5;
         #endregion
         #region Private Variables
@@ -25,13 +24,12 @@ namespace Controllers {
         #endregion
         #endregion
 
-
         private void OnDisable()
         {
         }
         void IAttackable.OnWeaponTriggerEnter(int value)
         {
-            EnemySignals.onHitted?.Invoke(value * criticalDamageValue);
+            PlayerSignals.onHitted?.Invoke(value * criticalDamageValue);
         }
     }
 }
