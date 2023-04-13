@@ -8,32 +8,34 @@ using Components.Enemies;
 namespace Controllers {
     public class EnemyPhysicsController : MonoBehaviour, IAttackable
     {
-        private int _enemyHits = 2;
-        [Inject] private LevelSignals LevelSignals { get; set;}
-        [Inject] private EnemySignals EnemyInternalEvents { get; set; }
+        #region Self Variables
+        #region Inject Variables
+        [Inject] private LevelSignals LevelSignals { get; set; }
+        [Inject] private EnemySignals EnemySignals { get; set; }
+        #endregion
+        #region Public Variables
+        #endregion
+        #region Serializefield Variables
         [SerializeField] private EnemyManager enemy;
+        [SerializeField] private int criticalDamageValue = 5;
+        #endregion
+        #region Private Variables
+        #endregion
+        #region Properties
+        #endregion
+        #endregion
 
         public EnemySignals GetInternalEvents()
         {
-            return EnemyInternalEvents;
+            return EnemySignals;
         }
 
         private void OnDisable()
         {
-            _enemyHits = 2;
         }
-        void IAttackable.OnWeaponTriggerEnter()
+        void IAttackable.OnWeaponTriggerEnter(int value)
         {
-            _enemyHits--;
-
-            if (_enemyHits == 0)
-            {
-                EnemyInternalEvents.onDeath?.Invoke(this);
-                LevelSignals.onEnemyDied.Invoke();
-                //PoolSignals.onRemove?.Invoke(PoolEnums.Enemy, enemy);
-
-                enemy.gameObject.SetActive(false);
-            }
+            EnemySignals.onHitted?.Invoke(value * criticalDamageValue);
         }
     }
 }

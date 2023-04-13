@@ -45,12 +45,11 @@ public class BulletPhysicsController : MonoBehaviour, IPoolType
         {
             PlayerSignals.onEnemyShooted?.Invoke(attackable);
             DespawnSignal();
-            attackable.OnWeaponTriggerEnter();
+            attackable.OnWeaponTriggerEnter(1);
             GameObject particle = PoolSignals.onGetObject(PoolEnums.Explosion, transform.position);
             particle.SetActive(false);
             particle.transform.position = transform.position;
             particle.SetActive(true);
-            Debug.Log("Enemy Shootded");
         }
     }
 

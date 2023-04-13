@@ -17,38 +17,49 @@ public class HealthBarManager : MonoBehaviour
     #endregion
 
     #region Serialized Variables
-    [SerializeField] private Transform playerTransform;
+    [SerializeField] protected Transform playerTransform;
     [SerializeField] private Transform healthBar;
 
     [SerializeField] private GameObject holder;
     #endregion
 
     #region Private Variables
-
+    protected int _currentHealth = 100;
+    protected const int _MAKS_HEALTH = 100;
 
     #endregion
 
     #endregion
 
     #region Event Subscription
-    private void Start()
+    protected virtual void OnEnable()
     {
+        SubscribeEvents();
+        _currentHealth = _MAKS_HEALTH;
     }
+    private void SubscribeEvents()
+    {
 
+    }
+    private void UnSubscribeEvents()
+    {
+
+    }
     private void OnDisable()
     {
-
+        UnSubscribeEvents();
     }
     #endregion
 
 
-    private void Awake()
+
+    protected virtual void Awake()
     {
         Init();
     }
     private void Init()
     {
-
+        _currentHealth = _MAKS_HEALTH;
     }
 
     private void Update()
@@ -60,6 +71,15 @@ public class HealthBarManager : MonoBehaviour
     public void SetHealthBarScale(int currentValue, int maxValue)//HealthBar increase or decrease with this method. This method can also listen a signal.
     {
         healthBar.localScale = new Vector3((float)currentValue / maxValue, 1, 1);
+    }
+    public virtual void OnHitted(int value)
+    {
+        _currentHealth -= value;
+        HealthText.text = _currentHealth.ToString();
+
+        SetHealthBarScale(_currentHealth, 100);
+
+        
     }
 
     //HEALTHBAR VISIBILITY
