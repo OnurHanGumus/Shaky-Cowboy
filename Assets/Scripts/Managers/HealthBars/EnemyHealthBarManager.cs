@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Signals;
 using Zenject;
+using Enums;
 
 public class EnemyHealthBarManager : HealthBarManager
 {
@@ -61,14 +62,15 @@ public class EnemyHealthBarManager : HealthBarManager
 
     }
 
-    public override void OnHitted(int value)
+    public override void OnHitted(int value, StickmanBodyPartEnums bodyPart)
     {
-        base.OnHitted(value);
+        base.OnHitted(value, bodyPart);
         Debug.Log(_currentHealth);
         if (_currentHealth <= 0)
         {
             LevelSignals.onEnemyDied.Invoke();
-            playerTransform.gameObject.SetActive(false);
+            EnemySignals.onDie(bodyPart);
+            //playerTransform.gameObject.SetActive(false);
         }
     }
 }

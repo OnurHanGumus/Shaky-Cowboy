@@ -68,6 +68,7 @@ namespace Managers
             PlayerSignals.onReload += OnReload;
             PlayerSignals.onReload += shootController.OnReload;
             PlayerSignals.onReload += riggingController.OnReload;
+            PlayerSignals.onDie += OnDie;
 
             PlayerSignals.onReloaded += riggingController.OnReloaded;
         }
@@ -83,6 +84,7 @@ namespace Managers
             PlayerSignals.onReload -= OnReload;
             PlayerSignals.onReload -= shootController.OnReload;
             PlayerSignals.onReload -= riggingController.OnReload;
+            PlayerSignals.onDie -= OnDie;
 
             PlayerSignals.onReloaded -= riggingController.OnReloaded;
         }
@@ -94,6 +96,10 @@ namespace Managers
         }
 
         #endregion
+        private void OnDie(StickmanBodyPartEnums bodyPart)
+        {
+            animationController.OnChangeAnimation((PlayerAnimationStates)((int) bodyPart));
+        }
         private void OnReload()
         {
             animationController.OnChangeAnimation(PlayerAnimationStates.Reload);

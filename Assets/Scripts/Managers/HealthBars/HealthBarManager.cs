@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Signals;
 using Zenject;
+using Enums;
 
 public class HealthBarManager : MonoBehaviour
 {
@@ -72,9 +73,13 @@ public class HealthBarManager : MonoBehaviour
     {
         healthBar.localScale = new Vector3((float)currentValue / maxValue, 1, 1);
     }
-    public virtual void OnHitted(int value)
+    public virtual void OnHitted(int value, StickmanBodyPartEnums bodyPart)
     {
         _currentHealth -= value;
+        if (_currentHealth <= 0)
+        {
+            _currentHealth = 0;
+        }
         HealthText.text = _currentHealth.ToString();
 
         SetHealthBarScale(_currentHealth, 100);

@@ -370,6 +370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 5001984864687572378}
   criticalDamageValue: 30
+  stickmanBodyPartEnums: 1
 --- !u!65 &6330101693010003917
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1967,6 +1968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 5001984864687572378}
   criticalDamageValue: 50
+  stickmanBodyPartEnums: 0
 --- !u!65 &4492070200844398296
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4149,6 +4151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 5001984864687572378}
   criticalDamageValue: 10
+  stickmanBodyPartEnums: 2
 --- !u!65 &4734556752962038848
 BoxCollider:
   m_ObjectHideFlags: 0

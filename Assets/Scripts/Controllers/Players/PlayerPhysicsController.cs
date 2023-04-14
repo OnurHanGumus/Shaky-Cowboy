@@ -17,6 +17,7 @@ namespace Controllers {
         #endregion
         #region Serializefield Variables
         [SerializeField] private int criticalDamageValue = 5;
+        [SerializeField] private StickmanBodyPartEnums stickmanBodyPartEnums;
         #endregion
         #region Private Variables
         #endregion
@@ -29,7 +30,7 @@ namespace Controllers {
         }
         void IAttackable.OnWeaponTriggerEnter(int value)
         {
-            PlayerSignals.onHitted?.Invoke(value * criticalDamageValue);
+            PlayerSignals.onHitted?.Invoke(value * criticalDamageValue, stickmanBodyPartEnums);
         }
     }
 }

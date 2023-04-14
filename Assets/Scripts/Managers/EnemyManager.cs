@@ -56,6 +56,7 @@ public class EnemyManager : MonoBehaviour
         EnemySignals.onReload += riggingController.OnReload;
         EnemySignals.onReload += shootController.OnReload;
         EnemySignals.onReloaded += riggingController.OnReloaded;
+        EnemySignals.onDie += OnDie;
 
     }
 
@@ -69,6 +70,7 @@ public class EnemyManager : MonoBehaviour
         EnemySignals.onReload -= riggingController.OnReload;
         EnemySignals.onReload -= shootController.OnReload;
         EnemySignals.onReloaded -= riggingController.OnReloaded;
+        EnemySignals.onDie -= OnDie;
 
     }
 
@@ -77,6 +79,10 @@ public class EnemyManager : MonoBehaviour
         UnsubscribeEvents();
     }
     #endregion
+    private void OnDie(StickmanBodyPartEnums bodyPart)
+    {
+        animationController.OnChangeAnimation((PlayerAnimationStates)((int)bodyPart));
+    }
     private void OnReload()
     {
         animationController.OnChangeAnimation(PlayerAnimationStates.Reload);
