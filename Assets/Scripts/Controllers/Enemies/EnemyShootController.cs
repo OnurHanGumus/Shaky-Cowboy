@@ -31,6 +31,7 @@ namespace Controllers
         private Settings _mySettings;
         private int _selectedGunId = 0;
         private IGun _currentGun;
+        private bool _isDied = false;
         #endregion
         #endregion
 
@@ -55,6 +56,10 @@ namespace Controllers
         {
             while (true)
             {
+                if (_isDied)
+                {
+                    break;
+                }
                 await Task.Delay((int)(Random.Range(0.15f, 0.85f) * 1000));
                 Shoot();
             }
@@ -71,6 +76,7 @@ namespace Controllers
         }
         public void OnDie(StickmanBodyPartEnums bodyPart)
         {
+            _isDied = true;
             RevolverOnHand();
         }
         [Serializable]
