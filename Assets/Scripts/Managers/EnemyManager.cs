@@ -57,13 +57,15 @@ public class EnemyManager : MonoBehaviour
         EnemySignals.onReload += shootController.OnReload;
         EnemySignals.onReloaded += riggingController.OnReloaded;
         EnemySignals.onDie += OnDie;
+        EnemySignals.onDie += riggingController.OnDie;
+        EnemySignals.onDie += shootController.OnDie;
 
     }
 
     private void UnsubscribeEvents()
     {
         CoreGameSignals.onPlay -= riggingController.OnPlay;
-        CoreGameSignals.onPlay += shootController.OnPlay;
+        CoreGameSignals.onPlay -= shootController.OnPlay;
         CoreGameSignals.onRestart -= OnRestartLevel;
 
         EnemySignals.onReload -= OnReload;
@@ -71,6 +73,8 @@ public class EnemyManager : MonoBehaviour
         EnemySignals.onReload -= shootController.OnReload;
         EnemySignals.onReloaded -= riggingController.OnReloaded;
         EnemySignals.onDie -= OnDie;
+        EnemySignals.onDie -= riggingController.OnDie;
+        EnemySignals.onDie -= shootController.OnDie;
 
     }
 

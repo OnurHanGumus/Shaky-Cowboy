@@ -21,10 +21,9 @@ public class EnemyRevolverManager: RevolverAbstract, IGun
     #region Serializefield Variables
     #endregion
     #region Private Variables
+    private bool _isDied = false;
     #endregion
     #region Properties
-    //public int AmmoCapacity { get; set; }
-    //public int CurrentBulletCount { get; set; } = 3;
     #endregion
     #endregion
     #region Event Subscription
@@ -37,12 +36,15 @@ public class EnemyRevolverManager: RevolverAbstract, IGun
     protected override void SubscribeEvents()
     {
         EnemySignals.onShoot += OnShoot;
+        EnemySignals.onDie += OnDie;
         base.SubscribeEvents();
     }
 
     protected override void UnsubscribeEvents()
     {
         EnemySignals.onShoot -= OnShoot;
+        EnemySignals.onDie -= OnDie;
+
         base.UnsubscribeEvents();
     }
 
@@ -59,14 +61,12 @@ public class EnemyRevolverManager: RevolverAbstract, IGun
         base.OnShoot();
     }
 
-    //public override async Task Reload()
-    //{
-    //    EnemySignals.onReload?.Invoke();
-    //    await base.Reload();
-    //    await Task.Delay(100);
+    public void OnDie(StickmanBodyPartEnums bodyPart)
+    {
+        _isDied = true;
+        StopAllCoroutines();
+    }
 
-    //    EnemySignals.onReloaded?.Invoke();
-    //}
     public override IEnumerator Reload()
     {
         if (!_isReloading)

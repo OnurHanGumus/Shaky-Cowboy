@@ -21,6 +21,7 @@ public class PlayerRevolverManager : RevolverAbstract, IGun
     #region Serializefield Variables
     #endregion
     #region Private Variables
+    private bool _isDied = false;
     #endregion
     #region Properties
     //public int AmmoCapacity { get; set; }
@@ -37,12 +38,14 @@ public class PlayerRevolverManager : RevolverAbstract, IGun
     protected override void SubscribeEvents()
     {
         PlayerSignals.onShoot += OnShoot;
+        PlayerSignals.onDie += OnDie;
         base.SubscribeEvents();
     }
 
     private new void UnsubscribeEvents()
     {
         PlayerSignals.onShoot -= OnShoot;
+        PlayerSignals.onDie -= OnDie;
         base.UnsubscribeEvents();
     }
 
@@ -58,19 +61,20 @@ public class PlayerRevolverManager : RevolverAbstract, IGun
     {
         base.OnShoot();
     }
-
-    //public override async Task Reload()
-    //{
-    //PlayerSignals.onReload?.Invoke();
-    //    base.Reload();
-    //}
+    public void OnDie(StickmanBodyPartEnums bodyPart)
+    {
+        _isDied = true;
+        StopAllCoroutines();
+    }
     public override IEnumerator Reload()
     {
+
         if (!_isReloading)
         {
             _isReloading = true;
             PlayerSignals.onReload?.Invoke();
             yield return new WaitForSeconds(2.4f);
+
             transform.parent = base.playerTransform;
             transform.localPosition = revolverInitializePos;
             transform.localEulerAngles = revolverInitializeRot;

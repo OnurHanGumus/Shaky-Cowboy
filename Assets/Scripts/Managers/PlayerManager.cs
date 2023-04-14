@@ -69,6 +69,9 @@ namespace Managers
             PlayerSignals.onReload += shootController.OnReload;
             PlayerSignals.onReload += riggingController.OnReload;
             PlayerSignals.onDie += OnDie;
+            PlayerSignals.onDie += riggingController.OnDie;
+            PlayerSignals.onDie += shootController.OnDie;
+
 
             PlayerSignals.onReloaded += riggingController.OnReloaded;
         }
@@ -85,6 +88,8 @@ namespace Managers
             PlayerSignals.onReload -= shootController.OnReload;
             PlayerSignals.onReload -= riggingController.OnReload;
             PlayerSignals.onDie -= OnDie;
+            PlayerSignals.onDie -= riggingController.OnDie;
+            PlayerSignals.onDie -= shootController.OnDie;
 
             PlayerSignals.onReloaded -= riggingController.OnReloaded;
         }

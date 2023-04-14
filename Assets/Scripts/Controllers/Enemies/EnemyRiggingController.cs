@@ -37,7 +37,10 @@ namespace Controllers
         {
             //ChangeAll(true);
             rigBuilder.enabled = true;
-
+        }
+        public void OnDie(StickmanBodyPartEnums bodyPart)
+        {
+            rigBuilder.enabled = false;
         }
         private void ChangeAll(bool isActive)
         {

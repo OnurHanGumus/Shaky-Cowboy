@@ -39,6 +39,10 @@ namespace Controllers
             rigBuilder.enabled = true;
 
         }
+        public void OnDie(StickmanBodyPartEnums bodyPart)
+        {
+            rigBuilder.enabled = false;
+        }
         private void ChangeAll(bool isActive)
         {
             for (int i = 0; i < rigBuilder.layers.Count; i++)
