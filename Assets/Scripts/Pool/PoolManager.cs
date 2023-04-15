@@ -111,7 +111,6 @@ public class PoolManager : MonoBehaviour
     {
         //reset
         ResetPool(PoolEnums.Bullet);
-        ResetPool(PoolEnums.Enemy);
         ResetPool(PoolEnums.Explosion);
     }
 

@@ -36,6 +36,8 @@ namespace Managers
         private int _levelID;
         private LevelData _data;
         private int _currentModdedLevel = 0;
+
+        private int _killedEnemyCount = 0;
         #endregion
 
         #endregion
@@ -50,6 +52,7 @@ namespace Managers
             _levelID = GetActiveLevel();
             _data = GetData();
         }
+
         private LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
         private int GetActiveLevel()
         {
@@ -57,9 +60,7 @@ namespace Managers
             return ES3.KeyExists("Level") ? ES3.Load<int>("Level") : 0;
         }
 
-
         #region Event Subscription
-
         private void OnEnable()
         {
             SubscribeEvents();
@@ -73,10 +74,8 @@ namespace Managers
             CoreGameSignals.onRestart += OnRestartLevel;
             LevelSignals.onGetLevelId += OnGetLevelId;
             LevelSignals.onGetCurrentModdedLevel += OnGetModdedLevel;
-
+            LevelSignals.onEnemyDied += OnEnemyDie;
         }
-
-
 
         private void UnsubscribeEvents()
         {
@@ -86,16 +85,13 @@ namespace Managers
             CoreGameSignals.onRestart -= OnRestartLevel;
             LevelSignals.onGetLevelId -= OnGetLevelId;
             LevelSignals.onGetCurrentModdedLevel -= OnGetModdedLevel;
-
+            LevelSignals.onEnemyDied -= OnEnemyDie;
         }
-
         private void OnDisable()
         {
             UnsubscribeEvents();
         }
-
         #endregion
-
         private void Start()
         {
             OnInitializeLevel();
@@ -107,7 +103,6 @@ namespace Managers
             CoreGameSignals.onClearActiveLevel?.Invoke();
             CoreGameSignals.onRestart?.Invoke();
             SaveSignals.onSave(_levelID, SaveLoadStates.Level, SaveFiles.SaveFile);
-
         }
 
         private void OnRestartLevel()
@@ -115,13 +110,13 @@ namespace Managers
             CoreGameSignals.onClearActiveLevel?.Invoke();
             CoreGameSignals.onReset?.Invoke();
             CoreGameSignals.onLevelInitialize?.Invoke();
+            _killedEnemyCount = 0;
         }
 
         private int OnGetLevelId()
         {
             return _levelID;
         }
-
 
         private void OnInitializeLevel()
         {
@@ -139,6 +134,14 @@ namespace Managers
         private void OnClearActiveLevel()
         {
             levelClearer.ClearActiveLevel(levelHolder.transform);
+        }
+        private void OnEnemyDie()
+        {
+            ++_killedEnemyCount;
+            if (_killedEnemyCount == _data.EnemyCountList[_levelID])
+            {
+                CoreGameSignals.onLevelSuccessful?.Invoke();
+            }
         }
     }
 }

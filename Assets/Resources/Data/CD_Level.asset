@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654799c679d48ce4e9ffa361883cd886, type: 3}
   m_Name: CD_Level
   m_EditorClassIdentifier: 
+  Data:
+    EnemyCountList: 01000000010000000100000001000000010000000100000002000000020000000200000002000000
