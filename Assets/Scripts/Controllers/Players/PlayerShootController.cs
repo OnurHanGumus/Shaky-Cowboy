@@ -45,6 +45,10 @@ namespace Controllers
 
         public void OnClicked()
         {
+            if (_isDied)
+            {
+                return;
+            }
             Shoot();
         }
         private void Shoot()
