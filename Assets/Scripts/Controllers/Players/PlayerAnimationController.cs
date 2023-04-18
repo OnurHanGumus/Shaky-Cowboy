@@ -34,4 +34,10 @@ public class PlayerAnimationController : MonoBehaviour
     {
         animator.SetTrigger(nextAnimation.ToString());
     }
+
+    public void OnRestartLevel()
+    {
+        animator.Rebind();
+        animator.Update(0f);
+    }
 }

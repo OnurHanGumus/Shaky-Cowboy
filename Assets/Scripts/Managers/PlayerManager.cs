@@ -31,6 +31,7 @@ namespace Managers
         [SerializeField] private PlayerShootController shootController;
         [SerializeField] private PlayerAnimationController animationController;
         [SerializeField] private PlayerRiggingController riggingController;
+        [SerializeField] private PlayerHealthBarManager healthBarManager;
         #endregion
 
         #region Private Variables
@@ -62,6 +63,8 @@ namespace Managers
             CoreGameSignals.onPlay += movementController.OnPlay;
             CoreGameSignals.onPlay += riggingController.OnPlay;
             CoreGameSignals.onRestart += movementController.OnRestartLevel;
+            CoreGameSignals.onRestart += animationController.OnRestartLevel;
+            CoreGameSignals.onRestart += healthBarManager.OnRestart;
 
             InputSignals.onClicked += shootController.OnClicked;
 
@@ -81,6 +84,8 @@ namespace Managers
             CoreGameSignals.onPlay -= movementController.OnPlay;
             CoreGameSignals.onPlay -= riggingController.OnPlay;
             CoreGameSignals.onRestart -= movementController.OnRestartLevel;
+            CoreGameSignals.onRestart -= animationController.OnRestartLevel;
+            CoreGameSignals.onRestart -= healthBarManager.OnRestart;
 
             InputSignals.onClicked -= shootController.OnClicked;
 

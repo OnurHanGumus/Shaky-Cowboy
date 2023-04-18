@@ -75,10 +75,7 @@ public class EnemyRevolverManager: RevolverAbstract, IGun
             EnemySignals.onReload?.Invoke();
             yield return new WaitForSeconds(2.4f);
 
-            transform.parent = base.playerTransform;
-            transform.localPosition = revolverInitializePos;
-            transform.localEulerAngles = revolverInitializeRot;
-
+            SetRevolverPosition();
             yield return new WaitForSeconds(0.5f);
             EnemySignals.onReloaded?.Invoke();
 

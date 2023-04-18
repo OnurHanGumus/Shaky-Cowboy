@@ -114,9 +114,10 @@ namespace Managers
         {
             CoreGameSignals.onClearActiveLevel?.Invoke();
             CoreGameSignals.onReset?.Invoke();
-            CoreGameSignals.onLevelInitialize?.Invoke();
             _killedEnemyCount = 0;
             _currentLevelEnemyCount = 0;
+            CoreGameSignals.onLevelInitialize?.Invoke();
+
         }
 
         private int OnGetLevelId()

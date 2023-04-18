@@ -75,9 +75,7 @@ public class PlayerRevolverManager : RevolverAbstract, IGun
             PlayerSignals.onReload?.Invoke();
             yield return new WaitForSeconds(2.4f);
 
-            transform.parent = base.playerTransform;
-            transform.localPosition = revolverInitializePos;
-            transform.localEulerAngles = revolverInitializeRot;
+            SetRevolverPosition();
 
             yield return new WaitForSeconds(0.5f);
             PlayerSignals.onReloaded?.Invoke();

@@ -12,6 +12,7 @@ public class PlayerHealthBarManager : HealthBarManager
     #region Inject Variables
     [Inject] private PlayerSignals PlayerSignals { get; set; }
     [Inject] private LevelSignals LevelSignals { get; set; }
+    [Inject] private CoreGameSignals CoreGameSignals { get; set; }
 
     #endregion
 
@@ -69,7 +70,13 @@ public class PlayerHealthBarManager : HealthBarManager
         if (_currentHealth <= 0)
         {
             PlayerSignals.onDie?.Invoke(bodyPart);
+            CoreGameSignals.onLevelFailed?.Invoke();
             //playerTransform.gameObject.SetActive(false);
         }
+    }
+
+    public void OnRestart()
+    {
+        _currentHealth = 100;
     }
 }

@@ -14,8 +14,6 @@ public abstract class RevolverAbstract : MonoBehaviour
     //[Inject] private PlayerSignals PlayerSignals { get; set; }
     [Inject] private PoolSignals PoolSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
-    [Inject] private InputSignals InputSignals { get; set; }
-    [Inject] private PlayerSignals PlayerSignals { get; set; }
     #endregion
     #region Public Variables
     #endregion
@@ -47,11 +45,15 @@ public abstract class RevolverAbstract : MonoBehaviour
     protected virtual void SubscribeEvents()
     {
         CoreGameSignals.onPlay += movementController.OnPlay;
+        CoreGameSignals.onRestart += movementController.OnRestart;
+        CoreGameSignals.onLevelInitialize += OnInitializeLevel;
     }
 
     protected virtual void UnsubscribeEvents()
     {
         CoreGameSignals.onPlay -= movementController.OnPlay;
+        CoreGameSignals.onRestart -= movementController.OnRestart;
+        CoreGameSignals.onLevelInitialize -= OnInitializeLevel;
     }
 
 
@@ -81,13 +83,21 @@ public abstract class RevolverAbstract : MonoBehaviour
         }
     }
 
+    protected void SetRevolverPosition()
+    {
+        transform.parent = playerTransform;
+        transform.localPosition = revolverInitializePos;
+        transform.localEulerAngles = revolverInitializeRot;
+    }
+
     public virtual IEnumerator Reload()
     {
 
         yield break; 
     }
-    //public virtual async Task Reload()
-    //{
 
-    //}
+    public void OnInitializeLevel()
+    {
+        SetRevolverPosition();
+    }
 }
