@@ -20,6 +20,7 @@ public class EnemyHealthBarManager : HealthBarManager
     #endregion
 
     #region Serialized Variables
+    [SerializeField] private GameObject colliders;
 
     #endregion
 
@@ -70,6 +71,8 @@ public class EnemyHealthBarManager : HealthBarManager
         {
             LevelSignals.onEnemyDied.Invoke();
             EnemySignals.onDie?.Invoke(bodyPart);
+            colliders.SetActive(false);
+            gameObject.SetActive(false);
             //playerTransform.gameObject.SetActive(false);
         }
     }

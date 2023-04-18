@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
 {
     #region Self Variables
     #region Injected Variables
-    [Inject] private PoolSignals PoolSignals { get; set; }
+    [Inject] private LevelSignals LevelSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
     [Inject] private InputSignals InputSignals { get; set; }
     [Inject] private RevolverSignals RevolverSignals { get; set; }
@@ -26,6 +26,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private EnemyRiggingController riggingController;
     [SerializeField] private EnemyAnimationController animationController;
     [SerializeField] private EnemyShootController shootController;
+    [SerializeField] private EnemyPhysicsController physicsController;
 
     #endregion
 
@@ -34,12 +35,16 @@ public class EnemyManager : MonoBehaviour
 
     #endregion
     [Inject]
-    public void Construct(PoolSignals poolSignals, CoreGameSignals coreGameSignals)
+    public void Construct(CoreGameSignals coreGameSignals, LevelSignals levelSignals)
     {
-        PoolSignals = poolSignals;
+        LevelSignals = levelSignals;
         CoreGameSignals = coreGameSignals;
     }
 
+    private void Awake()
+    {
+        LevelSignals.onEnemyArrived?.Invoke();
+    }
     #region Event Subscriptions
     private void OnEnable()
     {
@@ -75,7 +80,6 @@ public class EnemyManager : MonoBehaviour
         EnemySignals.onDie -= OnDie;
         EnemySignals.onDie -= riggingController.OnDie;
         EnemySignals.onDie -= shootController.OnDie;
-
     }
 
     private void OnDisable()

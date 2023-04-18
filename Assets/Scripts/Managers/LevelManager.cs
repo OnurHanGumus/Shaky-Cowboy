@@ -17,6 +17,8 @@ namespace Managers
         [Inject] private CoreGameSignals CoreGameSignals { get; set; }
         [Inject] private LevelSignals LevelSignals { get; set; }
         [Inject] private SaveSignals SaveSignals { get; set; }
+        [Inject] private EpisodeManager.Factory episodeFactory;
+        [Inject] DiContainer Container;
         #endregion
         #region Public Variables
 
@@ -38,6 +40,7 @@ namespace Managers
         private int _currentModdedLevel = 0;
 
         private int _killedEnemyCount = 0;
+        private int _currentLevelEnemyCount;
         #endregion
 
         #endregion
@@ -74,6 +77,7 @@ namespace Managers
             CoreGameSignals.onRestart += OnRestartLevel;
             LevelSignals.onGetLevelId += OnGetLevelId;
             LevelSignals.onGetCurrentModdedLevel += OnGetModdedLevel;
+            LevelSignals.onEnemyArrived += OnEnemyArrived;
             LevelSignals.onEnemyDied += OnEnemyDie;
         }
 
@@ -85,6 +89,7 @@ namespace Managers
             CoreGameSignals.onRestart -= OnRestartLevel;
             LevelSignals.onGetLevelId -= OnGetLevelId;
             LevelSignals.onGetCurrentModdedLevel -= OnGetModdedLevel;
+            LevelSignals.onEnemyArrived -= OnEnemyArrived;
             LevelSignals.onEnemyDied -= OnEnemyDie;
         }
         private void OnDisable()
@@ -111,6 +116,7 @@ namespace Managers
             CoreGameSignals.onReset?.Invoke();
             CoreGameSignals.onLevelInitialize?.Invoke();
             _killedEnemyCount = 0;
+            _currentLevelEnemyCount = 0;
         }
 
         private int OnGetLevelId()
@@ -120,10 +126,16 @@ namespace Managers
 
         private void OnInitializeLevel()
         {
+
             UnityEngine.Object[] Levels = Resources.LoadAll("Levels");
             int newLevelId = _levelID % Levels.Length;
             _currentModdedLevel = newLevelId;
-            levelLoader.InitializeLevel((GameObject)Levels[newLevelId], levelHolder.transform);
+            //levelLoader.InitializeLevel((GameObject)Levels[newLevelId], levelHolder.transform);
+            GameObject level = Container.InstantiatePrefabResource("Levels/" + (_currentModdedLevel + 1).ToString()); /*episodeFactory.Create().gameObject;*/
+            level.transform.parent = levelHolder.transform;
+            level.transform.localPosition = Vector3.zero;
+            
+
         }
 
         private int OnGetModdedLevel()
@@ -135,10 +147,15 @@ namespace Managers
         {
             levelClearer.ClearActiveLevel(levelHolder.transform);
         }
+
+        private void OnEnemyArrived()
+        {
+            ++_currentLevelEnemyCount;
+        }
         private void OnEnemyDie()
         {
             ++_killedEnemyCount;
-            if (_killedEnemyCount == _data.EnemyCountList[_levelID])
+            if (_killedEnemyCount == _currentLevelEnemyCount)
             {
                 CoreGameSignals.onLevelSuccessful?.Invoke();
             }

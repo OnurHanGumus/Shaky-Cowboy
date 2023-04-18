@@ -3521,6 +3521,7 @@ MonoBehaviour:
   riggingController: {fileID: 1394508031}
   animationController: {fileID: 1279618230}
   shootController: {fileID: 2023775056}
+  physicsController: {fileID: 0}
 --- !u!95 &7851368060313264897
 Animator:
   serializedVersion: 4
@@ -4172,6 +4173,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5803188353528402544}
     m_Modifications:
+    - target: {fileID: 7009134749830408004, guid: 2c47e6f7a5ded1645bcaef520cbbb0d9, type: 3}
+      propertyPath: colliders
+      value: 
+      objectReference: {fileID: 2345958194231147033}
     - target: {fileID: 7009134749830408004, guid: 2c47e6f7a5ded1645bcaef520cbbb0d9, type: 3}
       propertyPath: healthBar
       value: 

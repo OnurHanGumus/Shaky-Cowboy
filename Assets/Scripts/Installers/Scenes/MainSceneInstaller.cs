@@ -12,6 +12,9 @@ namespace Installers.Scenes
         [SerializeField] private GameObject explosionPrefab;
         private BulletSettings _bulletSettings;
         private EnemySpawnSettings _enemySpawnSettings;
+        private CoreGameSignals _coreGameSignals { get; set; }
+        private LevelSignals _levelSignals { get; set; }
+        [SerializeField] private int levelId = 1;
         public override void InstallBindings()
         {
             BindComponents();
@@ -20,9 +23,15 @@ namespace Installers.Scenes
 
         void BindComponents()
         {
-            Container.Bind<CoreGameSignals>().AsSingle();
+            _coreGameSignals = new CoreGameSignals();
+            Container.BindInstance<CoreGameSignals>(_coreGameSignals).AsSingle();
+
+            _levelSignals = new LevelSignals();
+            Container.BindInstance<LevelSignals>(_levelSignals).AsSingle();
+
+            //Container.Bind<CoreGameSignals>().AsSingle();
             Container.Bind<InputSignals>().AsSingle();
-            Container.Bind<LevelSignals>().AsSingle();
+            //Container.Bind<LevelSignals>().AsSingle();
             Container.Bind<UISignals>().AsSingle();
             Container.Bind<ScoreSignals>().AsSingle();
             Container.Bind<SaveSignals>().AsSingle();
@@ -35,7 +44,12 @@ namespace Installers.Scenes
 
             Container.BindFactory<BulletManager, BulletManager.Factory>().FromComponentInNewPrefab(bulletPrefab);
             Container.BindFactory<EnemyManager, EnemyManager.Factory>().FromComponentInNewPrefab(enemyPrefab);
-            Container.BindFactory<ExplosionManager, ExplosionManager.Factory>().FromComponentInNewPrefab(explosionPrefab);            
+            Container.BindFactory<ExplosionManager, ExplosionManager.Factory>().FromComponentInNewPrefab(explosionPrefab);
+
+            Container.BindFactory<EpisodeManager, EpisodeManager.Factory>()
+                .FromComponentInNewPrefabResource("Levels/" + 1.ToString());
+            //Container.BindFactory<EpisodeManager, EpisodeManager.Factory>()
+            //    .FromComponentInNewPrefabResource("Levels/" + 2.ToString());
         }
 
         private void BindSettings()
@@ -46,8 +60,5 @@ namespace Installers.Scenes
             _enemySpawnSettings = Resources.Load<EnemySpawnSettings>("Data/MetaData/EnemySpawnSettings");
             Container.BindInstance(_enemySpawnSettings).AsSingle();
         }
-
-
-
     }
 }
