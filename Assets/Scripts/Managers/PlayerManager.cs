@@ -64,7 +64,6 @@ namespace Managers
             CoreGameSignals.onPlay += riggingController.OnPlay;
             CoreGameSignals.onRestart += movementController.OnRestartLevel;
             CoreGameSignals.onRestart += animationController.OnRestartLevel;
-            CoreGameSignals.onRestart += healthBarManager.OnRestart;
             CoreGameSignals.onRestart += shootController.OnRestart;
 
             InputSignals.onClicked += shootController.OnClicked;
@@ -86,7 +85,6 @@ namespace Managers
             CoreGameSignals.onPlay -= riggingController.OnPlay;
             CoreGameSignals.onRestart -= movementController.OnRestartLevel;
             CoreGameSignals.onRestart -= animationController.OnRestartLevel;
-            CoreGameSignals.onRestart -= healthBarManager.OnRestart;
             CoreGameSignals.onRestart -= shootController.OnRestart;
 
             InputSignals.onClicked -= shootController.OnClicked;

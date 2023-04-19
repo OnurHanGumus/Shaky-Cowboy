@@ -100,6 +100,7 @@ public abstract class RevolverAbstract : MonoBehaviour
     {
         CurrentBulletCount = AmmoCapacity;
         _isReloading = false;
+        StopAllCoroutines();
         SetRevolverPosition();
     }
 }

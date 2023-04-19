@@ -25,7 +25,7 @@ public class PlayerHealthBarManager : HealthBarManager
     #endregion
 
     #region Private Variables
-
+    private bool _isLevelSuccessful = false;
 
     #endregion
 
@@ -37,14 +37,18 @@ public class PlayerHealthBarManager : HealthBarManager
         SubscribeEvents();
     }
 
-    private void SubscribeEvents()
+    protected override void SubscribeEvents()
     {
+        base.SubscribeEvents();
         PlayerSignals.onHitted += OnHitted;
+        CoreGameSignals.onLevelSuccessful += OnLevelSuccessful;
     }
 
-    private void UnSubscribeEvents()
+    protected override void UnSubscribeEvents()
     {
+        base.UnSubscribeEvents();
         PlayerSignals.onHitted -= OnHitted;
+        CoreGameSignals.onLevelSuccessful -= OnLevelSuccessful;
     }
 
     private void OnDisable()
@@ -65,6 +69,10 @@ public class PlayerHealthBarManager : HealthBarManager
 
     public override void OnHitted(int value, StickmanBodyPartEnums bodyPart)
     {
+        if (_isLevelSuccessful)
+        {
+            return;
+        }
         base.OnHitted(value, bodyPart);
         Debug.Log(_currentHealth);
         if (_currentHealth <= 0)
@@ -75,8 +83,14 @@ public class PlayerHealthBarManager : HealthBarManager
         }
     }
 
-    public void OnRestart()
+    public void OnLevelSuccessful()
     {
-        _currentHealth = 100;
+        _isLevelSuccessful = true;
+    }
+
+    protected override void OnRestart()
+    {
+        base.OnRestart();
+        _isLevelSuccessful = false;
     }
 }

@@ -37,12 +37,12 @@ public class EnemyHealthBarManager : HealthBarManager
         SubscribeEvents();
     }
 
-    private void SubscribeEvents()
+    protected override void SubscribeEvents()
     {
         EnemySignals.onHitted += OnHitted;
     }
 
-    private void UnSubscribeEvents()
+    protected override void UnSubscribeEvents()
     {
         EnemySignals.onHitted -= OnHitted;
     }

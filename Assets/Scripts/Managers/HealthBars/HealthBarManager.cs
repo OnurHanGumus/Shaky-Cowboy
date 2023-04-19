@@ -10,6 +10,7 @@ public class HealthBarManager : MonoBehaviour
 {
     #region Self Variables
     #region Inject Variables
+    [Inject] private CoreGameSignals CoreGameSignals { get; set; }
     #endregion
 
     #region Public Variables
@@ -38,12 +39,13 @@ public class HealthBarManager : MonoBehaviour
         SubscribeEvents();
         _currentHealth = _MAKS_HEALTH;
     }
-    private void SubscribeEvents()
+    protected virtual void SubscribeEvents()
     {
-
+        CoreGameSignals.onRestart += OnRestart;
     }
-    private void UnSubscribeEvents()
+    protected virtual void UnSubscribeEvents()
     {
+        CoreGameSignals.onRestart -= OnRestart;
 
     }
     private void OnDisable()
@@ -88,10 +90,11 @@ public class HealthBarManager : MonoBehaviour
     }
 
     //HEALTHBAR VISIBILITY
-    private void OnPlayerReachToBase()
+    protected virtual void OnRestart()
     {
-        holder.SetActive(false);
-
+        _currentHealth = 100;
+        HealthText.text = _currentHealth.ToString();
+        SetHealthBarScale(_currentHealth, 100);
     }
     private void OnPlayerLeaveTheBase()
     {

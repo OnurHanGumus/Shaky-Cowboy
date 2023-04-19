@@ -15,6 +15,7 @@ namespace Managers
         #region Self Variables
         #region Injected Variables
         [Inject] private CoreGameSignals CoreGameSignals { get; set; }
+        [Inject] private PlayerSignals PlayerSignals { get; set; }
         [Inject] private LevelSignals LevelSignals { get; set; }
         [Inject] private SaveSignals SaveSignals { get; set; }
         [Inject] private EpisodeManager.Factory episodeFactory;
@@ -41,6 +42,8 @@ namespace Managers
 
         private int _killedEnemyCount = 0;
         private int _currentLevelEnemyCount;
+
+        private bool _isPlayerDead = false;
         #endregion
 
         #endregion
@@ -79,6 +82,8 @@ namespace Managers
             LevelSignals.onGetCurrentModdedLevel += OnGetModdedLevel;
             LevelSignals.onEnemyArrived += OnEnemyArrived;
             LevelSignals.onEnemyDied += OnEnemyDie;
+
+            PlayerSignals.onDie += OnPlayerDie;
         }
 
         private void UnsubscribeEvents()
@@ -91,6 +96,8 @@ namespace Managers
             LevelSignals.onGetCurrentModdedLevel -= OnGetModdedLevel;
             LevelSignals.onEnemyArrived -= OnEnemyArrived;
             LevelSignals.onEnemyDied -= OnEnemyDie;
+
+            PlayerSignals.onDie -= OnPlayerDie;
         }
         private void OnDisable()
         {
@@ -117,6 +124,7 @@ namespace Managers
             _killedEnemyCount = 0;
             _currentLevelEnemyCount = 0;
             CoreGameSignals.onLevelInitialize?.Invoke();
+            _isPlayerDead = false;
 
         }
 
@@ -153,13 +161,24 @@ namespace Managers
         {
             ++_currentLevelEnemyCount;
         }
+
         private void OnEnemyDie()
         {
+            if (_isPlayerDead)
+            {
+                return;
+            }
+
             ++_killedEnemyCount;
             if (_killedEnemyCount == _currentLevelEnemyCount)
             {
                 CoreGameSignals.onLevelSuccessful?.Invoke();
             }
+        }
+
+        private void OnPlayerDie(StickmanBodyPartEnums bodyPart)
+        {
+            _isPlayerDead = true;
         }
     }
 }
