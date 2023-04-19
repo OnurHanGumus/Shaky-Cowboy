@@ -98,6 +98,8 @@ public abstract class RevolverAbstract : MonoBehaviour
 
     public void OnInitializeLevel()
     {
+        CurrentBulletCount = AmmoCapacity;
+        _isReloading = false;
         SetRevolverPosition();
     }
 }
