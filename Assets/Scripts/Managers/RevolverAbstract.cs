@@ -21,8 +21,8 @@ public abstract class RevolverAbstract : MonoBehaviour
     [SerializeField] protected Transform bulletPointTransform;
     [SerializeField] protected Transform playerTransform;
     [SerializeField] private RevolverMovementController movementController;
-    [SerializeField] protected Vector3 revolverInitializePos = new Vector3(0.069f, 1.123f, -0.11f);
-    [SerializeField] protected Vector3 revolverInitializeRot = new Vector3(-3.195f, -10.45f, 0.45f);
+    [SerializeField] protected Vector3 revolverInitializePos;/* = new Vector3(0.069f, 1.123f, -0.11f);*/
+    [SerializeField] protected Vector3 revolverInitializeRot;/* = new Vector3(-3.195f, -10.45f, 0.45f);*/
     #endregion
     #region Protected Variables
     protected bool _isReloading = false;
@@ -36,7 +36,11 @@ public abstract class RevolverAbstract : MonoBehaviour
     #endregion
     #endregion
     #region Event Subscription
-
+    private void Awake()
+    {
+        revolverInitializePos = transform.localPosition;
+        revolverInitializeRot = transform.localEulerAngles;
+    }
     private void OnEnable()
     {
         SubscribeEvents();

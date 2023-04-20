@@ -20,6 +20,7 @@ public class RevolverMovementController : MonoBehaviour
     #endregion
     #region Private Variables
     private Tween _patrollingTween = null;
+    private float _direction = 1f;
     #endregion
     #endregion
 
@@ -30,13 +31,23 @@ public class RevolverMovementController : MonoBehaviour
             _patrollingTween.Play();
             return;
         }
-
-        _patrollingTween = revolverTargetTransform.DOPath(new Vector3[2] 
-        { 
-            new Vector3(revolverTargetTransform.position.x, 2.5f, revolverTargetTransform.position.z), 
-            new Vector3(revolverTargetTransform.position.x, -1.5f, revolverTargetTransform.position.z) 
-        }, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        SetTween();
         //Debug.LogError(_patrollingTween);
+    }
+
+    private void SetTween()
+    {
+        _direction *= -1;
+        _patrollingTween = revolverTargetTransform.DOPath(new Vector3[3]
+        {
+            new Vector3(revolverTargetTransform.position.x, revolverTargetTransform.position.y + (2.5f * _direction), revolverTargetTransform.position.z),
+            new Vector3(revolverTargetTransform.position.x, revolverTargetTransform.position.y - (2.5f * _direction), revolverTargetTransform.position.z),
+            new Vector3(revolverTargetTransform.position.x, revolverTargetTransform.position.y, revolverTargetTransform.position.z),
+        }, 1.5f).OnComplete(() =>
+        {
+            _patrollingTween.Restart();
+        }
+        ).SetEase(Ease.Linear);
     }
     public void OnRestart()
     {

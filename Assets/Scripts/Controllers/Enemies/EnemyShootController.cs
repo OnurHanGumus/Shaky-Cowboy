@@ -57,7 +57,7 @@ namespace Controllers
             while (true)
             {
 
-                await Task.Delay((int)(Random.Range(0.15f, 0.85f) * 1000));
+                await Task.Delay((int)(Random.Range(0.5f, 1f) * 1000));
                 if (_isDied)
                 {
                     break;
