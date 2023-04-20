@@ -34,9 +34,10 @@ MonoBehaviour:
     - Assembly-CSharp-firstpass
     - Zenject-IntegrationTests
     - Boxophobic.Utils.Scripts
+    - Cinemachine
+    - Boxophobic.Utils.Editor
     - PPv2URPConverters
     - Zenject-TestFramework
-    - Boxophobic.Utils.Editor
     - Boxophobic.SkyboxCubemapExtended.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
