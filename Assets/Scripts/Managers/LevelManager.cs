@@ -162,7 +162,7 @@ namespace Managers
             ++_currentLevelEnemyCount;
         }
 
-        private void OnEnemyDie()
+        private void OnEnemyDie(Transform diedEnemy)
         {
             if (_isPlayerDead)
             {
@@ -173,6 +173,7 @@ namespace Managers
             if (_killedEnemyCount == _currentLevelEnemyCount)
             {
                 CoreGameSignals.onLevelSuccessful?.Invoke();
+                LevelSignals.onLastEnemyDied?.Invoke(diedEnemy);
             }
         }
 

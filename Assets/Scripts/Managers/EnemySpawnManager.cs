@@ -115,7 +115,7 @@ public class EnemySpawnManager: ITickable, IInitializable
         _killedEnemiesCount = 0;
     }
 
-    private void OnEnemyDie()
+    private void OnEnemyDie(Transform diedEnemy)
     {
         ++_killedEnemiesCount;
         if (_killedEnemiesCount.Equals(_killedEnemyAmountToPassLevel))
