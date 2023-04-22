@@ -39,12 +39,9 @@ public class PoolManager : MonoBehaviour
         factoryList = new List<IPool>();
 
         factoryList.Add(bulletFactory);
-        //factoryList.Add(enemyFactory);
-        //factoryList.Add(explosionFactory);
         factoryList.Add(tumbleweedFactory);
 
         InitializePool(PoolEnums.Bullet, amountBullet);
-        //InitializePool(PoolEnums.Explosion, amountExplosion);
         InitializePool(PoolEnums.Tumbleweed, amountTumbleweed);
     }
     private void OnEnable()
@@ -115,7 +112,6 @@ public class PoolManager : MonoBehaviour
     {
         //reset
         ResetPool(PoolEnums.Bullet);
-        //ResetPool(PoolEnums.Explosion);
         ResetPool(PoolEnums.Tumbleweed);
     }
 

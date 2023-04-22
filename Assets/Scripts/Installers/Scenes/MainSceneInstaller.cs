@@ -9,11 +9,10 @@ namespace Installers.Scenes
     {
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private GameObject enemyPrefab;
-        //[SerializeField] private GameObject explosionPrefab;
         [SerializeField] private GameObject tumbleweedPrefab;
+
         private BulletSettings _bulletSettings;
-        private TumbleSettings _enemySpawnSettings;
-        private TumbleweedSettings _tumblewoodSpawnSettings;
+        private TumbleweedSpawnSettings _tumblewoodSpawnSettings;
         private CoreGameSignals _coreGameSignals { get; set; }
         private LevelSignals _levelSignals { get; set; }
         [SerializeField] private int levelId = 1;
@@ -31,9 +30,7 @@ namespace Installers.Scenes
             _levelSignals = new LevelSignals();
             Container.BindInstance<LevelSignals>(_levelSignals).AsSingle();
 
-            //Container.Bind<CoreGameSignals>().AsSingle();
             Container.Bind<InputSignals>().AsSingle();
-            //Container.Bind<LevelSignals>().AsSingle();
             Container.Bind<UISignals>().AsSingle();
             Container.Bind<ScoreSignals>().AsSingle();
             Container.Bind<SaveSignals>().AsSingle();
@@ -46,15 +43,7 @@ namespace Installers.Scenes
 
             Container.BindFactory<BulletManager, BulletManager.Factory>().FromComponentInNewPrefab(bulletPrefab);
             Container.BindFactory<EnemyManager, EnemyManager.Factory>().FromComponentInNewPrefab(enemyPrefab);
-            //Container.BindFactory<ExplosionManager, ExplosionManager.Factory>().FromComponentInNewPrefab(explosionPrefab);
             Container.BindFactory<TumbleweedManager, TumbleweedManager.Factory>().FromComponentInNewPrefab(tumbleweedPrefab);
-
-            Container.BindFactory<EpisodeManager, EpisodeManager.Factory>()
-                .FromComponentInNewPrefabResource("Levels/" + 1.ToString());
-            //Container.BindFactory<EpisodeManager, EpisodeManager.Factory>()
-            //    .FromComponentInNewPrefabResource("Levels/" + 2.ToString());
-
-
         }
 
         private void BindSettings()
@@ -62,10 +51,7 @@ namespace Installers.Scenes
             _bulletSettings = Resources.Load<BulletSettings>("Data/MetaData/BulletSettings");
             Container.BindInstance(_bulletSettings).AsSingle();
 
-            _enemySpawnSettings = Resources.Load<TumbleSettings>("Data/MetaData/EnemySpawnSettings");
-            Container.BindInstance(_enemySpawnSettings).AsSingle();
-
-            _tumblewoodSpawnSettings = Resources.Load<TumbleweedSettings>("Data/MetaData/TumbleweedSettings");
+            _tumblewoodSpawnSettings = Resources.Load<TumbleweedSpawnSettings>("Data/MetaData/TumbleweedSpawnSettings");
             Container.BindInstance(_tumblewoodSpawnSettings).AsSingle();
         }
     }

@@ -18,7 +18,6 @@ namespace Managers
         [Inject] private PlayerSignals PlayerSignals { get; set; }
         [Inject] private LevelSignals LevelSignals { get; set; }
         [Inject] private SaveSignals SaveSignals { get; set; }
-        [Inject] private EpisodeManager.Factory episodeFactory;
         [Inject] DiContainer Container;
         #endregion
         #region Public Variables

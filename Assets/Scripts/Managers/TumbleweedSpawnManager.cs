@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 using System;
 using Random = UnityEngine.Random;
 using Data.MetaData;
+using Data.UnityObject;
+using Data.ValueObject;
 
 public class TumbleweedSpawnManager: ITickable, IInitializable
 {
     #region Self Variables
     #region Injected Variables
-    //[Inject] private EnemySpawnSettings EnemySpawnSettings { get; set; }
+    [Inject] private TumbleweedSpawnSettings TumbleweedSpawnSettings { get; set; }
 
     #endregion
 
@@ -27,8 +29,8 @@ public class TumbleweedSpawnManager: ITickable, IInitializable
     private CoreGameSignals CoreGameSignals { get; set; }
     private LevelSignals LevelSignals { get; set; }
     private int _levelId = 0;
-    private float _spawnDelayMin = 3, _spawnDelayMax = 10, _timer;
-    //private Settings _mySettings;
+    private float _timer;
+    private Settings _mySettings;
 
     #endregion
     #endregion
@@ -55,6 +57,8 @@ public class TumbleweedSpawnManager: ITickable, IInitializable
 
     public void Initialize()
     {
+        //Start
+        _mySettings = TumbleweedSpawnSettings.SpawnSettings;
 
     }
 
@@ -92,6 +96,13 @@ public class TumbleweedSpawnManager: ITickable, IInitializable
         
         GameObject poolObject = PoolSignals.onGetObject(PoolEnums.Tumbleweed, _spawnPoints[Random.Range(0, _spawnPoints.Count)]);
         poolObject.SetActive(true);
-        _timer = Random.Range(_spawnDelayMin, _spawnDelayMax);
+        _timer = Random.Range(_mySettings.SpawnDelayMin, _mySettings.SpawnDelayMax);
+    }
+
+    [Serializable]
+    public class Settings
+    {
+        [SerializeField]
+        public float SpawnDelayMin = 3, SpawnDelayMax = 10;
     }
 }

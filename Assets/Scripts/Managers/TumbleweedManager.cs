@@ -4,6 +4,8 @@ using UnityEngine;
 using Zenject;
 using Signals;
 using System;
+using Data.ValueObject;
+using Data.UnityObject;
 
 public class TumbleweedManager : MonoBehaviour
 {
@@ -19,14 +21,20 @@ public class TumbleweedManager : MonoBehaviour
 
     #endregion
     #region Private Variables
-    private Settings _mySettings;
-
+    //private Settings _mySettings;
+    private TumbleweedData _data;
     #endregion
     #region Properties
 
     #endregion
     #endregion
     #region Event Subscriptions
+    private TumbleweedData GetData() => Resources.Load<CD_Tumbleweed>("Data/CD_Tumbleweed").Data;
+
+    private void Awake()
+    {
+        _data = GetData();
+    }
 
     private void OnEnable()
     {
@@ -49,11 +57,11 @@ public class TumbleweedManager : MonoBehaviour
         UnsubscribeEvents();
     }
     #endregion
-    [Inject]
-    public void Constractor(TumbleweedSettings tumbleweedSettings)
-    {
-        _mySettings = tumbleweedSettings.Settings;
-    }
+    //[Inject]
+    //public void Constractor(TumbleweedSettings tumbleweedSettings)
+    //{
+    //    _mySettings = tumbleweedSettings.Settings;
+    //}
 
     private void OnRestartLevel()
     {
@@ -62,7 +70,7 @@ public class TumbleweedManager : MonoBehaviour
 
     private IEnumerator BulletLifeTime()
     {
-        yield return new WaitForSeconds(_mySettings.LifeTime);
+        yield return new WaitForSeconds(_data.LifeTime);
         DespawnSignal();
     }
 
@@ -77,11 +85,5 @@ public class TumbleweedManager : MonoBehaviour
         {
             return base.Create().gameObject;
         }
-    }
-
-    [Serializable]
-    public class Settings
-    {
-        [SerializeField] public float LifeTime = 5f;
     }
 }

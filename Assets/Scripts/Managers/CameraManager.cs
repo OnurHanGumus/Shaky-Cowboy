@@ -79,7 +79,10 @@ namespace Managers
         }
 
         #endregion
+        private void Start()
+        {
 
+        }
         private void SetCameraStates()
         {
             if (CameraStateController == CameraStatesEnum.Initial)
@@ -110,7 +113,6 @@ namespace Managers
         private void OnReset()
         {
             CameraStateController = CameraStatesEnum.Initial;
-            Debug.Log("Initialize");
         }
     }
 }
