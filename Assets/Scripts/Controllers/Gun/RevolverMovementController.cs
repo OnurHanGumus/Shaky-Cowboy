@@ -21,8 +21,20 @@ public class RevolverMovementController : MonoBehaviour
     #region Private Variables
     private Tween _patrollingTween = null;
     private float _direction = 1f;
+    private float _amplitude = 3f;
+    private float _targetPosY = -2.96f;
     #endregion
     #endregion
+
+    private void Awake()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        revolverTargetTransform.position = new Vector3(revolverTargetTransform.position.x, _targetPosY, revolverTargetTransform.position.z);
+    }
 
     public void OnPlay()
     {
@@ -32,7 +44,6 @@ public class RevolverMovementController : MonoBehaviour
             return;
         }
         SetTween();
-        //Debug.LogError(_patrollingTween);
     }
 
     private void SetTween()
@@ -40,9 +51,9 @@ public class RevolverMovementController : MonoBehaviour
         _direction *= -1;
         _patrollingTween = revolverTargetTransform.DOPath(new Vector3[3]
         {
-            new Vector3(revolverTargetTransform.position.x, revolverTargetTransform.position.y + (2.5f * _direction), revolverTargetTransform.position.z),
-            new Vector3(revolverTargetTransform.position.x, revolverTargetTransform.position.y - (2.5f * _direction), revolverTargetTransform.position.z),
-            new Vector3(revolverTargetTransform.position.x, revolverTargetTransform.position.y, revolverTargetTransform.position.z),
+            new Vector3(revolverTargetTransform.position.x, _targetPosY + (_amplitude * _direction), revolverTargetTransform.position.z),
+            new Vector3(revolverTargetTransform.position.x, _targetPosY - (_amplitude * _direction), revolverTargetTransform.position.z),
+            new Vector3(revolverTargetTransform.position.x, _targetPosY, revolverTargetTransform.position.z),
         }, 1.5f).OnComplete(() =>
         {
             _patrollingTween.Restart();
@@ -51,9 +62,6 @@ public class RevolverMovementController : MonoBehaviour
     }
     public void OnRestart()
     {
-        //DOTween.Clear();
-        //_patrollingTween = null;
         _patrollingTween.Pause();
     }
-
 }
