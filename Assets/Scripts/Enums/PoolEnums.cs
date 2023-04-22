@@ -6,7 +6,9 @@ namespace Enums
     public enum PoolEnums
     {
         Bullet,
-        Enemy,
-        Explosion,
+        Tumbleweed,
+
+        //Enemy,
+        //Explosion,
     }
 }

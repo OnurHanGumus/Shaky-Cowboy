@@ -11,8 +11,9 @@ public class PoolManager : MonoBehaviour
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
 
     [Inject] private BulletManager.Factory bulletFactory;
-    [Inject] private EnemyManager.Factory enemyFactory;
-    [Inject] private ExplosionManager.Factory explosionFactory;
+    //[Inject] private EnemyManager.Factory enemyFactory;
+    //[Inject] private ExplosionManager.Factory explosionFactory;
+    [Inject] private TumbleweedManager.Factory tumbleweedFactory;
     #region Serialized Variables
 
     [SerializeField] private Dictionary<PoolEnums, List<GameObject>> poolDictionary;
@@ -22,6 +23,7 @@ public class PoolManager : MonoBehaviour
     [SerializeField] private int amountBullet = 20;
     [SerializeField] private int amountEnemy = 20;
     [SerializeField] private int amountExplosion = 20;
+    [SerializeField] private int amountTumbleweed = 3;
 
 
 
@@ -37,11 +39,13 @@ public class PoolManager : MonoBehaviour
         factoryList = new List<IPool>();
 
         factoryList.Add(bulletFactory);
-        factoryList.Add(enemyFactory);
-        factoryList.Add(explosionFactory);
+        //factoryList.Add(enemyFactory);
+        //factoryList.Add(explosionFactory);
+        factoryList.Add(tumbleweedFactory);
 
         InitializePool(PoolEnums.Bullet, amountBullet);
-        InitializePool(PoolEnums.Explosion, amountExplosion);
+        //InitializePool(PoolEnums.Explosion, amountExplosion);
+        InitializePool(PoolEnums.Tumbleweed, amountTumbleweed);
     }
     private void OnEnable()
     {
@@ -67,7 +71,7 @@ public class PoolManager : MonoBehaviour
 
     #endregion
 
-    private void InitializePool(PoolEnums type, int size)
+    private void InitializePool(PoolEnums type, int size) //Enumlarýn sýralamasý önemlidir.
     {
         List<GameObject> tempList = new List<GameObject>();
         GameObject tmp;
@@ -111,7 +115,8 @@ public class PoolManager : MonoBehaviour
     {
         //reset
         ResetPool(PoolEnums.Bullet);
-        ResetPool(PoolEnums.Explosion);
+        //ResetPool(PoolEnums.Explosion);
+        ResetPool(PoolEnums.Tumbleweed);
     }
 
     private void ResetPool(PoolEnums type)
