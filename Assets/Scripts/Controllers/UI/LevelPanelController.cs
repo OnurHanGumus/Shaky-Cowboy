@@ -21,10 +21,11 @@ public class LevelPanelController : MonoBehaviour
     #region Public Variables
     #endregion
     #region SerializeField Variables
-    [SerializeField] private TextMeshProUGUI gemText, counterText;
+    [SerializeField] private TextMeshProUGUI gemText, counterText, levelText;
     #endregion
     #region Private Variables
     private int _counterValue, _counterDefaultValue = 3;
+    private int _levelId = 0;
 
     #endregion
     #endregion
@@ -32,10 +33,13 @@ public class LevelPanelController : MonoBehaviour
     {
         Init();
     }
+
     private void Init()
     {
-
+        _levelId = LevelSignals.onGetLevelId();
+        UpdateLevelText();
     }
+
     public void OnScoreUpdateText(ScoreTypeEnums type, int score)
     {
         if (type.Equals(ScoreTypeEnums.Gem))
@@ -65,8 +69,20 @@ public class LevelPanelController : MonoBehaviour
         _counterValue = _counterDefaultValue;
         counterText.text = _counterValue.ToString();
         Counter();
-
     }
+
+    public void OnLevelSuccessful()
+    {
+        ++_levelId;
+        UpdateLevelText();
+    }
+
+    private void UpdateLevelText()
+    {
+        levelText.text = "Level " + _levelId.ToString();
+    }
+
+
     public void OnRestartLevel()
     {
     }

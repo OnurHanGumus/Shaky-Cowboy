@@ -60,6 +60,7 @@ namespace Managers
             CoreGameSignals.onPlay += levelPanelController.OnPlay;
             CoreGameSignals.onLevelFailed += OnLevelFailed;
             CoreGameSignals.onLevelSuccessful += OnLevelSuccessful;
+            CoreGameSignals.onLevelSuccessful += levelPanelController.OnLevelSuccessful;
             CoreGameSignals.onRestart += levelPanelController.OnRestartLevel;
             ScoreSignals.onHighScoreChanged += highScorePanelController.OnUpdateText;
         }
@@ -73,6 +74,7 @@ namespace Managers
             CoreGameSignals.onPlay -= levelPanelController.OnPlay;
             CoreGameSignals.onLevelFailed -= OnLevelFailed;
             CoreGameSignals.onLevelSuccessful -= OnLevelSuccessful;
+            CoreGameSignals.onLevelSuccessful -= levelPanelController.OnLevelSuccessful;
             CoreGameSignals.onRestart -= levelPanelController.OnRestartLevel;
             ScoreSignals.onHighScoreChanged -= highScorePanelController.OnUpdateText;
         }
