@@ -17,6 +17,7 @@ public class BulletPhysicsController : MonoBehaviour, IPoolType
     #region Public Variables
     #endregion
     #region Serializefield Variables
+    [SerializeField] private Rigidbody rig;
     #endregion
     #region Private Variables
     private Settings _mySettings;
@@ -45,6 +46,11 @@ public class BulletPhysicsController : MonoBehaviour, IPoolType
             PlayerSignals.onEnemyShooted?.Invoke(attackable);
             DespawnSignal();
             attackable.OnWeaponTriggerEnter(1);
+        }
+        else if (other.TryGetComponent(out IReplaceable replaceable))
+        {
+            replaceable.OnShooted(rig.velocity);
+            DespawnSignal();
         }
     }
 
