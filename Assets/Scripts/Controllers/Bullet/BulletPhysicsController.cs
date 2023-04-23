@@ -13,7 +13,6 @@ public class BulletPhysicsController : MonoBehaviour, IPoolType
     #region Self Variables
     #region Inject Variables
     [Inject] private PlayerSignals PlayerSignals { get; set; }
-    [Inject] private PoolSignals PoolSignals { get; set; }
     #endregion
     #region Public Variables
     #endregion
@@ -46,10 +45,6 @@ public class BulletPhysicsController : MonoBehaviour, IPoolType
             PlayerSignals.onEnemyShooted?.Invoke(attackable);
             DespawnSignal();
             attackable.OnWeaponTriggerEnter(1);
-            //GameObject particle = PoolSignals.onGetObject(PoolEnums.Explosion, transform.position);
-            //particle.SetActive(false);
-            //particle.transform.position = transform.position;
-            //particle.SetActive(true);
         }
     }
 
