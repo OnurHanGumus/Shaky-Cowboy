@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
+using Signals;
 
 public class ObstaclePhysicsController : MonoBehaviour, IReplaceable
 {
     #region Self Variables
     #region Inject Variables
-
     #endregion
     #region Public Variables
     #endregion
@@ -23,8 +24,6 @@ public class ObstaclePhysicsController : MonoBehaviour, IReplaceable
     #endregion
     public void OnShooted(Vector3 velocity)
     {
-        Debug.Log("Vuruldum");
         rig.velocity = velocity;
-        Debug.Log(velocity);
     }
 }

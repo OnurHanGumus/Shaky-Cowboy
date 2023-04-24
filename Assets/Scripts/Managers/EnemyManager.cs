@@ -19,7 +19,7 @@ public class EnemyManager : MonoBehaviour
     #endregion
 
     #region Public Variables
-
+    public bool IsDead = false;
     #endregion
 
     #region Serialized Variables
@@ -87,6 +87,20 @@ public class EnemyManager : MonoBehaviour
         UnsubscribeEvents();
     }
     #endregion
+
+    private void Update()
+    {
+        if (IsDead)
+        {
+            return;
+        }
+        if (transform.eulerAngles.x > 80 || transform.eulerAngles.x < -80)
+        {
+            IsDead = true;
+            EnemySignals.onHitted?.Invoke(500, StickmanBodyPartEnums.Head);
+        }
+    }
+
     private void OnDie(StickmanBodyPartEnums bodyPart)
     {
         animationController.OnChangeAnimation((PlayerAnimationStates)((int)bodyPart));

@@ -8,5 +8,6 @@ namespace Enums
         Head,
         Body,
         Foots,
+        Falled,
     }
 }
