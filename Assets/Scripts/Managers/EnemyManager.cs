@@ -94,8 +94,9 @@ public class EnemyManager : MonoBehaviour
         {
             return;
         }
-        if (transform.eulerAngles.x > 80 || transform.eulerAngles.x < -80)
+        if ((transform.eulerAngles.x > 50 && transform.eulerAngles.x < 310) || transform.eulerAngles.z > 50 && transform.eulerAngles.z < 310)
         {
+            transform.parent = null;
             IsDead = true;
             EnemySignals.onHitted?.Invoke(500, StickmanBodyPartEnums.Head);
         }

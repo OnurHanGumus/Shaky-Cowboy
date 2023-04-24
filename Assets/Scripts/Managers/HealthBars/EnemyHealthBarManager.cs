@@ -69,7 +69,7 @@ public class EnemyHealthBarManager : HealthBarManager
         Debug.Log(_currentHealth);
         if (_currentHealth <= 0)
         {
-            LevelSignals.onEnemyDied.Invoke(transform);
+            LevelSignals.onEnemyDied.Invoke(transform.parent);
             EnemySignals.onDie?.Invoke(bodyPart);
             colliders.SetActive(false);
             gameObject.SetActive(false);
