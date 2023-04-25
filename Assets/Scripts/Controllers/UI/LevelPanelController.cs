@@ -15,6 +15,7 @@ public class LevelPanelController : MonoBehaviour
     #region Self Variables
     #region Inject Variables
     [Inject] private LevelSignals LevelSignals { get; set; }
+    [Inject] private ScoreSignals ScoreSignals { get; set; }
 
     #endregion
 
@@ -25,11 +26,11 @@ public class LevelPanelController : MonoBehaviour
     #endregion
     #region Private Variables
     private int _counterValue, _counterDefaultValue = 3;
-    private int _levelId = 0;
+    private int _levelId = 0, _gemCount = 0;
 
     #endregion
     #endregion
-    private void Awake()
+    private void Start()
     {
         Init();
     }
@@ -37,7 +38,9 @@ public class LevelPanelController : MonoBehaviour
     private void Init()
     {
         _levelId = LevelSignals.onGetLevelId();
-        UpdateLevelText();
+        _gemCount = ScoreSignals.onGetGem();
+
+        UpdateText();
     }
 
     public void OnScoreUpdateText(ScoreTypeEnums type, int score)
@@ -74,12 +77,13 @@ public class LevelPanelController : MonoBehaviour
     public void OnLevelSuccessful()
     {
         ++_levelId;
-        UpdateLevelText();
+        UpdateText();
     }
 
-    private void UpdateLevelText()
+    private void UpdateText()
     {
         levelText.text = "Level " + _levelId.ToString();
+        gemText.text = _gemCount.ToString(); ;
     }
 
 

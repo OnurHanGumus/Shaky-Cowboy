@@ -74,7 +74,6 @@ public class PlayerHealthBarManager : HealthBarManager
             return;
         }
         base.OnHitted(value, bodyPart);
-        Debug.Log(_currentHealth);
         if (_currentHealth <= 0)
         {
             PlayerSignals.onDie?.Invoke(bodyPart);

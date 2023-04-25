@@ -50,13 +50,20 @@ namespace Managers
 
         #endregion
 
-        private void Awake()
+        private void Start()
         {
             Init();
         }
+
         private void Init()
         {
-            Gem = SaveSignals.onGetScore(SaveLoadStates.Gem, SaveFiles.SaveFile);
+            Gem = GetGem();
+        }
+
+        private int GetGem()
+        {
+            if (!ES3.FileExists()) return 0;
+            return ES3.KeyExists("Gem") ? ES3.Load<int>("Gem") : 0;
         }
         #region Event Subscription
 

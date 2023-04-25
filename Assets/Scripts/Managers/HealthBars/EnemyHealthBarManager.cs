@@ -12,6 +12,7 @@ public class EnemyHealthBarManager : HealthBarManager
     #region Inject Variables
     [Inject] private EnemySignals EnemySignals { get; set; }
     [Inject] private LevelSignals LevelSignals { get; set; }
+    [Inject] private ScoreSignals ScoreSignals { get; set; }
 
     #endregion
 
@@ -71,6 +72,7 @@ public class EnemyHealthBarManager : HealthBarManager
         {
             LevelSignals.onEnemyDied.Invoke(transform.parent);
             EnemySignals.onDie?.Invoke(bodyPart);
+            ScoreSignals.onScoreIncrease?.Invoke(ScoreTypeEnums.Gem, value);
             colliders.SetActive(false);
             gameObject.SetActive(false);
         }
