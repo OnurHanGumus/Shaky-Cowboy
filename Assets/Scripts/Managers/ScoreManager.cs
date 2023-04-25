@@ -33,31 +33,22 @@ namespace Managers
         #endregion
 
         #region Private Variables
+        private Dictionary<ScoreTypeEnums,int> _scoreTypeDictionary; 
         private ScoreData _data;
-        private int _gem;
-        public int Gem
-        {
-            get { return _gem; }
-            set
-            {
-                _gem = value;
-                UISignals.onSetChangedText?.Invoke(ScoreTypeEnums.Gem, Gem);
-            }
-        }
-
-
         #endregion
 
         #endregion
 
-        private void Start()
+        private void Awake()
         {
             Init();
         }
 
         private void Init()
         {
-            Gem = GetGem();
+            _scoreTypeDictionary = new Dictionary<ScoreTypeEnums, int>();
+            _scoreTypeDictionary.Add(ScoreTypeEnums.Gem, GetGem());
+            UISignals.onSetChangedText?.Invoke(ScoreTypeEnums.Gem, _scoreTypeDictionary[ScoreTypeEnums.Gem]);
         }
 
         private int GetGem()
@@ -99,26 +90,30 @@ namespace Managers
 
         private void OnScoreIncrease(ScoreTypeEnums type, int amount)
         {
-            Gem += amount;
+            _scoreTypeDictionary[type] += amount;
+            UISignals.onSetChangedText?.Invoke(type, _scoreTypeDictionary[type]);
         }
 
         private void OnScoreDecrease(ScoreTypeEnums type, int amount)
         {
-            Gem -= amount;
-            SaveSignals.onSave(Gem, SaveLoadStates.Gem, SaveFiles.SaveFile);
+            _scoreTypeDictionary[type] -= amount;
+            SaveSignals.onSave(_scoreTypeDictionary[type], (SaveLoadStates)Enum.Parse(typeof(SaveLoadStates), type.ToString()), SaveFiles.SaveFile);
+            UISignals.onSetChangedText?.Invoke(type, _scoreTypeDictionary[type]);
         }
 
         private void OnNextLevel()
         {
-            SaveSignals.onSave(Gem, SaveLoadStates.Gem, SaveFiles.SaveFile);
+            SaveSignals.onSave(_scoreTypeDictionary[ScoreTypeEnums.Gem], SaveLoadStates.Gem, SaveFiles.SaveFile);
         }
+
         private int OnGetGem()
         {
-            return Gem;
+            return _scoreTypeDictionary[ScoreTypeEnums.Gem];
         }
 
         private void OnRestartLevel()
         {
+
         }
     }
 }
