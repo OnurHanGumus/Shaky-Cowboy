@@ -9,6 +9,7 @@ using Data.UnityObject;
 using DG.Tweening;
 using System.Threading.Tasks;
 using Zenject;
+using Managers;
 
 public class LevelPanelController : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class LevelPanelController : MonoBehaviour
     #endregion
     #region SerializeField Variables
     [SerializeField] private TextMeshProUGUI gemText, counterText, levelText;
+    [SerializeField] private UIManager manager;
     #endregion
     #region Private Variables
     private int _counterValue, _counterDefaultValue = 3;
@@ -45,10 +47,7 @@ public class LevelPanelController : MonoBehaviour
 
     public void OnScoreUpdateText(ScoreTypeEnums type, int score)
     {
-        if (type.Equals(ScoreTypeEnums.Gem))
-        {
-            gemText.text = score.ToString();
-        }
+        manager.TextDictionary[type].text = score.ToString();
     }
 
     private async Task Counter()

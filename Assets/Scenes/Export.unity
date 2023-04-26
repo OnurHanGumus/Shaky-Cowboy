@@ -4555,6 +4555,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b75f8facb24205a6e066952a13d877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textInspectorDictionary:
+  - ScoreType: 1
+    Text: {fileID: 624535430}
   uiPanelController: {fileID: 563045082}
   gameOverPanelController: {fileID: 886390040}
   levelPanelController: {fileID: 843870118}
@@ -7280,6 +7283,7 @@ MonoBehaviour:
   gemText: {fileID: 624535430}
   counterText: {fileID: 744815813}
   levelText: {fileID: 1854957337}
+  manager: {fileID: 563045083}
 --- !u!225 &843870119
 CanvasGroup:
   m_ObjectHideFlags: 0

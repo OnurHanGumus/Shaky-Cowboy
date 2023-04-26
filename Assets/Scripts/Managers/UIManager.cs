@@ -5,6 +5,10 @@ using UnityEngine;
 using Data.UnityObject;
 using Data.ValueObject;
 using Zenject;
+using System.Collections.Generic;
+using UnityEngine.UI;
+using System;
+using TMPro;
 
 namespace Managers
 {
@@ -18,7 +22,19 @@ namespace Managers
         [Inject] private ScoreSignals ScoreSignals { get; set; }
         [Inject] private UISignals UISignals { get; set; }
         #endregion
+        #region Public Variables
+        #region Array struct
+        public Dictionary<ScoreTypeEnums, TextMeshProUGUI> TextDictionary;
 
+        [Serializable]
+        public struct TextObjects
+        {
+            public ScoreTypeEnums ScoreType;
+            public TextMeshProUGUI Text;
+        }
+        [SerializeField] TextObjects[] textInspectorDictionary;
+        #endregion
+        #endregion
         #region Serialized Variables
 
         [SerializeField] private UIPanelActivenessController uiPanelController;
@@ -28,6 +44,7 @@ namespace Managers
 
         #endregion
         #region Private Variables
+
         private UIData _data;
         private bool _isStorePanelOpened = false;
 
@@ -43,6 +60,11 @@ namespace Managers
         private void Init()
         {
             _data = GetData();
+            TextDictionary = new Dictionary<ScoreTypeEnums, TextMeshProUGUI>();
+            foreach (var i in textInspectorDictionary)
+            {
+                TextDictionary.Add(i.ScoreType, i.Text);
+            }
         }
 
         private UIData GetData() => Resources.Load<CD_UI>("Data/CD_UI").Data;
