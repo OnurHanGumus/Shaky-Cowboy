@@ -85,8 +85,8 @@ public class LevelPanelController : MonoBehaviour
         gemText.text = _gemCount.ToString(); ;
     }
 
-
     public void OnRestartLevel()
     {
+
     }
 }
