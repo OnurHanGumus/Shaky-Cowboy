@@ -81,6 +81,7 @@ namespace Managers
             LevelSignals.onGetCurrentModdedLevel += OnGetModdedLevel;
             LevelSignals.onEnemyArrived += OnEnemyArrived;
             LevelSignals.onEnemyDied += OnEnemyDie;
+            LevelSignals.onGetLevelHolder += OnGetLevelHolder;
 
             PlayerSignals.onDie += OnPlayerDie;
         }
@@ -95,6 +96,8 @@ namespace Managers
             LevelSignals.onGetCurrentModdedLevel -= OnGetModdedLevel;
             LevelSignals.onEnemyArrived -= OnEnemyArrived;
             LevelSignals.onEnemyDied -= OnEnemyDie;
+            LevelSignals.onGetLevelHolder -= OnGetLevelHolder;
+
 
             PlayerSignals.onDie -= OnPlayerDie;
         }
@@ -179,6 +182,11 @@ namespace Managers
         private void OnPlayerDie(StickmanBodyPartEnums bodyPart)
         {
             _isPlayerDead = true;
+        }
+
+        private Transform OnGetLevelHolder()
+        {
+            return levelHolder.transform;
         }
     }
 }
