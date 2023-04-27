@@ -10,7 +10,6 @@ public class EnemyRevolverManager: RevolverAbstract, IGun
 {
     #region Self Variables
     #region Inject Variables
-    //[Inject] private PlayerSettings PlayerSettings { get; set; }
     [Inject] private EnemySignals EnemySignals { get; set; }
     [Inject] private PoolSignals PoolSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
@@ -48,7 +47,6 @@ public class EnemyRevolverManager: RevolverAbstract, IGun
         base.UnsubscribeEvents();
     }
 
-
     private void OnDisable()
     {
         UnsubscribeEvents();
@@ -73,10 +71,10 @@ public class EnemyRevolverManager: RevolverAbstract, IGun
         {
             _isReloading = true;
             EnemySignals.onReload?.Invoke();
-            yield return new WaitForSeconds(2.4f);
+            yield return wait2_4f;
 
             SetRevolverPosition();
-            yield return new WaitForSeconds(0.5f);
+            yield return wait0_5f;
             EnemySignals.onReloaded?.Invoke();
 
             _isReloading = false;

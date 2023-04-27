@@ -10,7 +10,6 @@ public class PlayerRevolverManager : RevolverAbstract, IGun
 {
     #region Self Variables
     #region Inject Variables
-    //[Inject] private PlayerSettings PlayerSettings { get; set; }
     [Inject] private PlayerSignals PlayerSignals { get; set; }
     [Inject] private PoolSignals PoolSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
@@ -24,8 +23,6 @@ public class PlayerRevolverManager : RevolverAbstract, IGun
     private bool _isDied = false;
     #endregion
     #region Properties
-    //public int AmmoCapacity { get; set; }
-    //public int CurrentBulletCount { get; set; } = 3;
     #endregion
     #endregion
     #region Event Subscription
@@ -61,23 +58,24 @@ public class PlayerRevolverManager : RevolverAbstract, IGun
     {
         base.OnShoot();
     }
+
     public void OnDie(StickmanBodyPartEnums bodyPart)
     {
         _isDied = true;
         StopAllCoroutines();
     }
+
     public override IEnumerator Reload()
     {
-
         if (!_isReloading)
         {
             _isReloading = true;
             PlayerSignals.onReload?.Invoke();
-            yield return new WaitForSeconds(2.4f);
+            yield return wait2_4f;
 
             SetRevolverPosition();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return wait0_5f;
             PlayerSignals.onReloaded?.Invoke();
 
             _isReloading = false;

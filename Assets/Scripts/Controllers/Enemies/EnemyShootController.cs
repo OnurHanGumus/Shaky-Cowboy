@@ -32,6 +32,7 @@ namespace Controllers
         private int _selectedGunId = 0;
         private IGun _currentGun;
         private bool _isDied = false;
+
         #endregion
         #endregion
 
@@ -40,13 +41,17 @@ namespace Controllers
             _mySettings = EnemySettings.EnemyShootSettings;
             _currentGun = (IGun) gunList[0];
         }
+
         private void Start()
         {
+
         }
+
         public void OnPlay()
         {
             ShootDelay();
         }
+
         private void Shoot()
         {
             EnemySignals.onShoot?.Invoke();
@@ -56,7 +61,6 @@ namespace Controllers
         {
             while (true)
             {
-
                 await Task.Delay((int)(Random.Range(0.5f, 1f) * 1000));
                 if (_isDied)
                 {
@@ -65,21 +69,25 @@ namespace Controllers
                 Shoot();
             }
         }
+
         private void RevolverOnHand()
         {
             revolver.parent = playerLeftHand;
             revolver.localPosition = new Vector3(-0.357f, -0.361f, 0.219f);
             revolver.localEulerAngles = new Vector3(-55.102f, 130.775f, -211.855f);
         }
+
         public void OnReload()
         {
             RevolverOnHand();
         }
+
         public void OnDie(StickmanBodyPartEnums bodyPart)
         {
             _isDied = true;
             RevolverOnHand();
         }
+
         [Serializable]
         public class Settings
         {

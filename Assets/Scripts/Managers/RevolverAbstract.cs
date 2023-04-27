@@ -6,12 +6,12 @@ using Zenject;
 using Enums;
 using System.Threading.Tasks;
 
+
 public abstract class RevolverAbstract : MonoBehaviour
 {
     #region Self Variables
     #region Inject Variables
-    //[Inject] private PlayerSettings PlayerSettings { get; set; }
-    //[Inject] private PlayerSignals PlayerSignals { get; set; }
+
     [Inject] private PoolSignals PoolSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
     #endregion
@@ -21,12 +21,13 @@ public abstract class RevolverAbstract : MonoBehaviour
     [SerializeField] protected Transform bulletPointTransform;
     [SerializeField] protected Transform playerTransform;
     [SerializeField] private RevolverMovementController movementController;
-    [SerializeField] protected Vector3 revolverInitializePos;/* = new Vector3(0.069f, 1.123f, -0.11f);*/
-    [SerializeField] protected Vector3 revolverInitializeRot;/* = new Vector3(-3.195f, -10.45f, 0.45f);*/
+    [SerializeField] protected Vector3 revolverInitializePos;
+    [SerializeField] protected Vector3 revolverInitializeRot;
     #endregion
     #region Protected Variables
     protected bool _isReloading = false;
-
+    protected WaitForSeconds wait2_4f = new WaitForSeconds(2.4f);
+    protected WaitForSeconds wait0_5f = new WaitForSeconds(0.5f);
     #endregion
     #region Private Variables
     #endregion
@@ -38,9 +39,15 @@ public abstract class RevolverAbstract : MonoBehaviour
     #region Event Subscription
     private void Awake()
     {
+        Init();
+    }
+
+    private void Init()
+    {
         revolverInitializePos = transform.localPosition;
         revolverInitializeRot = transform.localEulerAngles;
     }
+
     private void OnEnable()
     {
         SubscribeEvents();
@@ -59,7 +66,6 @@ public abstract class RevolverAbstract : MonoBehaviour
         CoreGameSignals.onRestart -= movementController.OnRestart;
         CoreGameSignals.onLevelInitialize -= OnInitializeLevel;
     }
-
 
     private void OnDisable()
     {
@@ -96,7 +102,6 @@ public abstract class RevolverAbstract : MonoBehaviour
 
     public virtual IEnumerator Reload()
     {
-
         yield break; 
     }
 
