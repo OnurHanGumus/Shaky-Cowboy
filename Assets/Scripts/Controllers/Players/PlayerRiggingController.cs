@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 namespace Controllers
 {
-    public class PlayerRiggingController : MonoBehaviour
+    public class PlayerRiggingController : MonoBehaviour, IPlayerRiggingController
     {
         #region Self Variables
 

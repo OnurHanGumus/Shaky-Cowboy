@@ -5,7 +5,7 @@ using Enums;
 using Data.ValueObject;
 using Data.UnityObject;
 
-public class PlayerAnimationController : MonoBehaviour
+public class PlayerAnimationController : MonoBehaviour, IPlayerAnimationController
 {
     #region Self Variables
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using Controllers;
+using System;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -23,11 +24,21 @@ public class EnemyManager : MonoBehaviour
     #endregion
 
     #region Serialized Variables
-    [SerializeField] private EnemyRiggingController riggingController;
-    [SerializeField] private EnemyAnimationController animationController;
-    [SerializeField] private EnemyShootController shootController;
-    [SerializeField] private EnemyPhysicsController physicsController;
+    [SerializeField] private IEnemyRiggingController riggingController;
+    [SerializeField] private IEnemyAnimationController animationController;
+    [SerializeField] private IEnemyShootController shootController;
 
+    #region Dictionary Serialization
+    [Serializable]
+    public struct Controller
+    {
+        public StickmanControllerEnums Name;
+        public Component ControllerComponent;
+    }
+    [SerializeField] Controller[] controllerInspectorDictionary;
+
+    public Dictionary<StickmanControllerEnums, Component> Controllers;
+    #endregion
     #endregion
 
     #region Private Variables
@@ -43,8 +54,25 @@ public class EnemyManager : MonoBehaviour
 
     private void Awake()
     {
+        Init();
+    }
+
+    private void Init()
+    {
+        Controllers = new Dictionary<StickmanControllerEnums, Component>();
+
+        foreach (var i in controllerInspectorDictionary)
+        {
+            Controllers.Add(i.Name, i.ControllerComponent);
+        }
+
+        shootController = (IEnemyShootController)Controllers[StickmanControllerEnums.Shoot];
+        animationController = (IEnemyAnimationController)Controllers[StickmanControllerEnums.Animate];
+        riggingController = (IEnemyRiggingController)Controllers[StickmanControllerEnums.Rig];
+
         LevelSignals.onEnemyArrived?.Invoke();
     }
+
     #region Event Subscriptions
     private void OnEnable()
     {
@@ -64,7 +92,6 @@ public class EnemyManager : MonoBehaviour
         EnemySignals.onDie += OnDie;
         EnemySignals.onDie += riggingController.OnDie;
         EnemySignals.onDie += shootController.OnDie;
-
     }
 
     private void UnsubscribeEvents()

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 namespace Controllers
 {
-    public class EnemyRiggingController : MonoBehaviour
+    public class EnemyRiggingController : MonoBehaviour, IEnemyRiggingController
     {
         #region Self Variables
 
@@ -33,15 +33,18 @@ namespace Controllers
             //ChangeAll(false);
             rigBuilder.enabled = false;
         }
+
         public void OnReloaded()
         {
             //ChangeAll(true);
             rigBuilder.enabled = true;
         }
+
         public void OnDie(StickmanBodyPartEnums bodyPart)
         {
             rigBuilder.enabled = false;
         }
+
         private void ChangeAll(bool isActive)
         {
             for (int i = 0; i < rigBuilder.layers.Count; i++)
@@ -49,6 +52,5 @@ namespace Controllers
                 SetSpesificRigActiveness(i, isActive);
             }
         }
-
     }
 }

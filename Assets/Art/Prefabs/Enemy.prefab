@@ -3549,10 +3549,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDead: 0
-  riggingController: {fileID: 1394508031}
-  animationController: {fileID: 1279618230}
-  shootController: {fileID: 2023775056}
-  physicsController: {fileID: 0}
+  controllerInspectorDictionary:
+  - Name: 0
+    ControllerComponent: {fileID: 2023775056}
+  - Name: 2
+    ControllerComponent: {fileID: 1394508031}
+  - Name: 1
+    ControllerComponent: {fileID: 1279618230}
 --- !u!95 &7851368060313264897
 Animator:
   serializedVersion: 4

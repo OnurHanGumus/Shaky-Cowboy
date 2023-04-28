@@ -4409,9 +4409,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementController: {fileID: 8549495318211459232}
-  shootController: {fileID: 8549495318211459235}
-  animationController: {fileID: 1588787912}
-  riggingController: {fileID: 268653201}
+  controllerInspectorDictionary:
+  - Name: 0
+    ControllerComponent: {fileID: 8549495318211459235}
+  - Name: 1
+    ControllerComponent: {fileID: 1588787912}
+  - Name: 2
+    ControllerComponent: {fileID: 268653201}
 --- !u!114 &8549495318211459232
 MonoBehaviour:
   m_ObjectHideFlags: 0

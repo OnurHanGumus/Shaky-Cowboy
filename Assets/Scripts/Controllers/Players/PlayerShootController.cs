@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Controllers
 {
-    public class PlayerShootController : MonoBehaviour
+    public class PlayerShootController : MonoBehaviour, IPlayerShootController
     {
         #region Self Variables
         #region Inject Variables
@@ -40,7 +40,7 @@ namespace Controllers
         private void Awake()
         {
             _mySettings = PlayerSettings.PlayerShootManagerSettings;
-            _currentGun = (IGun) gunList[0];
+            _currentGun = (IGun)gunList[0];
         }
 
         public void OnClicked()
@@ -72,10 +72,10 @@ namespace Controllers
             }
             gunMeshes[_selectedGunId].SetActive(true);
         }
-      
+
         public void OnReload()
         {
-           
+
         }
 
         public void OnDie(StickmanBodyPartEnums bodyPart)

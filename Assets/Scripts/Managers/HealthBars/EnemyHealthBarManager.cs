@@ -67,7 +67,6 @@ public class EnemyHealthBarManager : HealthBarManager
     public override void OnHitted(int value, StickmanBodyPartEnums bodyPart)
     {
         base.OnHitted(value, bodyPart);
-        Debug.Log(_currentHealth);
         if (_currentHealth <= 0)
         {
             LevelSignals.onEnemyDied.Invoke(transform.parent);

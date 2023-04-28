@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 
 namespace Controllers
 {
-    public class EnemyShootController : MonoBehaviour
+    public class EnemyShootController : MonoBehaviour, IEnemyShootController
     {
         #region Self Variables
         #region Inject Variables
@@ -39,7 +39,7 @@ namespace Controllers
         private void Awake()
         {
             _mySettings = EnemySettings.EnemyShootSettings;
-            _currentGun = (IGun) gunList[0];
+            _currentGun = (IGun)gunList[0];
         }
 
         private void Start()
@@ -79,7 +79,7 @@ namespace Controllers
 
         public void OnReload()
         {
-           
+
         }
 
         public void OnDie(StickmanBodyPartEnums bodyPart)

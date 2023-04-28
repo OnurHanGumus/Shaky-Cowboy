@@ -27,10 +27,21 @@ namespace Managers
         #endregion
 
         #region Serialized Variables
-        [SerializeField] private PlayerMovementController movementController;
-        [SerializeField] private PlayerShootController shootController;
-        [SerializeField] private PlayerAnimationController animationController;
-        [SerializeField] private PlayerRiggingController riggingController;
+        [SerializeField] private IPlayerShootController shootController;
+        [SerializeField] private IPlayerAnimationController animationController;
+        [SerializeField] private IPlayerRiggingController riggingController;
+
+        #region Dictionary Serialization
+        [Serializable]
+        public struct Controller
+        {
+            public StickmanControllerEnums Name;
+            public Component ControllerComponent;
+        }
+        [SerializeField] Controller[] controllerInspectorDictionary;
+
+        public Dictionary<StickmanControllerEnums, Component> Controllers;
+        #endregion
         #endregion
 
         #region Private Variables
@@ -47,7 +58,18 @@ namespace Managers
         private void Init()
         {
             _data = GetData();
+            Controllers = new Dictionary<StickmanControllerEnums, Component> ();
+
+            foreach (var i in controllerInspectorDictionary)
+            {
+                Controllers.Add(i.Name, i.ControllerComponent);
+            }
+
+            shootController = (IPlayerShootController) Controllers[StickmanControllerEnums.Shoot];
+            animationController = (IPlayerAnimationController) Controllers[StickmanControllerEnums.Animate];
+            riggingController = (IPlayerRiggingController) Controllers[StickmanControllerEnums.Rig];
         }
+
         public PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
 
         #region Event Subscription
@@ -59,9 +81,7 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            CoreGameSignals.onPlay += movementController.OnPlay;
             CoreGameSignals.onPlay += riggingController.OnPlay;
-            CoreGameSignals.onRestart += movementController.OnRestartLevel;
             CoreGameSignals.onRestart += animationController.OnRestartLevel;
             CoreGameSignals.onRestart += shootController.OnRestart;
 
@@ -80,9 +100,7 @@ namespace Managers
 
         private void UnsubscribeEvents()
         {
-            CoreGameSignals.onPlay -= movementController.OnPlay;
             CoreGameSignals.onPlay -= riggingController.OnPlay;
-            CoreGameSignals.onRestart -= movementController.OnRestartLevel;
             CoreGameSignals.onRestart -= animationController.OnRestartLevel;
             CoreGameSignals.onRestart -= shootController.OnRestart;
 
