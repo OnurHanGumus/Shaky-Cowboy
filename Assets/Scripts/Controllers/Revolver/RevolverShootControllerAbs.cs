@@ -84,7 +84,12 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
         transform.localEulerAngles = revolverInitializeRot;
     }
 
-    public virtual IEnumerator Reload()
+    public virtual void Reload()
+    {
+
+    }
+
+    public virtual IEnumerator ReloadCoroutine()
     {
         yield break; 
     }

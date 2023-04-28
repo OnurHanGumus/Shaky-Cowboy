@@ -43,14 +43,19 @@ public class RevolverShootControllerEnemy: RevolverShootControllerAbs, IGun
         base.OnShoot();
     }
 
-    public void OnDie(StickmanBodyPartEnums bodyPart)
+    public override void OnDie(StickmanBodyPartEnums bodyPart)
     {
         base.OnDie(bodyPart);
         _isDied = true;
         StopAllCoroutines();
     }
 
-    public override IEnumerator Reload()
+    public override void Reload()
+    {
+        StartCoroutine(ReloadCoroutine());
+    }
+
+    public override IEnumerator ReloadCoroutine()
     {
         if (!_isReloading)
         {

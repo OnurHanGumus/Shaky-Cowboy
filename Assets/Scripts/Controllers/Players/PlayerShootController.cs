@@ -58,7 +58,7 @@ namespace Controllers
             --_currentGun.CurrentBulletCount;
             if (_currentGun.CurrentBulletCount <= 0)
             {
-                StartCoroutine(_currentGun.Reload());
+                _currentGun.Reload();
                 return;
             }
         }

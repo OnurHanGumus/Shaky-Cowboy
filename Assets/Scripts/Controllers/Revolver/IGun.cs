@@ -8,5 +8,6 @@ public interface IGun
     public int AmmoCapacity { get; set; }
     public int CurrentBulletCount { get; set; }
     public void OnShoot();
-    public IEnumerator Reload();
+    public IEnumerator ReloadCoroutine();
+    public void Reload();
 }
