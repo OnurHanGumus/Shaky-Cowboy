@@ -54,7 +54,8 @@ namespace Controllers
 
         private void Shoot()
         {
-            EnemySignals.onShoot?.Invoke();
+            //EnemySignals.onShoot?.Invoke();
+            _currentGun.OnShoot();
         }
 
         private async Task ShootDelay()

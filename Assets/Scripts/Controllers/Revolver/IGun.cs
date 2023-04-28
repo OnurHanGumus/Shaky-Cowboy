@@ -8,5 +8,5 @@ public interface IGun
     public int AmmoCapacity { get; set; }
     public int CurrentBulletCount { get; set; }
     public void OnShoot();
-    public async Task Reload() { }
+    public IEnumerator Reload();
 }

@@ -53,7 +53,8 @@ namespace Controllers
         }
         private void Shoot()
         {
-            PlayerSignals.onShoot?.Invoke();
+            //PlayerSignals.onShoot?.Invoke();
+            _currentGun.OnShoot();
         }
 
         private void ChangeGun()

@@ -6,11 +6,11 @@ using Zenject;
 using Enums;
 using System.Threading.Tasks;
 
-public class PlayerRevolverManager : RevolverAbstract, IGun
+public class RevolverShootControllerEnemy: RevolverShootControllerAbs, IGun
 {
     #region Self Variables
     #region Inject Variables
-    [Inject] private PlayerSignals PlayerSignals { get; set; }
+    [Inject] private EnemySignals EnemySignals { get; set; }
     [Inject] private PoolSignals PoolSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
     [Inject] private InputSignals InputSignals { get; set; }
@@ -29,27 +29,12 @@ public class PlayerRevolverManager : RevolverAbstract, IGun
 
     private void OnEnable()
     {
-        SubscribeEvents();
+        
     }
-
-    protected override void SubscribeEvents()
-    {
-        PlayerSignals.onShoot += OnShoot;
-        PlayerSignals.onDie += OnDie;
-        base.SubscribeEvents();
-    }
-
-    private new void UnsubscribeEvents()
-    {
-        PlayerSignals.onShoot -= OnShoot;
-        PlayerSignals.onDie -= OnDie;
-        base.UnsubscribeEvents();
-    }
-
 
     private void OnDisable()
     {
-        UnsubscribeEvents();
+        
     }
 
     #endregion
@@ -70,13 +55,12 @@ public class PlayerRevolverManager : RevolverAbstract, IGun
         if (!_isReloading)
         {
             _isReloading = true;
-            PlayerSignals.onReload?.Invoke();
+            EnemySignals.onReload?.Invoke();
             yield return wait2_4f;
 
             SetRevolverPosition();
-
             yield return wait0_5f;
-            PlayerSignals.onReloaded?.Invoke();
+            EnemySignals.onReloaded?.Invoke();
 
             _isReloading = false;
             CurrentBulletCount = AmmoCapacity;

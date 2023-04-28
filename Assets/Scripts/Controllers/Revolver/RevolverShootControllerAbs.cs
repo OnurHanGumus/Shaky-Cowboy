@@ -7,7 +7,7 @@ using Enums;
 using System.Threading.Tasks;
 
 
-public abstract class RevolverAbstract : MonoBehaviour
+public abstract class RevolverShootControllerAbs : MonoBehaviour
 {
     #region Self Variables
     #region Inject Variables
@@ -50,26 +50,12 @@ public abstract class RevolverAbstract : MonoBehaviour
 
     private void OnEnable()
     {
-        SubscribeEvents();
-    }
-
-    protected virtual void SubscribeEvents()
-    {
-        CoreGameSignals.onPlay += movementController.OnPlay;
-        CoreGameSignals.onRestart += movementController.OnRestart;
-        CoreGameSignals.onLevelInitialize += OnInitializeLevel;
-    }
-
-    protected virtual void UnsubscribeEvents()
-    {
-        CoreGameSignals.onPlay -= movementController.OnPlay;
-        CoreGameSignals.onRestart -= movementController.OnRestart;
-        CoreGameSignals.onLevelInitialize -= OnInitializeLevel;
+        
     }
 
     private void OnDisable()
     {
-        UnsubscribeEvents();
+        
     }
 
     #endregion
@@ -103,6 +89,10 @@ public abstract class RevolverAbstract : MonoBehaviour
     public virtual IEnumerator Reload()
     {
         yield break; 
+    }
+    public virtual void OnDie(StickmanBodyPartEnums bodyPart)
+    {
+
     }
 
     public void OnInitializeLevel()

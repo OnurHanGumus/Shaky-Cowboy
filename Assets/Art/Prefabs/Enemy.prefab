@@ -1720,6 +1720,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7097459859590748510}
+  - component: {fileID: 1245386193831778803}
   - component: {fileID: 6698316384329007261}
   - component: {fileID: 1576879709222569188}
   - component: {fileID: 714910721}
@@ -1746,6 +1747,20 @@ Transform:
   m_Father: {fileID: 5803188353528402544}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1245386193831778803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3785682897657198773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdbf9ec067a3e6b409f8c27c830f7434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementController: {fileID: 6698316384329007261}
+  revolverShootControllerAbs: {fileID: 714910721}
 --- !u!114 &6698316384329007261
 MonoBehaviour:
   m_ObjectHideFlags: 0

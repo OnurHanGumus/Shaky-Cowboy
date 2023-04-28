@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 124712519}
+  - component: {fileID: 5827171747591834947}
   - component: {fileID: 7586988698694999243}
   - component: {fileID: 4707765954347216196}
   - component: {fileID: 124712520}
@@ -35,6 +36,20 @@ Transform:
   m_Father: {fileID: 8549495318211459234}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5827171747591834947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124712518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e41f3918ae39d4bb0be77ee2f38648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementController: {fileID: 4707765954347216196}
+  revolverShootControllerAbs: {fileID: 7586988698694999243}
 --- !u!114 &7586988698694999243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4396,7 +4411,6 @@ MonoBehaviour:
   shootController: {fileID: 8549495318211459235}
   animationController: {fileID: 1588787912}
   riggingController: {fileID: 268653201}
-  healthBarManager: {fileID: 2227806183949523647}
 --- !u!114 &8549495318211459232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4720,17 +4734,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d57f1bf0f1268d40a45b49a9499bc70, type: 3}
---- !u!114 &2227806183949523647 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1337120725664735784, guid: 4d57f1bf0f1268d40a45b49a9499bc70, type: 3}
-  m_PrefabInstance: {fileID: 893025390861613207}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72043deb7fc34f9468b94c772927788d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &7450155221491066110 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7710423623186177129, guid: 4d57f1bf0f1268d40a45b49a9499bc70, type: 3}

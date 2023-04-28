@@ -31,7 +31,6 @@ namespace Managers
         [SerializeField] private PlayerShootController shootController;
         [SerializeField] private PlayerAnimationController animationController;
         [SerializeField] private PlayerRiggingController riggingController;
-        [SerializeField] private PlayerHealthBarManager healthBarManager;
         #endregion
 
         #region Private Variables
