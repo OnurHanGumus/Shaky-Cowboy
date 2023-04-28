@@ -25,19 +25,6 @@ public class RevolverShootControllerPlayer : RevolverShootControllerAbs, IGun
     #region Properties
     #endregion
     #endregion
-    #region Event Subscription
-
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
-    }
-
-    #endregion
 
     public override void OnShoot()
     {
@@ -46,6 +33,7 @@ public class RevolverShootControllerPlayer : RevolverShootControllerAbs, IGun
 
     public void OnDie(StickmanBodyPartEnums bodyPart)
     {
+        base.OnDie(bodyPart);
         _isDied = true;
         StopAllCoroutines();
     }
@@ -55,6 +43,8 @@ public class RevolverShootControllerPlayer : RevolverShootControllerAbs, IGun
         if (!_isReloading)
         {
             _isReloading = true;
+            RevolverOnHand();
+
             PlayerSignals.onReload?.Invoke();
             yield return wait2_4f;
 

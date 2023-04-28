@@ -20,6 +20,7 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
     #region Serializefield Variables
     [SerializeField] protected Transform bulletPointTransform;
     [SerializeField] protected Transform playerTransform;
+    [SerializeField] private Transform playerLeftHand;
     [SerializeField] private RevolverMovementController movementController;
     [SerializeField] protected Vector3 revolverInitializePos;
     [SerializeField] protected Vector3 revolverInitializeRot;
@@ -28,6 +29,8 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
     protected bool _isReloading = false;
     protected WaitForSeconds wait2_4f = new WaitForSeconds(2.4f);
     protected WaitForSeconds wait0_5f = new WaitForSeconds(0.5f);
+    protected bool _isDied = false;
+
     #endregion
     #region Private Variables
     #endregion
@@ -71,12 +74,7 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
         bullet.transform.position = bulletPointTransform.position;
         bullet.transform.eulerAngles = transform.eulerAngles;
         bullet.SetActive(true);
-        --CurrentBulletCount;
-        if (CurrentBulletCount <= 0)
-        {
-            StartCoroutine(Reload());
-            return;
-        }
+        
     }
 
     protected void SetRevolverPosition()
@@ -92,7 +90,7 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
     }
     public virtual void OnDie(StickmanBodyPartEnums bodyPart)
     {
-
+        RevolverOnHand();
     }
 
     public void OnInitializeLevel()
@@ -101,5 +99,12 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
         _isReloading = false;
         StopAllCoroutines();
         SetRevolverPosition();
+    }
+
+    protected void RevolverOnHand()
+    {
+        transform.parent = playerLeftHand;
+        transform.localPosition = new Vector3(-0.357f, -0.361f, 0.219f);
+        transform.localEulerAngles = new Vector3(-55.102f, 130.775f, -211.855f);
     }
 }

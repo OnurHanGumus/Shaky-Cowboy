@@ -56,6 +56,12 @@ namespace Controllers
         {
             //EnemySignals.onShoot?.Invoke();
             _currentGun.OnShoot();
+            --_currentGun.CurrentBulletCount;
+            if (_currentGun.CurrentBulletCount <= 0)
+            {
+                StartCoroutine(_currentGun.Reload());
+                return;
+            }
         }
 
         private async Task ShootDelay()
@@ -71,22 +77,14 @@ namespace Controllers
             }
         }
 
-        private void RevolverOnHand()
-        {
-            revolver.parent = playerLeftHand;
-            revolver.localPosition = new Vector3(-0.357f, -0.361f, 0.219f);
-            revolver.localEulerAngles = new Vector3(-55.102f, 130.775f, -211.855f);
-        }
-
         public void OnReload()
         {
-            RevolverOnHand();
+           
         }
 
         public void OnDie(StickmanBodyPartEnums bodyPart)
         {
             _isDied = true;
-            RevolverOnHand();
         }
 
         [Serializable]

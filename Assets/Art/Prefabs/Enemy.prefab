@@ -1800,6 +1800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPointTransform: {fileID: 7064322489082807775}
   playerTransform: {fileID: 5803188353528402544}
+  playerLeftHand: {fileID: 8877798504029427325}
   movementController: {fileID: 6698316384329007261}
   revolverInitializePos: {x: -0.019, y: 1.128, z: -0.178}
   revolverInitializeRot: {x: -3.195, y: -10.45, z: 0.45}

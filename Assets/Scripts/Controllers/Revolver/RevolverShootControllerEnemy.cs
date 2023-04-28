@@ -20,7 +20,6 @@ public class RevolverShootControllerEnemy: RevolverShootControllerAbs, IGun
     #region Serializefield Variables
     #endregion
     #region Private Variables
-    private bool _isDied = false;
     #endregion
     #region Properties
     #endregion
@@ -46,6 +45,7 @@ public class RevolverShootControllerEnemy: RevolverShootControllerAbs, IGun
 
     public void OnDie(StickmanBodyPartEnums bodyPart)
     {
+        base.OnDie(bodyPart);
         _isDied = true;
         StopAllCoroutines();
     }
@@ -55,6 +55,8 @@ public class RevolverShootControllerEnemy: RevolverShootControllerAbs, IGun
         if (!_isReloading)
         {
             _isReloading = true;
+            RevolverOnHand();
+
             EnemySignals.onReload?.Invoke();
             yield return wait2_4f;
 
