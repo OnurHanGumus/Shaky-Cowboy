@@ -65,9 +65,11 @@ namespace Managers
                 Controllers.Add(i.Name, i.ControllerComponent);
             }
 
-            shootController = (IPlayerShootController) Controllers[StickmanControllerEnums.Shoot];
-            animationController = (IPlayerAnimationController) Controllers[StickmanControllerEnums.Animate];
-            riggingController = (IPlayerRiggingController) Controllers[StickmanControllerEnums.Rig];
+            //shootController = (IPlayerShootController) Controllers[StickmanControllerEnums.Shoot];
+            animationController = (IPlayerAnimationController)Controllers[StickmanControllerEnums.Animate];
+            //riggingController = (IPlayerRiggingController) Controllers[StickmanControllerEnums.Rig];
+            shootController = GetComponent<IPlayerShootController>();
+            riggingController = GetComponent<IPlayerRiggingController>();
         }
 
         public PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
