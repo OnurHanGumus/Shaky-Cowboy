@@ -5,7 +5,8 @@ using UnityEngine;
 using Zenject;
 using Enums;
 using System.Threading.Tasks;
-
+using Data.ValueObject;
+using Data.UnityObject;
 
 public abstract class RevolverManagerAbs : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public abstract class RevolverManagerAbs : MonoBehaviour
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
     #endregion
     #region Public Variables
+    public RevolverData Data;
+
     #endregion
     #region Serializefield Variables
     [SerializeField] protected RevolverMovementController movementController;
@@ -23,7 +26,6 @@ public abstract class RevolverManagerAbs : MonoBehaviour
 
     #endregion
     #region Protected Variables
-
     #endregion
     #region Private Variables
     #endregion
@@ -32,6 +34,8 @@ public abstract class RevolverManagerAbs : MonoBehaviour
     #endregion
     #endregion
     #region Event Subscription
+
+    private RevolverData GetData() => Resources.Load<CD_Revolver>("Data/CD_Revolver").Data;
     private void Awake()
     {
         Init();
@@ -39,7 +43,7 @@ public abstract class RevolverManagerAbs : MonoBehaviour
 
     private void Init()
     {
-
+        Data = GetData();
     }
 
     private void OnEnable()

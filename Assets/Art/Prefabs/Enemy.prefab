@@ -1759,6 +1759,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbf9ec067a3e6b409f8c27c830f7434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data:
+    RevolverHandLocalPosition: {x: -0.357, y: -0.361, z: 0.219}
+    RevolverEulerLocalAngle: {x: -55.102, y: 130.775, z: -211.855}
   movementController: {fileID: 6698316384329007261}
   revolverShootControllerAbs: {fileID: 714910721}
 --- !u!114 &6698316384329007261
@@ -1801,7 +1804,7 @@ MonoBehaviour:
   bulletPointTransform: {fileID: 7064322489082807775}
   playerTransform: {fileID: 5803188353528402544}
   playerLeftHand: {fileID: 8877798504029427325}
-  movementController: {fileID: 6698316384329007261}
+  manager: {fileID: 1245386193831778803}
   revolverInitializePos: {x: -0.019, y: 1.128, z: -0.178}
   revolverInitializeRot: {x: -3.195, y: -10.45, z: 0.45}
 --- !u!1 &3796901219073093381

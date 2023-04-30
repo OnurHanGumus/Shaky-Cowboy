@@ -21,7 +21,7 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
     [SerializeField] protected Transform bulletPointTransform;
     [SerializeField] protected Transform playerTransform;
     [SerializeField] private Transform playerLeftHand;
-    [SerializeField] private RevolverMovementController movementController;
+    [SerializeField] private RevolverManagerAbs manager;
     [SerializeField] protected Vector3 revolverInitializePos;
     [SerializeField] protected Vector3 revolverInitializeRot;
     #endregion
@@ -39,7 +39,6 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
     public int CurrentBulletCount { get; set; } = 3;
     #endregion
     #endregion
-    #region Event Subscription
     private void Awake()
     {
         Init();
@@ -50,18 +49,6 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
         revolverInitializePos = transform.localPosition;
         revolverInitializeRot = transform.localEulerAngles;
     }
-
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
-    }
-
-    #endregion
 
     public virtual void OnShoot()
     {
@@ -74,7 +61,6 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
         bullet.transform.position = bulletPointTransform.position;
         bullet.transform.eulerAngles = transform.eulerAngles;
         bullet.SetActive(true);
-        
     }
 
     protected void SetRevolverPosition()
@@ -109,7 +95,7 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
     protected void RevolverOnHand()
     {
         transform.parent = playerLeftHand;
-        transform.localPosition = new Vector3(-0.357f, -0.361f, 0.219f);
-        transform.localEulerAngles = new Vector3(-55.102f, 130.775f, -211.855f);
+        transform.localPosition = manager.Data.RevolverHandLocalPosition;
+        transform.localEulerAngles = manager.Data.RevolverEulerLocalAngle;
     }
 }
