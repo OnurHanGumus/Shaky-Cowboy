@@ -5,7 +5,7 @@ using Enums;
 using Data.ValueObject;
 using Data.UnityObject;
 
-public class EnemyAnimationController : MonoBehaviour, IEnemyAnimationController
+public class EnemyAnimationController : EnemyAnimationControllerBase
 {
     #region Self Variables
 
@@ -32,7 +32,7 @@ public class EnemyAnimationController : MonoBehaviour, IEnemyAnimationController
         _uiData = GetData();
     }
 
-    public void OnChangeAnimation(PlayerAnimationStates nextAnimation)
+    public override void OnChangeAnimation(PlayerAnimationStates nextAnimation)
     {
         animator.SetTrigger(nextAnimation.ToString());
     }

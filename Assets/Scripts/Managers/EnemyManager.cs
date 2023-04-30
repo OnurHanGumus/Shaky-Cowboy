@@ -13,8 +13,6 @@ public class EnemyManager : MonoBehaviour
     #region Injected Variables
     [Inject] private LevelSignals LevelSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
-    [Inject] private InputSignals InputSignals { get; set; }
-    [Inject] private RevolverSignals RevolverSignals { get; set; }
     [Inject] private EnemySignals EnemySignals { get; set; }
 
     #endregion
@@ -24,33 +22,16 @@ public class EnemyManager : MonoBehaviour
     #endregion
 
     #region Serialized Variables
-    [SerializeField] private IEnemyRiggingController riggingController;
-    [SerializeField] private IEnemyAnimationController animationController;
-    [SerializeField] private IEnemyShootController shootController;
+    [SerializeField] private EnemyRiggingControllerBase riggingController;
+    [SerializeField] private EnemyAnimationControllerBase animationController;
+    [SerializeField] private EnemyShootControllerBase shootController;
 
-    #region Dictionary Serialization
-    [Serializable]
-    public struct Controller
-    {
-        public StickmanControllerEnums Name;
-        public Component ControllerComponent;
-    }
-    [SerializeField] Controller[] controllerInspectorDictionary;
-
-    public Dictionary<StickmanControllerEnums, Component> Controllers;
-    #endregion
     #endregion
 
     #region Private Variables
     #endregion
 
     #endregion
-    [Inject]
-    public void Construct(CoreGameSignals coreGameSignals, LevelSignals levelSignals)
-    {
-        LevelSignals = levelSignals;
-        CoreGameSignals = coreGameSignals;
-    }
 
     private void Awake()
     {
@@ -59,17 +40,6 @@ public class EnemyManager : MonoBehaviour
 
     private void Init()
     {
-        Controllers = new Dictionary<StickmanControllerEnums, Component>();
-
-        foreach (var i in controllerInspectorDictionary)
-        {
-            Controllers.Add(i.Name, i.ControllerComponent);
-        }
-
-        shootController = (IEnemyShootController)Controllers[StickmanControllerEnums.Shoot];
-        animationController = (IEnemyAnimationController)Controllers[StickmanControllerEnums.Animate];
-        riggingController = (IEnemyRiggingController)Controllers[StickmanControllerEnums.Rig];
-
         LevelSignals.onEnemyArrived?.Invoke();
     }
 
@@ -133,10 +103,12 @@ public class EnemyManager : MonoBehaviour
     {
         animationController.OnChangeAnimation((PlayerAnimationStates)((int)bodyPart));
     }
+
     private void OnReload()
     {
         animationController.OnChangeAnimation(PlayerAnimationStates.Reload);
     }
+
     private void OnRestartLevel()
     {
         gameObject.SetActive(false);

@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 
 namespace Controllers
 {
-    public class EnemyShootController : MonoBehaviour, IEnemyShootController
+    public class EnemyShootController : EnemyShootControllerBase
     {
         #region Self Variables
         #region Inject Variables
@@ -47,7 +47,7 @@ namespace Controllers
 
         }
 
-        public void OnPlay()
+        public override void OnPlay()
         {
             ShootDelay();
         }
@@ -77,12 +77,12 @@ namespace Controllers
             }
         }
 
-        public void OnReload()
+        public override void OnReload()
         {
 
         }
 
-        public void OnDie(StickmanBodyPartEnums bodyPart)
+        public override void OnDie(StickmanBodyPartEnums bodyPart)
         {
             _isDied = true;
         }
