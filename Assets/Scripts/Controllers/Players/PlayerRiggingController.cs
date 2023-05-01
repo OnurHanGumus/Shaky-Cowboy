@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 namespace Controllers
 {
-    public class PlayerRiggingController : MonoBehaviour, IPlayerRiggingController
+    public class PlayerRiggingController : PlayerRiggingControllerBase
     {
         #region Self Variables
 
@@ -22,27 +22,28 @@ namespace Controllers
             rigBuilder.layers[index].active = value;
         }
 
-        public void OnPlay()
+        public override void OnPlay()
         {
             SetSpesificRigActiveness(0, true);
             SetSpesificRigActiveness(1, true);
             rigBuilder.enabled = true;
         }
-        public void OnReload()
-        {
-            //ChangeAll(false);
-            rigBuilder.enabled = false;
-        }
-        public void OnReloaded()
-        {
-            //ChangeAll(true);
-            rigBuilder.enabled = true;
 
-        }
-        public void OnDie(StickmanBodyPartEnums bodyPart)
+        public override void OnReload()
         {
             rigBuilder.enabled = false;
         }
+
+        public override void OnReloaded()
+        {
+            rigBuilder.enabled = true;
+        }
+
+        public override void OnDie(StickmanBodyPartEnums bodyPart)
+        {
+            rigBuilder.enabled = false;
+        }
+
         private void ChangeAll(bool isActive)
         {
             for (int i = 0; i < rigBuilder.layers.Count; i++)
@@ -50,6 +51,5 @@ namespace Controllers
                 SetSpesificRigActiveness(i, isActive);
             }
         }
-
     }
 }

@@ -15,11 +15,9 @@ namespace Managers
     {
         #region Self Variables
         #region Injected Variables
-        [Inject] private PoolSignals PoolSignals { get; set; }
         [Inject] private CoreGameSignals CoreGameSignals { get; set; }
         [Inject] private InputSignals InputSignals { get; set; }
         [Inject] private PlayerSignals PlayerSignals { get; set; }
-        [Inject] private RevolverSignals RevolverSignals { get; set; }
         #endregion
 
         #region Public Variables
@@ -27,21 +25,10 @@ namespace Managers
         #endregion
 
         #region Serialized Variables
-        [SerializeField] private IPlayerShootController shootController;
-        [SerializeField] private IPlayerAnimationController animationController;
-        [SerializeField] private IPlayerRiggingController riggingController;
+        [SerializeField] private PlayerShootControllerBase shootController;
+        [SerializeField] private PlayerAnimationControllerBase animationController;
+        [SerializeField] private PlayerRiggingControllerBase riggingController;
 
-        #region Dictionary Serialization
-        [Serializable]
-        public struct Controller
-        {
-            public StickmanControllerEnums Name;
-            public Component ControllerComponent;
-        }
-        [SerializeField] Controller[] controllerInspectorDictionary;
-
-        public Dictionary<StickmanControllerEnums, Component> Controllers;
-        #endregion
         #endregion
 
         #region Private Variables
@@ -58,18 +45,6 @@ namespace Managers
         private void Init()
         {
             _data = GetData();
-            Controllers = new Dictionary<StickmanControllerEnums, Component> ();
-
-            foreach (var i in controllerInspectorDictionary)
-            {
-                Controllers.Add(i.Name, i.ControllerComponent);
-            }
-
-            //shootController = (IPlayerShootController) Controllers[StickmanControllerEnums.Shoot];
-            animationController = (IPlayerAnimationController)Controllers[StickmanControllerEnums.Animate];
-            //riggingController = (IPlayerRiggingController) Controllers[StickmanControllerEnums.Rig];
-            shootController = GetComponent<IPlayerShootController>();
-            riggingController = GetComponent<IPlayerRiggingController>();
         }
 
         public PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;

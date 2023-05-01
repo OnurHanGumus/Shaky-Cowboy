@@ -5,7 +5,7 @@ using Enums;
 using Data.ValueObject;
 using Data.UnityObject;
 
-public class PlayerAnimationController : MonoBehaviour, IPlayerAnimationController
+public class PlayerAnimationController : PlayerAnimationControllerBase
 {
     #region Self Variables
 
@@ -30,12 +30,12 @@ public class PlayerAnimationController : MonoBehaviour, IPlayerAnimationControll
     {
         _uiData = GetData();
     }
-    public void OnChangeAnimation(PlayerAnimationStates nextAnimation)
+    public override void OnChangeAnimation(PlayerAnimationStates nextAnimation)
     {
         animator.SetTrigger(nextAnimation.ToString());
     }
 
-    public void OnRestartLevel()
+    public override void OnRestartLevel()
     {
         animator.Rebind();
         animator.Update(0f);

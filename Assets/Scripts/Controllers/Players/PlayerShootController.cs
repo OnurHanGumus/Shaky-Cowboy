@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Controllers
 {
-    public class PlayerShootController : MonoBehaviour, IPlayerShootController
+    public class PlayerShootController : PlayerShootControllerBase
     {
         #region Self Variables
         #region Inject Variables
@@ -43,7 +43,7 @@ namespace Controllers
             _currentGun = (IGun)gunList[0];
         }
 
-        public void OnClicked()
+        public override void OnClicked()
         {
             if (_isDied)
             {
@@ -73,17 +73,16 @@ namespace Controllers
             gunMeshes[_selectedGunId].SetActive(true);
         }
 
-        public void OnReload()
+        public override void OnReload()
         {
 
         }
-
-        public void OnDie(StickmanBodyPartEnums bodyPart)
+        public override void OnDie(StickmanBodyPartEnums bodyPart)
         {
             _isDied = true;
         }
 
-        public void OnRestart()
+        public override void OnRestart()
         {
             _isDied = false;
         }
