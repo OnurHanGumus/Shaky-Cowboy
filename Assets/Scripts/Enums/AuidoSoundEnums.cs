@@ -8,9 +8,9 @@ namespace Enums
         Click,
         Win,
         Loose,
-        Explosion1,
-        Explosion2,
-        Combo,
-        Pitch,
+        Shoot,
+        Reload,
+        HitStickMan,
+        HitReplaceable,
     }
 }

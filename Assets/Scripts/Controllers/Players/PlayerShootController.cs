@@ -17,6 +17,7 @@ namespace Controllers
         #region Inject Variables
         [Inject] private PlayerSettings PlayerSettings { get; set; }
         [Inject] private PlayerSignals PlayerSignals { get; set; }
+        [Inject] private AudioSignals AudioSignals { get; set; }
         #endregion
         #region Public Variables
         #endregion
@@ -53,14 +54,16 @@ namespace Controllers
         }
         private void Shoot()
         {
-            //PlayerSignals.onShoot?.Invoke();
             _currentGun.OnShoot();
             --_currentGun.CurrentBulletCount;
             if (_currentGun.CurrentBulletCount <= 0)
             {
+                AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.Reload);
+
                 _currentGun.Reload();
                 return;
             }
+            AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.Shoot);
         }
 
         private void ChangeGun()

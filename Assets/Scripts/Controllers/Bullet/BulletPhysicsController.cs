@@ -13,6 +13,7 @@ public class BulletPhysicsController : MonoBehaviour, IPoolType
     #region Self Variables
     #region Inject Variables
     [Inject] private PlayerSignals PlayerSignals { get; set; }
+    [Inject] private AudioSignals AudioSignals { get; set; }
     #endregion
     #region Public Variables
     #endregion
@@ -46,11 +47,13 @@ public class BulletPhysicsController : MonoBehaviour, IPoolType
             PlayerSignals.onEnemyShooted?.Invoke(attackable);
             DespawnSignal();
             attackable.OnWeaponTriggerEnter(1);
+            AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.HitStickMan);
         }
         else if (other.TryGetComponent(out IReplaceable replaceable))
         {
             replaceable.OnShooted(rig.velocity);
             DespawnSignal();
+            AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.HitReplaceable);
         }
     }
 

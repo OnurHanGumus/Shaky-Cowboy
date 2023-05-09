@@ -35,7 +35,9 @@ MonoBehaviour:
     - Zenject-IntegrationTests
     - Cinemachine
     - Boxophobic.Utils.Scripts
+    - CSharpGeneratorDemo
     - Boxophobic.Utils.Editor
+    - CSharpGenerator
     - PPv2URPConverters
     - Zenject-TestFramework
     - Boxophobic.SkyboxCubemapExtended.Editor
