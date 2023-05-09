@@ -25,6 +25,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private EnemyRiggingControllerBase riggingController;
     [SerializeField] private EnemyAnimationControllerBase animationController;
     [SerializeField] private EnemyShootControllerBase shootController;
+    [SerializeField] private Rigidbody rig;
 
     #endregion
 

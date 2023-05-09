@@ -3555,6 +3555,7 @@ MonoBehaviour:
   riggingController: {fileID: 1394508031}
   animationController: {fileID: 1279618230}
   shootController: {fileID: 2023775056}
+  rig: {fileID: 0}
 --- !u!95 &7851368060313264897
 Animator:
   serializedVersion: 4
