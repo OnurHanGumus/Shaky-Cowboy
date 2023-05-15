@@ -60,6 +60,8 @@ public class EnemyManager : MonoBehaviour
         EnemySignals.onReload += riggingController.OnReload;
         EnemySignals.onReload += shootController.OnReload;
         EnemySignals.onReloaded += riggingController.OnReloaded;
+        EnemySignals.onReloaded += shootController.OnReloaded;
+
         EnemySignals.onDie += OnDie;
         EnemySignals.onDie += riggingController.OnDie;
         EnemySignals.onDie += shootController.OnDie;
@@ -75,6 +77,8 @@ public class EnemyManager : MonoBehaviour
         EnemySignals.onReload -= riggingController.OnReload;
         EnemySignals.onReload -= shootController.OnReload;
         EnemySignals.onReloaded -= riggingController.OnReloaded;
+        EnemySignals.onReloaded -= shootController.OnReloaded;
+
         EnemySignals.onDie -= OnDie;
         EnemySignals.onDie -= riggingController.OnDie;
         EnemySignals.onDie -= shootController.OnDie;

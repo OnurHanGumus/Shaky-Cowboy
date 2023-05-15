@@ -34,6 +34,7 @@ namespace Controllers
         private int _selectedGunId = 0;
         private IGun _currentGun;
         private bool _isDied = false;
+        private bool _isReloading = false;
 
         #endregion
         #endregion
@@ -58,10 +59,13 @@ namespace Controllers
             --_currentGun.CurrentBulletCount;
             if (_currentGun.CurrentBulletCount <= 0)
             {
-                AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.Reload);
+                if (_isReloading)
+                {
+                    AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.Reload);
+                    return;
+                }
 
                 _currentGun.Reload();
-                return;
             }
             AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.Shoot);
         }
@@ -78,8 +82,10 @@ namespace Controllers
 
         public override void OnReload()
         {
+            _isReloading = true;
 
         }
+
         public override void OnDie(StickmanBodyPartEnums bodyPart)
         {
             _isDied = true;
@@ -88,6 +94,12 @@ namespace Controllers
         public override void OnRestart()
         {
             _isDied = false;
+            _isReloading = false;
+        }
+
+        public override void OnReloaded()
+        {
+            _isReloading = false;
         }
 
         [Serializable]

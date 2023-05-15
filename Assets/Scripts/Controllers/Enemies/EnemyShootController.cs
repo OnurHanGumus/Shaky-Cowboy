@@ -16,6 +16,7 @@ namespace Controllers
         #region Inject Variables
         [Inject] private EnemySettings EnemySettings { get; set; }
         [Inject] private EnemySignals EnemySignals { get; set; }
+        [Inject] private AudioSignals AudioSignals { get; set; }
         #endregion
         #region Public Variables
         #endregion
@@ -32,6 +33,7 @@ namespace Controllers
         private int _selectedGunId = 0;
         private IGun _currentGun;
         private bool _isDied = false;
+        private bool _isReloading = false;
 
         #endregion
         #endregion
@@ -54,14 +56,20 @@ namespace Controllers
 
         private void Shoot()
         {
-            //EnemySignals.onShoot?.Invoke();
             _currentGun.OnShoot();
             --_currentGun.CurrentBulletCount;
             if (_currentGun.CurrentBulletCount <= 0)
             {
+                if (_isReloading)
+                {
+                    return;
+                }
+                _isReloading = true;
+                AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.Reload);
                 _currentGun.Reload();
-                return;
             }
+
+            AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.Shoot);
         }
 
         private async Task ShootDelay()
@@ -80,6 +88,11 @@ namespace Controllers
         public override void OnReload()
         {
 
+        }
+
+        public override void OnReloaded()
+        {
+            _isReloading = false;
         }
 
         public override void OnDie(StickmanBodyPartEnums bodyPart)

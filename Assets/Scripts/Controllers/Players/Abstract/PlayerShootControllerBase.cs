@@ -8,6 +8,7 @@ namespace Controllers
         public abstract void OnClicked();
         public abstract void OnDie(StickmanBodyPartEnums bodyPart);
         public abstract void OnReload();
+        public abstract void OnReloaded();
         public abstract void OnRestart();
     }
 }

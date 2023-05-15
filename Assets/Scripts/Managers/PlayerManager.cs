@@ -73,6 +73,7 @@ namespace Managers
 
 
             PlayerSignals.onReloaded += riggingController.OnReloaded;
+            PlayerSignals.onReloaded += shootController.OnReloaded;
         }
 
         private void UnsubscribeEvents()
@@ -91,6 +92,7 @@ namespace Managers
             PlayerSignals.onDie -= shootController.OnDie;
 
             PlayerSignals.onReloaded -= riggingController.OnReloaded;
+            PlayerSignals.onReloaded -= shootController.OnReloaded;
         }
 
 
