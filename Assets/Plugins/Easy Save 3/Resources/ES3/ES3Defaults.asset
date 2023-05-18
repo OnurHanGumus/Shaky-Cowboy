@@ -40,6 +40,7 @@ MonoBehaviour:
     - CSharpGenerator
     - PPv2URPConverters
     - Zenject-TestFramework
+    - GoogleMobileAds.Editor
     - Boxophobic.SkyboxCubemapExtended.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
