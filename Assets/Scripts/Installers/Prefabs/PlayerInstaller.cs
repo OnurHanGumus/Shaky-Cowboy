@@ -13,7 +13,6 @@ namespace Installers.Prefabs
             _playerSettings = Resources.Load<PlayerSettings>("Data/MetaData/PlayerSettings");
 
             Container.BindInstance(_playerSettings).AsSingle();
-            
         }
     }
 }

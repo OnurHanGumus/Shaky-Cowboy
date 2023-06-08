@@ -23,11 +23,12 @@ public class HealthBarManager : MonoBehaviour
     [SerializeField] private Transform healthBar;
 
     [SerializeField] private GameObject holder;
+    [SerializeField] protected int maksHealth = 100;
+
     #endregion
 
     #region Private Variables
     protected int _currentHealth = 100;
-    protected const int _MAKS_HEALTH = 100;
 
     #endregion
 
@@ -37,7 +38,7 @@ public class HealthBarManager : MonoBehaviour
     protected virtual void OnEnable()
     {
         SubscribeEvents();
-        _currentHealth = _MAKS_HEALTH;
+        _currentHealth = maksHealth;
     }
     protected virtual void SubscribeEvents()
     {
@@ -60,9 +61,11 @@ public class HealthBarManager : MonoBehaviour
     {
         Init();
     }
+
     private void Init()
     {
-        _currentHealth = _MAKS_HEALTH;
+        _currentHealth = maksHealth;
+        HealthText.text = maksHealth.ToString();
     }
 
     private void Update()

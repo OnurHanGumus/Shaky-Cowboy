@@ -7,6 +7,7 @@ namespace Enums
     {
         Bullet,
         Tumbleweed,
+        Deneme,
 
         //Enemy,
         //Explosion,

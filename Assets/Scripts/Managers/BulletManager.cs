@@ -56,6 +56,7 @@ public class BulletManager : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
     public class Factory : PlaceholderFactory<BulletManager>, IPool
     {
         GameObject IPool.OnCreate()

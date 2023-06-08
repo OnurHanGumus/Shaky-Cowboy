@@ -7,12 +7,16 @@ using Controllers;
 using Managers;
 using Enums;
 using Signals;
-using DG.Tweening;
 
-public class BankDoorController : MonoBehaviour
+public class SecondClass : IDeneme
 {
-    private void Start()
+    public SecondClass()
     {
-        transform.DOLocalRotate(new Vector3(0, -157.642f, 0), 5f).SetEase(Ease.Flash);
+        Debug.Log("secondClass");
+    }
+
+    public void Write()
+    {
+        Debug.Log("write moethod second class");
     }
 }

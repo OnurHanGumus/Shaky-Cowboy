@@ -9,7 +9,7 @@ using Enums;
 using Signals;
 using GoogleMobileAds.Api;
 
-public class AdManager : MonoBehaviour
+public class AdBannerManager : MonoBehaviour
 {
     [SerializeField] private bool isTest = true;
 
@@ -22,6 +22,7 @@ public class AdManager : MonoBehaviour
         Init();
         CreateBannerView();
         RequestBanner();
+        ListenToAdEvents();
     }
 
     private void Init()
@@ -87,7 +88,7 @@ public class AdManager : MonoBehaviour
         // Raised when a click is recorded for an ad.
         _bannerView.OnAdClicked += () =>
         {
-            Debug.Log("Banner view was clicked.");
+            RequestBanner();
         };
         // Raised when an ad opened full screen content.
         _bannerView.OnAdFullScreenContentOpened += () =>

@@ -59,12 +59,7 @@ public class PlayerHealthBarManager : HealthBarManager
 
     protected override void Awake()
     {
-        Init();
-    }
-
-    private void Init()
-    {
-
+        base.Awake();
     }
 
     public override void OnHitted(int value, StickmanBodyPartEnums bodyPart)

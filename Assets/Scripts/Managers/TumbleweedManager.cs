@@ -28,7 +28,6 @@ public class TumbleweedManager : MonoBehaviour
 
     #endregion
     #endregion
-    #region Event Subscriptions
     private TumbleweedData GetData() => Resources.Load<CD_Tumbleweed>("Data/CD_Tumbleweed").Data;
 
     private void Awake()
@@ -36,6 +35,7 @@ public class TumbleweedManager : MonoBehaviour
         _data = GetData();
     }
 
+    #region Event Subscription
     private void OnEnable()
     {
         SubscribeEvents();
@@ -57,11 +57,6 @@ public class TumbleweedManager : MonoBehaviour
         UnsubscribeEvents();
     }
     #endregion
-    //[Inject]
-    //public void Constractor(TumbleweedSettings tumbleweedSettings)
-    //{
-    //    _mySettings = tumbleweedSettings.Settings;
-    //}
 
     private void OnRestartLevel()
     {

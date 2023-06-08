@@ -7,26 +7,25 @@ using Signals;
 
 public class PoolZenjectManager : MonoBehaviour
 {
+    #region Self Variables
+    #region Injections
     [Inject] private PoolSignals PoolSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
 
     [Inject] private BulletManager.Factory bulletFactory;
     [Inject] private TumbleweedManager.Factory tumbleweedFactory;
+    
+    #endregion
     #region Serialized Variables
-
-    [SerializeField] private Dictionary<PoolEnums, List<GameObject>> poolDictionary;
     [SerializeField] private List<IPool> factoryList;
 
-    [SerializeField] private Dictionary<PoolEnums, List<GameObject>> normalPoolDictionary;
-
     [SerializeField] private int amountBullet = 20;
-    [SerializeField] private int amountEnemy = 20;
-    [SerializeField] private int amountExplosion = 20;
     [SerializeField] private int amountTumbleweed = 3;
+    #endregion
 
-    //[SerializeField] private GameObject tumbleweedPrefab;
-    [SerializeField] private List<GameObject> prefabs;
-
+    #region Private Variables
+    private Dictionary<PoolEnums, List<GameObject>> _poolDictionary;
+    #endregion
     #endregion
     #region Event Subscriptions
     private void Awake()
@@ -37,7 +36,7 @@ public class PoolZenjectManager : MonoBehaviour
     {
 
         #region Zenject Factory Pool
-        poolDictionary = new Dictionary<PoolEnums, List<GameObject>>();
+        _poolDictionary = new Dictionary<PoolEnums, List<GameObject>>();
         factoryList = new List<IPool>();
 
         factoryList.Add(bulletFactory);
@@ -58,14 +57,12 @@ public class PoolZenjectManager : MonoBehaviour
     private void SubscribeEvents()
     {
         PoolSignals.onGetObject += OnGetObject;
-        //PoolSignals.onGetNormalObject += OnGetNormalObject;
         CoreGameSignals.onRestart += OnReset;
     }
 
     private void UnsubscribeEvents()
     {
         PoolSignals.onGetObject -= OnGetObject;
-        //PoolSignals.onGetNormalObject -= OnGetNormalObject;
         CoreGameSignals.onRestart -= OnReset;
     }
 
@@ -84,22 +81,23 @@ public class PoolZenjectManager : MonoBehaviour
         for (int i = 0; i < size; i++)
         {
             tmp = factoryList[(int) type].OnCreate();
+            
             tmp.SetActive(false);
             tmp.transform.parent = transform;
             tempList.Add(tmp);
         }
-        poolDictionary.Add(type, tempList);
+        _poolDictionary.Add(type, tempList);
     }
 
     public GameObject OnGetObject(PoolEnums type, Vector3 position)
     {
-        for (int i = 0; i < poolDictionary[type].Count; i++)
+        for (int i = 0; i < _poolDictionary[type].Count; i++)
         {
-            if (!poolDictionary[type][i].activeInHierarchy)
+            if (!_poolDictionary[type][i].activeInHierarchy)
             {
-                poolDictionary[type][i].transform.position = position;
+                _poolDictionary[type][i].transform.position = position;
 
-                return poolDictionary[type][i];
+                return _poolDictionary[type][i];
             }
         }
         return ExplandPool(type, position);
@@ -111,7 +109,7 @@ public class PoolZenjectManager : MonoBehaviour
         expandObject.SetActive(false);
         expandObject.transform.position = position;
         expandObject.transform.parent = transform;
-        poolDictionary[type].Add(expandObject);
+        _poolDictionary[type].Add(expandObject);
 
         return expandObject;
     }
@@ -125,7 +123,7 @@ public class PoolZenjectManager : MonoBehaviour
 
     private void ResetPool(PoolEnums type)
     {
-        foreach (var i in poolDictionary[type])
+        foreach (var i in _poolDictionary[type])
         {
             i.SetActive(false);
         }
