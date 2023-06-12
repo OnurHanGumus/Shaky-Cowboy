@@ -5,50 +5,51 @@ using Zenject;
 using Enums;
 using Signals;
 
-public class PoolZenjectManager : MonoBehaviour
+public class PoolManager : MonoBehaviour
 {
     #region Self Variables
     #region Injections
+    [Inject] private DiContainer Container;
     [Inject] private PoolSignals PoolSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
 
-    [Inject] private BulletManager.Factory bulletFactory;
-    [Inject] private TumbleweedManager.Factory tumbleweedFactory;
-    
     #endregion
     #region Serialized Variables
-    [SerializeField] private List<IPool> factoryList;
+    [SerializeField] private List<PooledObject> pooledObjects;
 
-    [SerializeField] private int amountBullet = 20;
-    [SerializeField] private int amountTumbleweed = 3;
+    [System.Serializable]
+    public struct PooledObject
+    {
+        public PoolEnums PoolEnums;
+        public GameObject Prefab;
+        public int Amounts;
+    }
     #endregion
 
     #region Private Variables
     private Dictionary<PoolEnums, List<GameObject>> _poolDictionary;
     #endregion
     #endregion
-    #region Event Subscriptions
+
     private void Awake()
     {
         Init();
     }
+
     private void Init()
     {
-
         #region Zenject Factory Pool
         _poolDictionary = new Dictionary<PoolEnums, List<GameObject>>();
-        factoryList = new List<IPool>();
 
-        factoryList.Add(bulletFactory);
-        factoryList.Add(tumbleweedFactory);
+        foreach (var i in pooledObjects)
+        {
+            InitializePool(i);
+        }
 
-        InitializePool(PoolEnums.Bullet, amountBullet);
-        InitializePool(PoolEnums.Tumbleweed, amountTumbleweed);
-        #endregion
-
-        #region Non-zenject Pool
         #endregion
     }
+    #region Event Subscriptions
+
     private void OnEnable()
     {
         SubscribeEvents();
@@ -73,20 +74,20 @@ public class PoolZenjectManager : MonoBehaviour
 
     #endregion
 
-    private void InitializePool(PoolEnums type, int size) //Enumlarýn sýralamasý önemlidir.
+    private void InitializePool(PooledObject pooledObject) //Enumlarýn sýralamasý önemlidir.
     {
         List<GameObject> tempList = new List<GameObject>();
         GameObject tmp;
 
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < pooledObject.Amounts; i++)
         {
-            tmp = factoryList[(int) type].OnCreate();
-            
+            tmp = Container.InstantiatePrefab(pooledObject.Prefab);
+
             tmp.SetActive(false);
             tmp.transform.parent = transform;
             tempList.Add(tmp);
         }
-        _poolDictionary.Add(type, tempList);
+        _poolDictionary.Add(pooledObject.PoolEnums, tempList);
     }
 
     public GameObject OnGetObject(PoolEnums type, Vector3 position)
@@ -105,7 +106,15 @@ public class PoolZenjectManager : MonoBehaviour
 
     private GameObject ExplandPool(PoolEnums type, Vector3 position)
     {
-        GameObject expandObject = factoryList[(int)type].OnCreate();
+        GameObject expandObject = null;
+        foreach (var i in pooledObjects)
+        {
+            if (i.PoolEnums.Equals(type))
+            {
+                expandObject = Container.InstantiatePrefab(i.Prefab);
+            }
+        }
+
         expandObject.SetActive(false);
         expandObject.transform.position = position;
         expandObject.transform.parent = transform;
@@ -117,8 +126,10 @@ public class PoolZenjectManager : MonoBehaviour
     private void OnReset()
     {
         //reset
-        ResetPool(PoolEnums.Bullet);
-        ResetPool(PoolEnums.Tumbleweed);
+        for (int i = 0; i < pooledObjects.Count; i++)
+        {
+            ResetPool((PoolEnums)i);
+        }
     }
 
     private void ResetPool(PoolEnums type)

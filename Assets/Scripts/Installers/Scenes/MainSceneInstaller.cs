@@ -10,7 +10,7 @@ namespace Installers.Scenes
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private GameObject tumbleweedPrefab;
-        //[SerializeField] private GameObject denemePrefab;
+        [SerializeField] private GameObject denemePrefab;
 
         private BulletSettings _bulletSettings;
         private TumbleweedSpawnSettings _tumblewoodSpawnSettings;
@@ -45,7 +45,7 @@ namespace Installers.Scenes
             Container.BindFactory<BulletManager, BulletManager.Factory>().FromComponentInNewPrefab(bulletPrefab);
             Container.BindFactory<EnemyManager, EnemyManager.Factory>().FromComponentInNewPrefab(enemyPrefab);
             Container.BindFactory<TumbleweedManager, TumbleweedManager.Factory>().FromComponentInNewPrefab(tumbleweedPrefab);
-            //Container.BindFactory<Deneme, Deneme.Factory>().FromComponentInNewPrefab(denemePrefab);
+            Container.BindFactory<Deneme, Deneme.Factory>().FromComponentInNewPrefab(denemePrefab);
         }
 
         private void BindSettings()

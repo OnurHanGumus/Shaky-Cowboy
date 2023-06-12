@@ -162,7 +162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 1.9997559}
+  m_AnchoredPosition: {x: -0.000030517578, y: 2}
   m_SizeDelta: {x: 1242, y: 306}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &35072573
@@ -2641,7 +2641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -5.999756}
+  m_AnchoredPosition: {x: 0, y: -6}
   m_SizeDelta: {x: 1080, y: 350}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &264490868
@@ -15839,7 +15839,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1797973736}
+  - component: {fileID: 1797973738}
   - component: {fileID: 1797973737}
+  - component: {fileID: 1797973740}
   m_Layer: 0
   m_Name: PoolManager
   m_TagString: Untagged
@@ -15869,13 +15871,52 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797973735}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d28bd954e9dd2444e87ab33e308802ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountBullet: 5
-  amountTumbleweed: 3
+  pooledObjects:
+  - PoolEnums: 0
+    Amounts: 10
+  - PoolEnums: 1
+    Amounts: 20
+  - PoolEnums: 2
+    Amounts: 20
+--- !u!114 &1797973738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797973735}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16135ba165c25414b9d115186bd7830b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1797973740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797973735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4f5c3e7e2ae9f4988404424934a51d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects:
+  - PoolEnums: 0
+    Prefab: {fileID: 5272055142477836822, guid: 20fd5c47de99b164bb3689d203a293d4, type: 3}
+    Amounts: 10
+  - PoolEnums: 1
+    Prefab: {fileID: 4069522940327812703, guid: 115c6b07ae088494097968caceb0c5ee, type: 3}
+    Amounts: 10
+  - PoolEnums: 2
+    Prefab: {fileID: 6957545186345424980, guid: c785308b1a8419c49b8b9d30bde6ee39, type: 3}
+    Amounts: 10
 --- !u!1 &1804475511
 GameObject:
   m_ObjectHideFlags: 0
@@ -16296,6 +16337,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5272055142477836822, guid: 20fd5c47de99b164bb3689d203a293d4, type: 3}
   enemyPrefab: {fileID: 7009404533559161122, guid: 24c10dd4ad4848e4187f14e8013add2d, type: 3}
   tumbleweedPrefab: {fileID: 4069522940327812703, guid: 115c6b07ae088494097968caceb0c5ee, type: 3}
+  denemePrefab: {fileID: 6957545186345424980, guid: c785308b1a8419c49b8b9d30bde6ee39, type: 3}
   levelId: 1
 --- !u!1 &1823729671
 GameObject:
