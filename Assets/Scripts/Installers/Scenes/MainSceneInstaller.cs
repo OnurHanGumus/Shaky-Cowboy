@@ -7,16 +7,11 @@ namespace Installers.Scenes
 {
     public class MainSceneInstaller : MonoInstaller<MainSceneInstaller>
     {
-        [SerializeField] private GameObject bulletPrefab;
-        [SerializeField] private GameObject enemyPrefab;
-        [SerializeField] private GameObject tumbleweedPrefab;
-        [SerializeField] private GameObject denemePrefab;
-
         private BulletSettings _bulletSettings;
         private TumbleweedSpawnSettings _tumblewoodSpawnSettings;
         private CoreGameSignals _coreGameSignals { get; set; }
         private LevelSignals _levelSignals { get; set; }
-        [SerializeField] private int levelId = 1;
+
         public override void InstallBindings()
         {
             BindComponents();
@@ -41,11 +36,6 @@ namespace Installers.Scenes
             Container.Bind<RevolverSignals>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<TumbleweedSpawnManager>().AsSingle();
-
-            Container.BindFactory<BulletManager, BulletManager.Factory>().FromComponentInNewPrefab(bulletPrefab);
-            Container.BindFactory<EnemyManager, EnemyManager.Factory>().FromComponentInNewPrefab(enemyPrefab);
-            Container.BindFactory<TumbleweedManager, TumbleweedManager.Factory>().FromComponentInNewPrefab(tumbleweedPrefab);
-            Container.BindFactory<Deneme, Deneme.Factory>().FromComponentInNewPrefab(denemePrefab);
         }
 
         private void BindSettings()

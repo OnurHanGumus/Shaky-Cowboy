@@ -15876,13 +15876,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28bd954e9dd2444e87ab33e308802ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObjects:
-  - PoolEnums: 0
-    Amounts: 10
-  - PoolEnums: 1
-    Amounts: 20
-  - PoolEnums: 2
-    Amounts: 20
 --- !u!114 &1797973738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16334,11 +16327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414e3303c2956ce4dbd15deefec4c6a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5272055142477836822, guid: 20fd5c47de99b164bb3689d203a293d4, type: 3}
-  enemyPrefab: {fileID: 7009404533559161122, guid: 24c10dd4ad4848e4187f14e8013add2d, type: 3}
-  tumbleweedPrefab: {fileID: 4069522940327812703, guid: 115c6b07ae088494097968caceb0c5ee, type: 3}
-  denemePrefab: {fileID: 6957545186345424980, guid: c785308b1a8419c49b8b9d30bde6ee39, type: 3}
-  levelId: 1
 --- !u!1 &1823729671
 GameObject:
   m_ObjectHideFlags: 0
