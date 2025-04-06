@@ -123,6 +123,11 @@ public class PoolManager : MonoBehaviour
         return expandObject;
     }
 
+    private void DestroyPool(PoolEnums poolEnum)
+    {
+        _poolDictionary[poolEnum].Clear();
+    }
+
     private void OnReset()
     {
         //reset

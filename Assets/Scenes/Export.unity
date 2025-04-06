@@ -3825,7 +3825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &439827903
 Transform:
   m_ObjectHideFlags: 0
@@ -13101,7 +13101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d703ba7d6b7070f4d99dbf3b400b5a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTest: 1
+  isTest: 0
 --- !u!1 &1373315033
 GameObject:
   m_ObjectHideFlags: 0
@@ -14437,7 +14437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb468089058f934db936d7f15fe7954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTest: 1
+  isTest: 0
 --- !u!4 &1527048347
 Transform:
   m_ObjectHideFlags: 0
@@ -15839,8 +15839,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1797973736}
-  - component: {fileID: 1797973738}
-  - component: {fileID: 1797973737}
   - component: {fileID: 1797973740}
   m_Layer: 0
   m_Name: PoolManager
@@ -15864,30 +15862,6 @@ Transform:
   m_Father: {fileID: 741537887}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1797973737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797973735}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d28bd954e9dd2444e87ab33e308802ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1797973738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797973735}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16135ba165c25414b9d115186bd7830b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1797973740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15906,9 +15880,6 @@ MonoBehaviour:
     Amounts: 10
   - PoolEnums: 1
     Prefab: {fileID: 4069522940327812703, guid: 115c6b07ae088494097968caceb0c5ee, type: 3}
-    Amounts: 10
-  - PoolEnums: 2
-    Prefab: {fileID: 6957545186345424980, guid: c785308b1a8419c49b8b9d30bde6ee39, type: 3}
     Amounts: 10
 --- !u!1 &1804475511
 GameObject:
