@@ -33,7 +33,7 @@ public class ThumbleweedMovementController : MonoBehaviour
     {
         _rig = GetComponent<Rigidbody>();
     }
-    void Update()
+    void FixedUpdate()
     {
         //_rig.AddRelativeTorque(new Vector3(0,0,speed));
         _rig.AddForce(new Vector3(forceX, forceY, 0), ForceMode.Force);
