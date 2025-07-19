@@ -24,6 +24,6 @@ public class ObstaclePhysicsController : MonoBehaviour, IReplaceable
     #endregion
     public void OnShooted(Vector3 velocity)
     {
-        rig.velocity = rig.velocity + velocity * 0.8f ;
+        rig.linearVelocity = rig.linearVelocity + velocity * 0.8f ;
     }
 }

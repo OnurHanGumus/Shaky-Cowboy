@@ -51,7 +51,7 @@ public class BulletPhysicsController : MonoBehaviour, IPoolType
         }
         else if (other.TryGetComponent(out IReplaceable replaceable))
         {
-            replaceable.OnShooted(rig.velocity);
+            replaceable.OnShooted(rig.linearVelocity);
             DespawnSignal();
             AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.HitReplaceable);
         }

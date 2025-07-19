@@ -25,7 +25,7 @@ public class BulletMovementController : MonoBehaviour
     }
     private void OnDisable()
     {
-        _rig.velocity = Vector3.zero;
+        _rig.linearVelocity = Vector3.zero;
 
     }
     private void Awake()
