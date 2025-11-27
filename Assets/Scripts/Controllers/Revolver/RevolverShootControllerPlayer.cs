@@ -20,7 +20,6 @@ public class RevolverShootControllerPlayer : RevolverShootControllerAbs, IGun
     #region Serializefield Variables
     #endregion
     #region Private Variables
-    private bool _isDied = false;
     #endregion
     #region Properties
     #endregion
