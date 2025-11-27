@@ -13,6 +13,7 @@ namespace Managers
 {
     public class PlayerManager : MonoBehaviour
     {
+
         #region Self Variables
         #region Injected Variables
         [Inject] private CoreGameSignals CoreGameSignals { get; set; }
