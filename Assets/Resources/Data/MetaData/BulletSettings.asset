@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BulletSettings
   m_EditorClassIdentifier: 
   BulletCollisionDetectorSettings:
-    BulletLifeTime: 2
+    BulletLifeTime: 3

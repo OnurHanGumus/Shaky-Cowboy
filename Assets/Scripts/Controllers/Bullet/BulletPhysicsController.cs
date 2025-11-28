@@ -18,6 +18,8 @@ public class BulletPhysicsController : MonoBehaviour, IPoolType
     #region Public Variables
     #endregion
     #region Serializefield Variables
+    [SerializeField] private ParticleActivenessController particleActivenessController;
+    [SerializeField] private BulletSpriteController bulletSpriteController;
     [SerializeField] private Rigidbody rig;
     #endregion
     #region Private Variables
@@ -44,28 +46,46 @@ public class BulletPhysicsController : MonoBehaviour, IPoolType
     {
         if (other.TryGetComponent(out IAttackable attackable))
         {
-            PlayerSignals.onEnemyShooted?.Invoke(attackable);
-            DespawnSignal();
-            attackable.OnWeaponTriggerEnter(1);
-            AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.HitStickMan);
+            EnemyHitted(attackable);
         }
         else if (other.TryGetComponent(out IReplaceable replaceable))
         {
-            replaceable.OnShooted(rig.linearVelocity);
-            DespawnSignal();
-            AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.HitReplaceable);
+            ReplaceableHitted(replaceable);
         }
+    }
+
+    private void ReplaceableHitted(IReplaceable replaceable)
+    {
+        replaceable.OnShooted(rig.linearVelocity);
+        Hitted();
+        AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.HitReplaceable);
+    }
+
+    private void EnemyHitted(IAttackable attackable)
+    {
+        PlayerSignals.onEnemyShooted?.Invoke(attackable);
+        Hitted();
+        attackable.OnWeaponTriggerEnter(1);
+        AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.HitStickMan);
     }
 
     private IEnumerator BulletLifeTime()
     {
         yield return new WaitForSeconds(_mySettings.BulletLifeTime);
-        DespawnSignal();
+        Despawn();
     }
 
-    private void DespawnSignal()
+    private void Hitted()
+    {
+        bulletSpriteController.Disable();
+        rig.linearVelocity = Vector3.zero;
+        particleActivenessController.Disable();
+    }
+
+    private void Despawn()
     {
         gameObject.SetActive(false);
+
     }
 
     [Serializable]
