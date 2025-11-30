@@ -40,14 +40,14 @@ public class PlayerHealthBarManager : HealthBarManager
     protected override void SubscribeEvents()
     {
         base.SubscribeEvents();
-        PlayerSignals.onHitted += OnHitted;
+        //PlayerSignals.onHitted += OnHitted;
         CoreGameSignals.onLevelSuccessful += OnLevelSuccessful;
     }
 
     protected override void UnSubscribeEvents()
     {
         base.UnSubscribeEvents();
-        PlayerSignals.onHitted -= OnHitted;
+        //PlayerSignals.onHitted -= OnHitted;
         CoreGameSignals.onLevelSuccessful -= OnLevelSuccessful;
     }
 
@@ -62,20 +62,20 @@ public class PlayerHealthBarManager : HealthBarManager
         base.Awake();
     }
 
-    public override void OnHitted(int value, StickmanBodyPartEnums bodyPart)
-    {
-        if (_isLevelSuccessful)
-        {
-            return;
-        }
-        base.OnHitted(value, bodyPart);
-        if (_currentHealth <= 0)
-        {
-            PlayerSignals.onDie?.Invoke(bodyPart);
-            CoreGameSignals.onLevelFailed?.Invoke();
-            //playerTransform.gameObject.SetActive(false);
-        }
-    }
+    //public override void OnHitted(int value, StickmanBodyPartEnums bodyPart)
+    //{
+    //    if (_isLevelSuccessful)
+    //    {
+    //        return;
+    //    }
+    //    base.OnHitted(value, bodyPart);
+    //    if (_currentHealth <= 0)
+    //    {
+    //        PlayerSignals.onDie?.Invoke(bodyPart);
+    //        CoreGameSignals.onLevelFailed?.Invoke();
+    //        //playerTransform.gameObject.SetActive(false);
+    //    }
+    //}
 
     public void OnLevelSuccessful()
     {

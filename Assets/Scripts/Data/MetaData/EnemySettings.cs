@@ -6,5 +6,8 @@ using Controllers;
 [CreateAssetMenu(fileName = "EnemySettings", menuName = "ZenjectExample/EnemySettings", order = 0)]
 public class EnemySettings : ScriptableObject
 {
-    [SerializeField] public EnemyMovementController.Settings EnemyMovementSettings;
+    public int Health = 100;
+    public float DamageMultiplier = 1f;
+    public float ReloadSpeed = 1f;
+    public int MagazineCapacity = 2;
 }

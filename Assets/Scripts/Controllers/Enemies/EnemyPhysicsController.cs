@@ -4,13 +4,13 @@ using Zenject;
 using Enums;
 using Signals;
 using Components.Enemies;
+using System;
 
 namespace Controllers {
     public class EnemyPhysicsController : MonoBehaviour, IAttackable
     {
         #region Self Variables
         #region Inject Variables
-        [Inject] private LevelSignals LevelSignals { get; set; }
         [Inject] private EnemySignals EnemySignals { get; set; }
         #endregion
         #region Public Variables
@@ -26,10 +26,6 @@ namespace Controllers {
         #endregion
         #endregion
 
-
-        private void OnDisable()
-        {
-        }
         void IAttackable.OnWeaponTriggerEnter(int value)
         {
             EnemySignals.onHitted?.Invoke(value * criticalDamageValue, stickmanBodyPartEnums);

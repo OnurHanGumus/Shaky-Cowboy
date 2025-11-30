@@ -40,22 +40,23 @@ public class HealthBarManager : MonoBehaviour
         SubscribeEvents();
         _currentHealth = maksHealth;
     }
+
     protected virtual void SubscribeEvents()
     {
         CoreGameSignals.onRestart += OnRestart;
     }
+
     protected virtual void UnSubscribeEvents()
     {
         CoreGameSignals.onRestart -= OnRestart;
 
     }
+
     private void OnDisable()
     {
         UnSubscribeEvents();
     }
     #endregion
-
-
 
     protected virtual void Awake()
     {
@@ -78,9 +79,10 @@ public class HealthBarManager : MonoBehaviour
     {
         healthBar.localScale = new Vector3((float)currentValue / maxValue, 1, 1);
     }
-    public virtual void OnHitted(int value, StickmanBodyPartEnums bodyPart)
+
+    public void ChangeHealthbar(int value)
     {
-        _currentHealth -= value;
+        _currentHealth = value;
         if (_currentHealth <= 0)
         {
             _currentHealth = 0;
@@ -88,8 +90,6 @@ public class HealthBarManager : MonoBehaviour
         HealthText.text = _currentHealth.ToString();
 
         SetHealthBarScale(_currentHealth, 100);
-
-        
     }
 
     //HEALTHBAR VISIBILITY
@@ -98,9 +98,5 @@ public class HealthBarManager : MonoBehaviour
         _currentHealth = 100;
         HealthText.text = _currentHealth.ToString();
         SetHealthBarScale(_currentHealth, 100);
-    }
-    private void OnPlayerLeaveTheBase()
-    {
-        holder.SetActive(true);
     }
 }

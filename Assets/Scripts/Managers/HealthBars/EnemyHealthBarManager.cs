@@ -40,12 +40,12 @@ public class EnemyHealthBarManager : HealthBarManager
 
     protected override void SubscribeEvents()
     {
-        EnemySignals.onHitted += OnHitted;
+        //EnemySignals.onHitted += OnHitted;
     }
 
     protected override void UnSubscribeEvents()
     {
-        EnemySignals.onHitted -= OnHitted;
+        //EnemySignals.onHitted -= OnHitted;
     }
 
     private void OnDisable()
@@ -59,16 +59,8 @@ public class EnemyHealthBarManager : HealthBarManager
         base.Awake();
     }
 
-    public override void OnHitted(int value, StickmanBodyPartEnums bodyPart)
-    {
-        base.OnHitted(value, bodyPart);
-        if (_currentHealth <= 0)
-        {
-            LevelSignals.onEnemyDied.Invoke(transform.parent);
-            EnemySignals.onDie?.Invoke(bodyPart);
-            ScoreSignals.onScoreIncrease?.Invoke(ScoreTypeEnums.Gem, value);
-            colliders.SetActive(false);
-            gameObject.SetActive(false);
-        }
-    }
+    //public override void OnHitted(int value, StickmanBodyPartEnums bodyPart)
+    //{
+    //    base.OnHitted(value, bodyPart);
+    //}
 }

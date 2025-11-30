@@ -13,16 +13,9 @@ namespace Components.Players
         [Inject] private PlayerSignals PlayerSignals { get; set; }
         [Inject] private EnemySettings EnemySettings { get; set; }
 
-        private Settings _mySettings;
    
         private void Awake()
         {
-            _mySettings = EnemySettings.EnemyMovementSettings;
-        }
-        [Serializable]
-        public class Settings
-        {
-            [SerializeField] public float Speed = 1f;
         }
     }
 }
