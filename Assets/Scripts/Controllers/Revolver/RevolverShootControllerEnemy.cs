@@ -31,6 +31,8 @@ public class RevolverShootControllerEnemy: RevolverShootControllerAbs, IGun
     {
         wait2_4f = new WaitForSeconds(2.4f/ _settings.ReloadSpeed);
         wait0_5f = new WaitForSeconds(0.5f/ _settings.ReloadSpeed);
+        AmmoCapacity = _settings.MagazineCapacity;
+        CurrentBulletCount = AmmoCapacity;
     }
 
     private void OnDisable()

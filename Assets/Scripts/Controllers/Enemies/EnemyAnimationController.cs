@@ -4,15 +4,16 @@ using UnityEngine;
 using Enums;
 using Data.ValueObject;
 using Data.UnityObject;
+using Zenject;
 
 public class EnemyAnimationController : EnemyAnimationControllerBase
 {
     #region Self Variables
+    [Inject] private EnemySettings _settings { get; set; }
 
     #region Serialized Variables
 
     [SerializeField] private Animator animator;
-
     #endregion
     #region Private Variables
     private UIData _uiData;
@@ -36,7 +37,7 @@ public class EnemyAnimationController : EnemyAnimationControllerBase
     {
         if (nextAnimation == PlayerAnimationStates.Reload)
         {
-            animator.speed = 5;
+            animator.speed = _settings.ReloadSpeed;
         }
         else
         {

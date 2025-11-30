@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 100
   DamageMultiplier: 1
-  ReloadSpeed: 5
+  ReloadSpeed: 1
   MagazineCapacity: 2
