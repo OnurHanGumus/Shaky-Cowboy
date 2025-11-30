@@ -7,5 +7,4 @@ using Controllers;
 public class EnemySettings : ScriptableObject
 {
     [SerializeField] public EnemyMovementController.Settings EnemyMovementSettings;
-    [SerializeField] public EnemyShootController.Settings EnemyShootSettings;
 }

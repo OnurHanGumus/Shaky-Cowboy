@@ -14,8 +14,6 @@ namespace Controllers
     {
         #region Self Variables
         #region Inject Variables
-        [Inject] private EnemySettings EnemySettings { get; set; }
-        [Inject] private EnemySignals EnemySignals { get; set; }
         [Inject] private AudioSignals AudioSignals { get; set; }
         #endregion
         #region Public Variables
@@ -29,7 +27,6 @@ namespace Controllers
 
         #endregion
         #region Private Variables
-        private Settings _mySettings;
         private int _selectedGunId = 0;
         private IGun _currentGun;
         private bool _isDied = false;
@@ -40,7 +37,6 @@ namespace Controllers
 
         private void Awake()
         {
-            _mySettings = EnemySettings.EnemyShootSettings;
             _currentGun = (IGun)gunList[0];
         }
 
@@ -98,12 +94,6 @@ namespace Controllers
         public override void OnDie(StickmanBodyPartEnums bodyPart)
         {
             _isDied = true;
-        }
-
-        [Serializable]
-        public class Settings
-        {
-            [SerializeField] public Vector3 ShootOffset;
         }
     }
 }
