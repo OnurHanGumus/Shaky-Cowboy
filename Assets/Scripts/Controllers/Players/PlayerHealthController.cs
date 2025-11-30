@@ -21,6 +21,7 @@ class PlayerHealthController : MonoBehaviour
     protected void OnEnable()
     {
         SubscribeEvents();
+        healthBarManager.InitHealthValue(CurrentHealth);
     }
 
     protected void SubscribeEvents()
@@ -44,6 +45,11 @@ class PlayerHealthController : MonoBehaviour
         UnSubscribeEvents();
     }
     #endregion
+
+    private void UpdateHealth()
+    {
+        healthBarManager.InitHealthValue(CurrentHealth);
+    }
 
     public void OnHitted(int value, StickmanBodyPartEnums bodyPart)
     {

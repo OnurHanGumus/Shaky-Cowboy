@@ -13870,7 +13870,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthController
   CurrentHealth: 100
-  colliders: {fileID: 0}
   healthBarManager: {fileID: 6846344405611933641}
 --- !u!1 &1425511528
 GameObject:

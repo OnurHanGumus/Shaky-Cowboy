@@ -34,6 +34,15 @@ public class EnemyAnimationController : EnemyAnimationControllerBase
 
     public override void OnChangeAnimation(PlayerAnimationStates nextAnimation)
     {
+        if (nextAnimation == PlayerAnimationStates.Reload)
+        {
+            animator.speed = 5;
+        }
+        else
+        {
+            animator.speed = 1;
+
+        }
         animator.SetTrigger(nextAnimation.ToString());
     }
 }

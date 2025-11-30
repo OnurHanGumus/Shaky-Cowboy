@@ -14,6 +14,7 @@ public class RevolverShootControllerEnemy: RevolverShootControllerAbs, IGun
     [Inject] private PoolSignals PoolSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
     [Inject] private InputSignals InputSignals { get; set; }
+    [Inject] private EnemySettings _settings { get; set; }
     #endregion
     #region Public Variables
     #endregion
@@ -28,7 +29,8 @@ public class RevolverShootControllerEnemy: RevolverShootControllerAbs, IGun
 
     private void OnEnable()
     {
-        
+        wait2_4f = new WaitForSeconds(2.4f/ _settings.ReloadSpeed);
+        wait0_5f = new WaitForSeconds(0.5f/ _settings.ReloadSpeed);
     }
 
     private void OnDisable()

@@ -14,6 +14,7 @@ class EnemyHealthController : MonoBehaviour
     [Inject] private EnemySignals EnemySignals { get; set; }
     [Inject] private LevelSignals LevelSignals { get; set; }
     [Inject] private ScoreSignals ScoreSignals { get; set; }
+    [Inject] private EnemySettings _settings { get; set; }
 
     [SerializeField] private GameObject colliders;
     [SerializeField] private HealthBarManager healthBarManager;
@@ -22,6 +23,13 @@ class EnemyHealthController : MonoBehaviour
     protected void OnEnable()
     {
         SubscribeEvents();
+        UpdateHealth();
+    }
+
+    private void UpdateHealth()
+    {
+        CurrentHealth = _settings.Health;
+        healthBarManager.InitHealthValue(CurrentHealth);
     }
 
     protected void SubscribeEvents()

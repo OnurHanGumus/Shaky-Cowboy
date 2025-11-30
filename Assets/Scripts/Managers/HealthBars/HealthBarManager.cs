@@ -23,12 +23,12 @@ public class HealthBarManager : MonoBehaviour
     [SerializeField] private Transform healthBar;
 
     [SerializeField] private GameObject holder;
-    [SerializeField] protected int maksHealth = 100;
 
     #endregion
 
     #region Private Variables
     protected int _currentHealth = 100;
+    protected int _maksHealth = 0;
 
     #endregion
 
@@ -38,7 +38,6 @@ public class HealthBarManager : MonoBehaviour
     protected virtual void OnEnable()
     {
         SubscribeEvents();
-        _currentHealth = maksHealth;
     }
 
     protected virtual void SubscribeEvents()
@@ -58,22 +57,18 @@ public class HealthBarManager : MonoBehaviour
     }
     #endregion
 
-    protected virtual void Awake()
+    public void InitHealthValue(int maksHealth)
     {
-        Init();
-    }
-
-    private void Init()
-    {
+        _maksHealth = maksHealth;
         _currentHealth = maksHealth;
         HealthText.text = maksHealth.ToString();
     }
 
-    private void Update()
-    {
-        transform.localEulerAngles = new Vector3(0, -playerTransform.eulerAngles.y, 0);
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-    }
+    //private void Update()
+    //{
+    //    transform.localEulerAngles = new Vector3(0, -playerTransform.eulerAngles.y, 0);
+    //    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    //}
 
     public void SetHealthBarScale(int currentValue, int maxValue)//HealthBar increase or decrease with this method. This method can also listen a signal.
     {
@@ -89,14 +84,14 @@ public class HealthBarManager : MonoBehaviour
         }
         HealthText.text = _currentHealth.ToString();
 
-        SetHealthBarScale(_currentHealth, 100);
+        SetHealthBarScale(_currentHealth, _maksHealth);
     }
 
     //HEALTHBAR VISIBILITY
     protected virtual void OnRestart()
     {
-        _currentHealth = 100;
+        _currentHealth = _maksHealth;
         HealthText.text = _currentHealth.ToString();
-        SetHealthBarScale(_currentHealth, 100);
+        SetHealthBarScale(_currentHealth, _maksHealth);
     }
 }
