@@ -34,10 +34,12 @@ MonoBehaviour:
     - Zenject
     - Cinemachine
     - PPv2URPConverters
+    - AYellowpaper.SerializedCollections
     - Zenject-IntegrationTests
     - CSharpGenerator
     - Boxophobic.Utils.Editor
     - Boxophobic.Utils.Scripts
+    - AYellowpaper.SerializedCollections.Editor
     - Zenject-TestFramework
     - GoogleMobileAds.Editor
     - Boxophobic.SkyboxCubemapExtended.Editor

@@ -16603,6 +16603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414e3303c2956ce4dbd15deefec4c6a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shootDelaySettings: {fileID: 11400000, guid: aa8129698db6bcc429f635b497441058, type: 2}
 --- !u!1 &1823729671
 GameObject:
   m_ObjectHideFlags: 0

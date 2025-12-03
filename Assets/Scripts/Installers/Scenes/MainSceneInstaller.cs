@@ -11,7 +11,7 @@ namespace Installers.Scenes
         private TumbleweedSpawnSettings _tumblewoodSpawnSettings;
         private CoreGameSignals _coreGameSignals { get; set; }
         private LevelSignals _levelSignals { get; set; }
-
+        [SerializeField] private EnemyShootDelaySettings _shootDelaySettings;
         public override void InstallBindings()
         {
             BindComponents();
@@ -21,10 +21,11 @@ namespace Installers.Scenes
         void BindComponents()
         {
             _coreGameSignals = new CoreGameSignals();
-            Container.BindInstance<CoreGameSignals>(_coreGameSignals).AsSingle();
+            Container.BindInstance(_coreGameSignals).AsSingle();
 
             _levelSignals = new LevelSignals();
-            Container.BindInstance<LevelSignals>(_levelSignals).AsSingle();
+            Container.BindInstance(_levelSignals).AsSingle();
+            Container.BindInstance(_shootDelaySettings).AsSingle();
 
             Container.Bind<InputSignals>().AsSingle();
             Container.Bind<UISignals>().AsSingle();

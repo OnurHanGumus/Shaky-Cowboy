@@ -15,6 +15,8 @@ namespace Controllers
         #region Self Variables
         #region Inject Variables
         [Inject] private AudioSignals AudioSignals { get; set; }
+        [Inject] private EnemySettings _settings { get; set; }
+        [Inject] private EnemyShootDelaySettings _shootDelaySettings { get; set; }
         #endregion
         #region Public Variables
         #endregion
@@ -72,7 +74,8 @@ namespace Controllers
         {
             while (true)
             {
-                await Task.Delay((int)(Random.Range(0.5f, 1f) * 1000));
+                await Task.Delay((int)(Random.Range(_shootDelaySettings.EnemyShootDelayList[(int)_settings.ShootDelayEnum].MinDelay, 
+                    _shootDelaySettings.EnemyShootDelayList[(int)_settings.ShootDelayEnum].MaxDelay) * 1000));
                 if (_isDied)
                 {
                     break;
