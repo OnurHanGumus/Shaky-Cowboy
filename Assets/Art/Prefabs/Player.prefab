@@ -4434,7 +4434,6 @@ GameObject:
   - component: {fileID: 8549495318211459237}
   - component: {fileID: 8549495318211459236}
   - component: {fileID: 8549495318211459233}
-  - component: {fileID: 8549495318211459232}
   - component: {fileID: 8549495318211459235}
   - component: {fileID: 268653203}
   - component: {fileID: 268653201}
@@ -4512,18 +4511,6 @@ MonoBehaviour:
   shootController: {fileID: 8549495318211459235}
   animationController: {fileID: 1588787912}
   riggingController: {fileID: 268653201}
---- !u!114 &8549495318211459232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8549495318211459239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8ec72ae02e9490a970f9f5ed478a520, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8549495318211459235
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ public class TumbleweedManager : MonoBehaviour
 
     #endregion
     #endregion
-    private TumbleweedData GetData() => Resources.Load<CD_Tumbleweed>("Data/CD_Tumbleweed").Data;
+    private TumbleweedData GetData() => Resources.Load<TumbleweedSettings>("Data/TumbleweedSettings").Data;
 
     private void Awake()
     {

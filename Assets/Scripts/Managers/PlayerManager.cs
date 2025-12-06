@@ -44,10 +44,8 @@ namespace Managers
 
         private void Init()
         {
-            _data = GetData();
-        }
 
-        public PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
+        }
 
         #region Event Subscription
 

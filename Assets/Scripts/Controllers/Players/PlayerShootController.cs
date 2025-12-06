@@ -30,7 +30,6 @@ namespace Controllers
 
         #endregion
         #region Private Variables
-        private Settings _mySettings;
         private int _selectedGunId = 0;
         private IGun _currentGun;
         private bool _isDied = false;
@@ -41,7 +40,6 @@ namespace Controllers
 
         private void Awake()
         {
-            _mySettings = PlayerSettings.PlayerShootManagerSettings;
             _currentGun = (IGun)gunList[0];
         }
 
@@ -100,12 +98,6 @@ namespace Controllers
         public override void OnReloaded()
         {
             _isReloading = false;
-        }
-
-        [Serializable]
-        public class Settings
-        {
-            [SerializeField] public Vector3 ShootOffset;
         }
     }
 }

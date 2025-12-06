@@ -6,7 +6,7 @@ using System;
 using AYellowpaper;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "EnemyShootDelaySettings", menuName = "ZenjectExample/EnemyShootDelaySettings", order = 0)]
+[CreateAssetMenu(fileName = "EnemyShootDelaySettings", menuName = "MySettings/EnemyShootDelaySettings", order = 0)]
 public class EnemyShootDelaySettings : ScriptableObject
 {
     public List<EnemyShootDelayStruct> EnemyShootDelayList;

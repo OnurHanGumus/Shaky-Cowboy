@@ -5,7 +5,7 @@ using Controllers;
 using System;
 using Zenject;
 
-[CreateAssetMenu(fileName = "EnemySettings", menuName = "ZenjectExample/EnemySettings", order = 0)]
+[CreateAssetMenu(fileName = "EnemySettings", menuName = "MySettings/EnemySettings", order = 0)]
 public class EnemySettings : ScriptableObject
 {
     public int Health = 100;
