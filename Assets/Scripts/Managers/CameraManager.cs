@@ -83,20 +83,10 @@ namespace Managers
         {
 
         }
+
         private void SetCameraStates()
         {
-            if (CameraStateController == CameraStatesEnum.Initial)
-            {
-                _camAnimator.Play(CameraStateController.ToString());
-            }
-            else if (CameraStateController == CameraStatesEnum.Play)
-            {
-                _camAnimator.Play(CameraStateController.ToString());
-            }
-            else if (CameraStateController == CameraStatesEnum.Dead)
-            {
-                _camAnimator.Play(CameraStateController.ToString());
-            }
+            _camAnimator.Play(CameraStateController.ToString());
         }
 
         private void OnPlay()
@@ -113,6 +103,11 @@ namespace Managers
         private void OnReset()
         {
             CameraStateController = CameraStatesEnum.Initial;
+        }
+
+        public void Store()
+        {
+            CameraStateController = CameraStatesEnum.Store;
         }
     }
 }

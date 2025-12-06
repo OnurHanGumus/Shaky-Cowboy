@@ -8,5 +8,6 @@ namespace Enums
         Initial,
         Play,
         Dead,
+        Store,
     }
 }

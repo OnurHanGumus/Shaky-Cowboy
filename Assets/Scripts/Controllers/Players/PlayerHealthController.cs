@@ -84,6 +84,6 @@ class PlayerHealthController : MonoBehaviour
     protected void OnRestart()
     {
         _isLevelSuccessful = false;
-        CurrentHealth = 100;
+        CurrentHealth = _settings.Health;
     }
 }
