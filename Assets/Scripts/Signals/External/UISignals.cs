@@ -12,5 +12,6 @@ namespace Signals
         public UnityAction<bool> onCloseSuccessfulPanel;
 
         public UnityAction<ScoreTypeEnums, int> onSetChangedText;
+
     }
 }

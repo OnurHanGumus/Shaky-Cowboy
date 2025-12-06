@@ -13,6 +13,7 @@ namespace Signals
         public UnityAction onRestart = delegate { };
         public UnityAction onPlay = delegate { };
         public UnityAction onReset = delegate { };
+        public UnityAction onStorePanelClicked = delegate { };
 
         public readonly struct InputUpdate
         {

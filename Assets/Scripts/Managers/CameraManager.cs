@@ -32,7 +32,6 @@ namespace Managers
 
         #region Private Variables
 
-        private Vector3 _initialPosition;
         private CameraStatesEnum _cameraStateValue = CameraStatesEnum.Initial;
         private Animator _camAnimator;
 
@@ -60,7 +59,7 @@ namespace Managers
         {
             CoreGameSignals.onPlay += OnPlay;
             CoreGameSignals.onRestart += OnReset;
-
+            CoreGameSignals.onStorePanelClicked += Store;
             LevelSignals.onLastEnemyDied += OnLastEnemyDie;
         }
 
@@ -68,9 +67,8 @@ namespace Managers
         {
             CoreGameSignals.onPlay -= OnPlay;
             CoreGameSignals.onRestart -= OnReset;
-
+            CoreGameSignals.onStorePanelClicked -= Store;
             LevelSignals.onLastEnemyDied -= OnLastEnemyDie;
-
         }
 
         private void OnDisable()
@@ -105,7 +103,7 @@ namespace Managers
             CameraStateController = CameraStatesEnum.Initial;
         }
 
-        public void Store()
+        private void Store()
         {
             CameraStateController = CameraStatesEnum.Store;
         }
