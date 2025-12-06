@@ -11,9 +11,7 @@ public class RevolverShootControllerPlayer : RevolverShootControllerAbs, IGun
     #region Self Variables
     #region Inject Variables
     [Inject] private PlayerSignals PlayerSignals { get; set; }
-    [Inject] private PoolSignals PoolSignals { get; set; }
-    [Inject] private CoreGameSignals CoreGameSignals { get; set; }
-    [Inject] private InputSignals InputSignals { get; set; }
+    [Inject] private PlayerSettings _settings { get; set; }
     #endregion
     #region Public Variables
     #endregion
@@ -24,6 +22,13 @@ public class RevolverShootControllerPlayer : RevolverShootControllerAbs, IGun
     #region Properties
     #endregion
     #endregion
+    private void OnEnable()
+    {
+        wait2_4f = new WaitForSeconds(2.4f / _settings.ReloadSpeed);
+        wait0_5f = new WaitForSeconds(0.5f / _settings.ReloadSpeed);
+        AmmoCapacity = _settings.MagazineCapacity;
+        CurrentBulletCount = AmmoCapacity;
+    }
 
     public override void OnShoot()
     {

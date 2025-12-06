@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e247445374148d4b041c13108b5dbc3, type: 3}
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
-  PlayerCameraControllerSettings:
-    CameraOffset: {x: 0, y: 0, z: 0}
-  PlayerShootManagerSettings:
-    ShootOffset: {x: 0, y: 0, z: 0}
-  PlayerMovementSettings:
-    Speed: 1
+  Health: 500
+  DamageMultiplier: 1
+  ReloadSpeed: 1.5
+  MagazineCapacity: 4

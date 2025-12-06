@@ -4,6 +4,7 @@ using UnityEngine;
 using Enums;
 using Data.ValueObject;
 using Data.UnityObject;
+using Zenject;
 
 public class PlayerAnimationController : PlayerAnimationControllerBase
 {
@@ -12,6 +13,7 @@ public class PlayerAnimationController : PlayerAnimationControllerBase
     #region Serialized Variables
 
     [SerializeField] private Animator animator;
+    [Inject] private PlayerSettings _settings { get; set; }
 
     #endregion
     #region Private Variables
@@ -32,6 +34,15 @@ public class PlayerAnimationController : PlayerAnimationControllerBase
     }
     public override void OnChangeAnimation(PlayerAnimationStates nextAnimation)
     {
+        if (nextAnimation == PlayerAnimationStates.Reload)
+        {
+            animator.speed = _settings.ReloadSpeed;
+        }
+        else
+        {
+            animator.speed = 1;
+
+        }
         animator.SetTrigger(nextAnimation.ToString());
     }
 

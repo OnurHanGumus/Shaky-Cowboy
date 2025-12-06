@@ -11,9 +11,6 @@ public class RevolverShootControllerEnemy: RevolverShootControllerAbs, IGun
     #region Self Variables
     #region Inject Variables
     [Inject] private EnemySignals EnemySignals { get; set; }
-    [Inject] private PoolSignals PoolSignals { get; set; }
-    [Inject] private CoreGameSignals CoreGameSignals { get; set; }
-    [Inject] private InputSignals InputSignals { get; set; }
     [Inject] private EnemySettings _settings { get; set; }
     #endregion
     #region Public Variables

@@ -11,6 +11,7 @@ using Zenject;
 class PlayerHealthController : MonoBehaviour
 {
     public int CurrentHealth = 100;
+    [Inject] private PlayerSettings _settings { get; set; }
     [Inject] private PlayerSignals PlayerSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
 
@@ -21,7 +22,8 @@ class PlayerHealthController : MonoBehaviour
     protected void OnEnable()
     {
         SubscribeEvents();
-        healthBarManager.InitHealthValue(CurrentHealth);
+        UpdateHealth();
+
     }
 
     protected void SubscribeEvents()
@@ -48,6 +50,7 @@ class PlayerHealthController : MonoBehaviour
 
     private void UpdateHealth()
     {
+        CurrentHealth = _settings.Health;
         healthBarManager.InitHealthValue(CurrentHealth);
     }
 
