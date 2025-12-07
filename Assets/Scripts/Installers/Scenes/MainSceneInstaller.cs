@@ -12,6 +12,7 @@ namespace Installers.Scenes
         private CoreGameSignals _coreGameSignals { get; set; }
         private LevelSignals _levelSignals { get; set; }
         [SerializeField] private EnemyShootDelaySettings _shootDelaySettings;
+        [SerializeField] private GameOptions _gameOptions;
         public override void InstallBindings()
         {
             BindComponents();
@@ -26,6 +27,7 @@ namespace Installers.Scenes
             _levelSignals = new LevelSignals();
             Container.BindInstance(_levelSignals).AsSingle();
             Container.BindInstance(_shootDelaySettings).AsSingle();
+            Container.BindInstance(_gameOptions).AsSingle();
 
             Container.Bind<InputSignals>().AsSingle();
             Container.Bind<UISignals>().AsSingle();
