@@ -1,16 +1,15 @@
-using Data.UnityObject;
-using Data.ValueObject;
-using DG.Tweening;
 using Enums;
 using Signals;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-public class StartPanelController : MonoBehaviour
+class StorePanelController : MonoBehaviour
 {
     #region Self Variables
     #region Public Variables
@@ -27,6 +26,7 @@ public class StartPanelController : MonoBehaviour
     WaitForSeconds _fadingProcessDurationDelay;
     #endregion
     #endregion
+
     private void Awake()
     {
         Init();
@@ -37,18 +37,19 @@ public class StartPanelController : MonoBehaviour
         _fadingProcessDurationDelay = new WaitForSeconds(_faderDuration);
     }
 
-    public void StorePanelButton()
+    public void CloseButton()
     {
-        _coreGameSignals.onStorePanelClicked?.Invoke();
+        _coreGameSignals.onStorePanelClosed?.Invoke();
         StartCoroutine(FadeDelay());
     }
 
     IEnumerator FadeDelay()
     {
-        yield return _faderStartDelay;
-        faderController.Fade(1,0.5f);
+        //yield return _faderStartDelay;
+        faderController.Fade(1, 0.5f);
         yield return _fadingProcessDurationDelay;
-        _uiSignals.onOpenPanel?.Invoke(UIPanels.StorePanel);
+        _uiSignals.onClosePanel?.Invoke(UIPanels.StorePanel);
+        _uiSignals.onOpenPanel?.Invoke(UIPanels.StartPanel);
         yield return _faderActiveDuration;
 
         faderController.Fade(0, 0.5f);

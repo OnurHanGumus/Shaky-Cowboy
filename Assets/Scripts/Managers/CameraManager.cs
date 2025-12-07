@@ -60,6 +60,7 @@ namespace Managers
             CoreGameSignals.onPlay += OnPlay;
             CoreGameSignals.onRestart += OnReset;
             CoreGameSignals.onStorePanelClicked += Store;
+            CoreGameSignals.onStorePanelClosed += StoreClosed;
             LevelSignals.onLastEnemyDied += OnLastEnemyDie;
         }
 
@@ -68,6 +69,7 @@ namespace Managers
             CoreGameSignals.onPlay -= OnPlay;
             CoreGameSignals.onRestart -= OnReset;
             CoreGameSignals.onStorePanelClicked -= Store;
+            CoreGameSignals.onStorePanelClosed -= StoreClosed;
             LevelSignals.onLastEnemyDied -= OnLastEnemyDie;
         }
 
@@ -106,6 +108,11 @@ namespace Managers
         private void Store()
         {
             CameraStateController = CameraStatesEnum.Store;
+        }
+
+        private void StoreClosed()
+        {
+            CameraStateController = CameraStatesEnum.Initial;
         }
     }
 }
