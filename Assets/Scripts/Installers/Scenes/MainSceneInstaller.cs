@@ -13,6 +13,12 @@ namespace Installers.Scenes
         private LevelSignals _levelSignals { get; set; }
         [SerializeField] private EnemyShootDelaySettings _shootDelaySettings;
         [SerializeField] private GameOptions _gameOptions;
+        [SerializeField] private PlayerSettings _playerSettings;
+
+        [SerializeField] private UpgradeSettings _healthSettings;
+        [SerializeField] private UpgradeSettings _damageMultiplierSettings;
+        [SerializeField] private UpgradeSettings _magazineCapacitySettings;
+        [SerializeField] private UpgradeSettings _reloadSpeedSettings;
         public override void InstallBindings()
         {
             BindComponents();
@@ -28,6 +34,12 @@ namespace Installers.Scenes
             Container.BindInstance(_levelSignals).AsSingle();
             Container.BindInstance(_shootDelaySettings).AsSingle();
             Container.BindInstance(_gameOptions).AsSingle();
+            Container.BindInstance(_playerSettings).AsSingle();
+
+            Container.BindInstance(_healthSettings).WithId("Health").AsTransient();
+            Container.BindInstance(_damageMultiplierSettings).WithId("DamageMultiplier").AsTransient();
+            Container.BindInstance(_magazineCapacitySettings).WithId("MagazineCapacity").AsTransient();
+            Container.BindInstance(_reloadSpeedSettings).WithId("ReloadSpeed").AsTransient();
 
             Container.Bind<InputSignals>().AsSingle();
             Container.Bind<UISignals>().AsSingle();

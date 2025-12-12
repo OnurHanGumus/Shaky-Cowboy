@@ -24,9 +24,9 @@ public class RevolverShootControllerPlayer : RevolverShootControllerAbs, IGun
     #endregion
     private void OnEnable()
     {
-        wait2_4f = new WaitForSeconds(2.4f / _settings.ReloadSpeed);
-        wait0_5f = new WaitForSeconds(0.5f / _settings.ReloadSpeed);
-        AmmoCapacity = _settings.MagazineCapacity;
+        wait2_4f = new WaitForSeconds(2.4f / _settings.Settings[UpgradeEnums.ReloadSpeed]);
+        wait0_5f = new WaitForSeconds(0.5f / _settings.Settings[UpgradeEnums.ReloadSpeed]);
+        AmmoCapacity = (int)_settings.Settings[UpgradeEnums.MagazineCapacity];
         CurrentBulletCount = AmmoCapacity;
     }
 

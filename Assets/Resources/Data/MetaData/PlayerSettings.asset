@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e247445374148d4b041c13108b5dbc3, type: 3}
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
-  Health: 500
-  DamageMultiplier: 1
-  ReloadSpeed: 1.5
-  MagazineCapacity: 4
+  Settings:
+    _serializedList:
+    - Key: 0
+      Value: 200
+    - Key: 1
+      Value: 1
+    - Key: 2
+      Value: 2
+    - Key: 3
+      Value: 5
