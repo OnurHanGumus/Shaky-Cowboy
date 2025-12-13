@@ -55,9 +55,4 @@ class StorePanelController : MonoBehaviour
 
         faderController.Fade(0, _gameOptions.FadingProcessDurationDelay_StorePanel);
     }
-
-    public void Upgrade(int upgradeId) //button
-    {
-        _coreGameSignals.onUpgradePurchased?.Invoke((UpgradeEnums)upgradeId);
-    }
 }

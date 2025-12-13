@@ -704,6 +704,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3503517623138964974}
   - component: {fileID: 2465334908036871472}
+  - component: {fileID: 1827342582674940417}
+  - component: {fileID: 1824831311314558287}
+  - component: {fileID: 4394462898979660237}
   m_Layer: 0
   m_Name: Upgrade
   m_TagString: Untagged
@@ -780,3 +783,50 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1827342582674940417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6452127243673437057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Zenject::Zenject.GameObjectContext
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 1824831311314558287}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
+--- !u!114 &1824831311314558287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6452127243673437057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ddcfa7e7316c7d4d9804d93d66e89d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Installers.Prefabs.UpgradeButtonInstaller
+--- !u!114 &4394462898979660237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6452127243673437057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d62a7ef07d915b445a91307a899834e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeButtonView
+  LevelText: {fileID: 2829511325748644848}
+  ValueText: {fileID: 5142352526614705975}
+  DescriptionText: {fileID: 8686895160397319556}
+  PriceText: {fileID: 5142352526614705975}
+  Image: {fileID: 5120853834414170637}

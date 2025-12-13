@@ -4,7 +4,6 @@ using UnityEngine;
 class UpgradeControllerBase : IInitializable
 {
     protected UpgradeEnums _upgradeEnum;
-    protected int _currentLevel = 0;
     [Inject] protected CoreGameSignals _coreGameSignals { get; set; }
     [Inject] protected UpgradeSettings _upgrades{ get; set; }
     [Inject] protected PlayerSettings _playerSettings { get; set; }
@@ -14,11 +13,11 @@ class UpgradeControllerBase : IInitializable
         SubscribeEvents();
     }
 
-    protected void OnUpgrade(UpgradeEnums upgradeEnum)
+    protected void OnUpgrade(UpgradeEnums upgradeEnum, int newLevel)
     {
         if (upgradeEnum == _upgradeEnum)
         {
-            _playerSettings.Settings[upgradeEnum] = _upgrades.Skills[upgradeEnum][_currentLevel].UpgradeValue;
+            _playerSettings.Settings[upgradeEnum] = _upgrades.Skills[upgradeEnum][newLevel - 1].UpgradeValue;
         }
     }
 

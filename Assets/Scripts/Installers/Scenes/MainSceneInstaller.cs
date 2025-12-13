@@ -46,6 +46,9 @@ namespace Installers.Scenes
             Container.Bind<PlayerSignals>().AsSingle();
             Container.Bind<RevolverSignals>().AsSingle();
 
+            Container.Bind<LoadGameDataCommand>().AsSingle();
+            Container.Bind<SaveGameCommand>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<TumbleweedSpawnManager>().AsSingle();
 
             Container.Bind(typeof(UpgradeControllerBase), typeof(IInitializable)).To<HealthUpgradeController>().AsSingle();

@@ -13,7 +13,7 @@ public class CoreGameSignals
     public UnityAction onReset = delegate { };
     public UnityAction onStorePanelClicked = delegate { };
     public UnityAction onStorePanelClosed = delegate { };
-    public UnityAction<UpgradeEnums> onUpgradePurchased = delegate { };
+    public UnityAction<UpgradeEnums,int> onUpgradePurchased = delegate { };
 
     public readonly struct InputUpdate
     {
