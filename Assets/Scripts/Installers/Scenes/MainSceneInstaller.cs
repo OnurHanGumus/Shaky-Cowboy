@@ -15,10 +15,8 @@ namespace Installers.Scenes
         [SerializeField] private GameOptions _gameOptions;
         [SerializeField] private PlayerSettings _playerSettings;
 
-        [SerializeField] private UpgradeSettings _healthSettings;
-        [SerializeField] private UpgradeSettings _damageMultiplierSettings;
-        [SerializeField] private UpgradeSettings _magazineCapacitySettings;
-        [SerializeField] private UpgradeSettings _reloadSpeedSettings;
+        [SerializeField] private UpgradeSettings _upgradeSettings;
+
         public override void InstallBindings()
         {
             BindComponents();
@@ -36,10 +34,8 @@ namespace Installers.Scenes
             Container.BindInstance(_gameOptions).AsSingle();
             Container.BindInstance(_playerSettings).AsSingle();
 
-            Container.BindInstance(_healthSettings).WithId("Health").AsTransient();
-            Container.BindInstance(_damageMultiplierSettings).WithId("DamageMultiplier").AsTransient();
-            Container.BindInstance(_magazineCapacitySettings).WithId("MagazineCapacity").AsTransient();
-            Container.BindInstance(_reloadSpeedSettings).WithId("ReloadSpeed").AsTransient();
+            Container.BindInstance(_upgradeSettings).AsSingle();
+
 
             Container.Bind<InputSignals>().AsSingle();
             Container.Bind<UISignals>().AsSingle();
@@ -51,6 +47,11 @@ namespace Installers.Scenes
             Container.Bind<RevolverSignals>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<TumbleweedSpawnManager>().AsSingle();
+
+            Container.Bind(typeof(UpgradeControllerBase), typeof(IInitializable)).To<HealthUpgradeController>().AsSingle();
+            Container.Bind(typeof(UpgradeControllerBase), typeof(IInitializable)).To<ReloadSpeedUpgradeController>().AsSingle();
+            Container.Bind(typeof(UpgradeControllerBase), typeof(IInitializable)).To<MagazineCapacityUpgradeController>().AsSingle();
+            Container.Bind(typeof(UpgradeControllerBase), typeof(IInitializable)).To<DamageMultiplierUpgradeController>().AsSingle();
         }
 
         private void BindSettings()

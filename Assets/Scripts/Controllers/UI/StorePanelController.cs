@@ -22,11 +22,7 @@ class StorePanelController : MonoBehaviour
     [Inject] private GameOptions _gameOptions { get; set; }
     [Inject] private CoreGameSignals _coreGameSignals { get; set; }
     [Inject] private UISignals _uiSignals { get; set; }
-    [Inject] private PlayerSettings _playerSettings { get; set; }
-    [Inject(Id = "Health")] private UpgradeSettings _healthUpgrade { get; set; }
-    [Inject(Id = "DamageMultiplier")] private UpgradeSettings _reloadSpeedUpgrade { get; set; }
-    [Inject(Id = "MagazineCapacity")] private UpgradeSettings _magazineCapacityUpgrade { get; set; }
-    [Inject(Id = "ReloadSpeed")] private UpgradeSettings _damageMultiplierUpgrade { get; set; }
+
     WaitForSeconds _faderActiveDuration;
     WaitForSeconds _fadingProcessDurationDelay;
     #endregion
@@ -60,8 +56,8 @@ class StorePanelController : MonoBehaviour
         faderController.Fade(0, _gameOptions.FadingProcessDurationDelay_StorePanel);
     }
 
-    //public void UpgradeHealth()
-    //{
-    //    _playerSettings.Health = _healthUpgrade.UpgradeValues[]
-    //}
+    public void Upgrade(int upgradeId) //button
+    {
+        _coreGameSignals.onUpgradePurchased?.Invoke((UpgradeEnums)upgradeId);
+    }
 }

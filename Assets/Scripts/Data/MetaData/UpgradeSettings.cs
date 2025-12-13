@@ -1,10 +1,17 @@
 using Components.Players;
 using System.Collections.Generic;
 using UnityEngine;
+using AYellowpaper.SerializedCollections;
 
 [CreateAssetMenu(fileName = "UpgradeSettings", menuName = "MySettings/UpgradeSettings", order = 0)]
 public class UpgradeSettings : ScriptableObject
 {
-    [SerializeField] public List<float> UpgradeValues;
-    [SerializeField] public List<int> UpgradePrices;
+    public SerializedDictionary<UpgradeEnums, List<Skill>> Skills;
+}
+
+[System.Serializable]
+public struct Skill
+{
+    [SerializeField] public float UpgradeValue;
+    [SerializeField] public int UpgradePrices;
 }
