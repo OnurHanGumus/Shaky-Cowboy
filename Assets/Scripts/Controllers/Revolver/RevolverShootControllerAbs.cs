@@ -12,8 +12,8 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
     #region Self Variables
     #region Inject Variables
 
-    [Inject] private PoolSignals PoolSignals { get; set; }
-    [Inject] private CoreGameSignals CoreGameSignals { get; set; }
+    [Inject] private PoolSignals _poolSignals { get; set; }
+    [Inject] protected CoreGameSignals _coreGameSignals { get; set; }
     #endregion
     #region Public Variables
     #endregion
@@ -57,7 +57,7 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
             return;
         }
 
-        GameObject bullet = PoolSignals.onGetObject?.Invoke(PoolEnums.Bullet, transform.position);
+        GameObject bullet = _poolSignals.onGetObject?.Invoke(PoolEnums.Bullet, transform.position);
         bullet.transform.position = bulletPointTransform.position;
         bullet.transform.eulerAngles = transform.eulerAngles;
         bullet.SetActive(true);

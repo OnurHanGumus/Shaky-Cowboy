@@ -31,7 +31,13 @@ class PlayerHealthController : MonoBehaviour
         PlayerSignals.onHitted += OnHitted;
         CoreGameSignals.onLevelSuccessful += OnLevelSuccessful;
         CoreGameSignals.onRestart += OnRestart;
+        CoreGameSignals.onUpgradePurchasedEnded += OnUpgradePurchased;
 
+    }
+
+    private void OnUpgradePurchased(UpgradeEnums upgradeEnum)
+    {
+        UpdateHealth();
     }
 
     protected void UnSubscribeEvents()
@@ -39,6 +45,7 @@ class PlayerHealthController : MonoBehaviour
         PlayerSignals.onHitted -= OnHitted;
         CoreGameSignals.onLevelSuccessful -= OnLevelSuccessful;
         CoreGameSignals.onRestart -= OnRestart;
+        CoreGameSignals.onUpgradePurchasedEnded -= OnUpgradePurchased;
 
     }
 
@@ -50,7 +57,7 @@ class PlayerHealthController : MonoBehaviour
 
     private void UpdateHealth()
     {
-        CurrentHealth = (int)_settings.Settings[UpgradeEnums.Health]; ;
+        CurrentHealth = (int)_settings.Settings[UpgradeEnums.Health];
         healthBarManager.InitHealthValue(CurrentHealth);
     }
 

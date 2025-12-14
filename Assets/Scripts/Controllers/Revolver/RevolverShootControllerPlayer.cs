@@ -24,10 +24,14 @@ public class RevolverShootControllerPlayer : RevolverShootControllerAbs, IGun
     #endregion
     private void OnEnable()
     {
-        wait2_4f = new WaitForSeconds(2.4f / _settings.Settings[UpgradeEnums.ReloadSpeed]);
-        wait0_5f = new WaitForSeconds(0.5f / _settings.Settings[UpgradeEnums.ReloadSpeed]);
-        AmmoCapacity = (int)_settings.Settings[UpgradeEnums.MagazineCapacity];
-        CurrentBulletCount = AmmoCapacity;
+        SubscribeEvents();
+
+        RecalculateData();
+    }
+
+    public void SubscribeEvents()
+    {
+        _coreGameSignals.onPlay += OnPlay;
     }
 
     public override void OnShoot()
@@ -65,5 +69,18 @@ public class RevolverShootControllerPlayer : RevolverShootControllerAbs, IGun
             _isReloading = false;
             CurrentBulletCount = AmmoCapacity;
         }
+    }
+
+    private void OnPlay()
+    {
+        RecalculateData();
+    }
+
+    protected void RecalculateData()
+    {
+        wait2_4f = new WaitForSeconds(2.4f / _settings.Settings[UpgradeEnums.ReloadSpeed]);
+        wait0_5f = new WaitForSeconds(0.5f / _settings.Settings[UpgradeEnums.ReloadSpeed]);
+        AmmoCapacity = (int)_settings.Settings[UpgradeEnums.MagazineCapacity];
+        CurrentBulletCount = AmmoCapacity;
     }
 }

@@ -14,6 +14,7 @@ public class CoreGameSignals
     public UnityAction onStorePanelClicked = delegate { };
     public UnityAction onStorePanelClosed = delegate { };
     public UnityAction<UpgradeEnums,int> onUpgradePurchased = delegate { };
+    public UnityAction<UpgradeEnums> onUpgradePurchasedEnded = delegate { };
 
     public readonly struct InputUpdate
     {

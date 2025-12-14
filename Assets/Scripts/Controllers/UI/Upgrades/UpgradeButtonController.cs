@@ -18,6 +18,7 @@ class UpgradeButtonController : IInitializable
     public void Initialize()
     {
         SubscribeEvents();
+        UpdateTexts();
     }
 
     private void SubscribeEvents()
@@ -37,5 +38,24 @@ class UpgradeButtonController : IInitializable
         }
         _saveCommand.OnSaveData<int>(_model.SaveDataEnum, ++currentLevel);
         _coreGameSignals.onUpgradePurchased?.Invoke((UpgradeEnums)upgradeId, currentLevel);
+
+
+        UpdateTexts();
+    }
+
+    private void UpdateTexts()
+    {
+        int currentLevel = _loadCommand.OnLoadGameData<int>(_model.SaveDataEnum);
+        int abilityMaxLevel = _upgradeSettings.Skills[_model.UpgradeEnum].Count;
+        _model.LevelText.text = currentLevel.ToString();
+
+        if (currentLevel < abilityMaxLevel)
+        {
+            _model.PriceText.text = _upgradeSettings.Skills[_model.UpgradeEnum][currentLevel].UpgradePrices.ToString();
+        }
+        else
+        {
+            _model.PriceText.text = "MAX";
+        }
     }
 }

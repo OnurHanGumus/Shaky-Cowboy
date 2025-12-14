@@ -19,6 +19,8 @@ class UpgradeControllerBase : IInitializable
         {
             _playerSettings.Settings[upgradeEnum] = _upgrades.Skills[upgradeEnum][newLevel - 1].UpgradeValue;
         }
+
+        _coreGameSignals.onUpgradePurchasedEnded?.Invoke(upgradeEnum);
     }
 
     protected void SubscribeEvents()

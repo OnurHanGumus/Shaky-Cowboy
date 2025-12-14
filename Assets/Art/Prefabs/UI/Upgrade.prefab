@@ -425,7 +425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5154366574334369209
 RectTransform:
   m_ObjectHideFlags: 0
@@ -830,3 +830,5 @@ MonoBehaviour:
   DescriptionText: {fileID: 8686895160397319556}
   PriceText: {fileID: 5142352526614705975}
   Image: {fileID: 5120853834414170637}
+  UpgradeEnum: 0
+  SaveDataEnum: 0
