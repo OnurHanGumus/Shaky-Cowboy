@@ -56,7 +56,7 @@ class EnemyHealthController : MonoBehaviour
         {
             LevelSignals.onEnemyDied.Invoke(transform);
             EnemySignals.onDie?.Invoke(bodyPart);
-            ScoreSignals.onScoreIncrease?.Invoke(ScoreTypeEnums.Gem, value);
+            ScoreSignals.onAmountChanged?.Invoke(value);
             colliders.SetActive(false);
             healthBarManager.gameObject.SetActive(false);
         }

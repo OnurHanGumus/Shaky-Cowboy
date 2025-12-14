@@ -77,28 +77,22 @@ namespace Managers
         {
             UISignals.onOpenPanel += OnOpenPanel;
             UISignals.onClosePanel += OnClosePanel;
-            UISignals.onSetChangedText += levelPanelController.OnScoreUpdateText;
             CoreGameSignals.onPlay += OnPlay;
-            CoreGameSignals.onPlay += levelPanelController.OnPlay;
             CoreGameSignals.onLevelFailed += OnLevelFailed;
             CoreGameSignals.onLevelSuccessful += OnLevelSuccessful;
             CoreGameSignals.onLevelSuccessful += levelPanelController.OnLevelSuccessful;
             CoreGameSignals.onRestart += levelPanelController.OnRestartLevel;
-            ScoreSignals.onHighScoreChanged += highScorePanelController.OnUpdateText;
         }
 
         private void UnsubscribeEvents()
         {
             UISignals.onOpenPanel -= OnOpenPanel;
             UISignals.onClosePanel -= OnClosePanel;
-            UISignals.onSetChangedText -= levelPanelController.OnScoreUpdateText;
             CoreGameSignals.onPlay -= OnPlay;
-            CoreGameSignals.onPlay -= levelPanelController.OnPlay;
             CoreGameSignals.onLevelFailed -= OnLevelFailed;
             CoreGameSignals.onLevelSuccessful -= OnLevelSuccessful;
             CoreGameSignals.onLevelSuccessful -= levelPanelController.OnLevelSuccessful;
             CoreGameSignals.onRestart -= levelPanelController.OnRestartLevel;
-            ScoreSignals.onHighScoreChanged -= highScorePanelController.OnUpdateText;
         }
 
         private void OnDisable()

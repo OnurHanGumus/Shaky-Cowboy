@@ -14,6 +14,7 @@ class UpgradeButtonController : IInitializable
     [Inject] private LoadGameDataCommand _loadCommand { get; set; }
     [Inject] private SaveGameCommand _saveCommand { get; set; }
     [Inject] private UpgradeSettings _upgradeSettings { get; set; }
+    [Inject] private ScoreSignals _scoreSignals { get; set; }
 
     public void Initialize()
     {
@@ -36,6 +37,13 @@ class UpgradeButtonController : IInitializable
         {
             return;
         }
+        int currentMoney = _scoreSignals.onGetMoney();
+        int price = _upgradeSettings.Skills[_model.UpgradeEnum][currentLevel].UpgradePrices;
+        if (currentMoney < price)
+        {
+            return;
+        }
+        _scoreSignals.onAmountChanged?.Invoke(-price);
         _saveCommand.OnSaveData<int>(_model.SaveDataEnum, ++currentLevel);
         _coreGameSignals.onUpgradePurchased?.Invoke((UpgradeEnums)upgradeId, currentLevel);
 

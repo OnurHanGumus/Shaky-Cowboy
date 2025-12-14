@@ -3657,7 +3657,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 626649165}
   - {fileID: 1373315034}
   - {fileID: 841269331}
   - {fileID: 843870117}
@@ -3669,6 +3668,7 @@ RectTransform:
   - {fileID: 886390039}
   - {fileID: 797652932}
   - {fileID: 76236004}
+  - {fileID: 626649165}
   - {fileID: 936848336}
   - {fileID: 1736821830}
   m_Father: {fileID: 563045084}
@@ -5132,8 +5132,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 626649165}
+  - component: {fileID: 626649166}
   m_Layer: 0
-  m_Name: GemPanel
+  m_Name: MoneyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5160,6 +5161,19 @@ RectTransform:
   m_AnchoredPosition: {x: -100, y: -100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &626649166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626649164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1706b1d4f9fd30349acd81bb3e1fff66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoneyPanelController
+  moneyText: {fileID: 624535430}
 --- !u!1 &668250431
 GameObject:
   m_ObjectHideFlags: 0
@@ -5821,7 +5835,6 @@ Transform:
   m_Children:
   - {fileID: 987668637}
   - {fileID: 117400443}
-  - {fileID: 1329577499}
   - {fileID: 1953781955}
   - {fileID: 905851740}
   - {fileID: 1797973736}
@@ -6819,8 +6832,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d766ce2ffa50b34c9896683ac09ade7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gemText: {fileID: 624535430}
-  counterText: {fileID: 744815813}
   levelText: {fileID: 1854957337}
   manager: {fileID: 563045083}
 --- !u!225 &843870119
@@ -11727,50 +11738,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322283063}
   m_CullTransparentMesh: 1
---- !u!1 &1329577498
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1329577499}
-  - component: {fileID: 1329577500}
-  m_Layer: 0
-  m_Name: ScoreManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1329577499
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329577498}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 741537887}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1329577500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329577498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e10bb2cd3e5b4e4ba98207edcab2171, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1338493145
 GameObject:
   m_ObjectHideFlags: 0

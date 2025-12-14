@@ -54,25 +54,25 @@ public class GameOverPanelController : MonoBehaviour
     {
         return SaveSignals.onGetScore(SaveLoadStates.Score, SaveFiles.SaveFile);
     }
-    public void ShowThePanel()
-    {
-        int temp = ScoreSignals.onGetScore();
+    //public void ShowThePanel()
+    //{
+    //    int temp = ScoreSignals.onGetScore();
 
-        if(temp > _highScore)
-        {
-            successPanel.SetActive(true);
-            failPanel.SetActive(false);
-            scoreTxt.text = "High Score: " + temp;
-            _highScore = temp;
-            SaveSignals.onSave?.Invoke(temp,SaveLoadStates.Score,SaveFiles.SaveFile);
-        }
-        else
-        {
-            successPanel.SetActive(false);
-            failPanel.SetActive(true);
-            scoreTxt.text = "Score: " + temp;
-        }
-    }
+    //    if(temp > _highScore)
+    //    {
+    //        successPanel.SetActive(true);
+    //        failPanel.SetActive(false);
+    //        scoreTxt.text = "High Score: " + temp;
+    //        _highScore = temp;
+    //        SaveSignals.onSave?.Invoke(temp,SaveLoadStates.Score,SaveFiles.SaveFile);
+    //    }
+    //    else
+    //    {
+    //        successPanel.SetActive(false);
+    //        failPanel.SetActive(true);
+    //        scoreTxt.text = "Score: " + temp;
+    //    }
+    //}
 
     public void TryAgainBtn()
     {
