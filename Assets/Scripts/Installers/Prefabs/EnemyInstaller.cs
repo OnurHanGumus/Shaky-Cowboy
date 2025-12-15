@@ -12,6 +12,7 @@ namespace Installers.Prefabs
         public override void InstallBindings()
         {
             Container.Bind<EnemySignals>().AsSingle();
+            Container.Bind<EnemyModel>().AsSingle();
 
             Container.BindInstance(_enemySettings).AsSingle();
         }

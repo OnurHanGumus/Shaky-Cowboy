@@ -15,6 +15,7 @@ class EnemyHealthController : MonoBehaviour
     [Inject] private LevelSignals LevelSignals { get; set; }
     [Inject] private ScoreSignals ScoreSignals { get; set; }
     [Inject] private EnemySettings _settings { get; set; }
+    [Inject] private EnemyModel _model { get; set; }
 
     [SerializeField] private GameObject colliders;
     [SerializeField] private HealthBarManager healthBarManager;
@@ -50,10 +51,15 @@ class EnemyHealthController : MonoBehaviour
 
     public void OnHitted(int value, StickmanBodyPartEnums bodyPart)
     {
+        if (_model.IsDead)
+        {
+            return;
+        }
         CurrentHealth -= value;
 
         if (CurrentHealth <= 0)
         {
+            _model.IsDead = true;
             LevelSignals.onEnemyDied.Invoke(transform);
             EnemySignals.onDie?.Invoke(bodyPart);
             ScoreSignals.onAmountChanged?.Invoke(value);

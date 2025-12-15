@@ -15,10 +15,10 @@ MonoBehaviour:
   Settings:
     _serializedList:
     - Key: 0
-      Value: 100
+      Value: 1000
     - Key: 1
       Value: 1
     - Key: 2
-      Value: 2
+      Value: 6
     - Key: 3
       Value: 1

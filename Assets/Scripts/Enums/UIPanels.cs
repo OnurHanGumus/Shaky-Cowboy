@@ -10,11 +10,7 @@ namespace Enums
         PausePanel,
         WinPanel,
         FailPanel,
-        //MiniGamePanel,
-        HighScorePanel,
         OptionsPanel,
-        GameOverPanel,
-        BoomerangPanel,
         StorePanel,
     }
 }

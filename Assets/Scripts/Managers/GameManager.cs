@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
 
     #region Public Variables
 
-    public GameStates States;
-
     #endregion
 
     #endregion
@@ -20,19 +18,19 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 120;
     }
 
-
     private void OnEnable()
     {
         SubscribeEvents();
     }
 
-
     private void SubscribeEvents()
     {
+
     }
 
     private void UnsubscribeEvents()
     {
+
     }
 
     private void OnDisable()

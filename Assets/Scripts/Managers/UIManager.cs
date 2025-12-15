@@ -38,9 +38,7 @@ namespace Managers
         #region Serialized Variables
 
         [SerializeField] private UIPanelActivenessController uiPanelController;
-        [SerializeField] private GameOverPanelController gameOverPanelController;
         [SerializeField] private LevelPanelController levelPanelController;
-        [SerializeField] private HighScorePanelController highScorePanelController;
 
         #endregion
         #region Private Variables
@@ -161,7 +159,6 @@ namespace Managers
 
         public void HighScoreButton()
         {
-            UISignals.onOpenPanel?.Invoke(UIPanels.HighScorePanel);
             UISignals.onClosePanel?.Invoke(UIPanels.StartPanel);
         }
         public void OptionsButton()
