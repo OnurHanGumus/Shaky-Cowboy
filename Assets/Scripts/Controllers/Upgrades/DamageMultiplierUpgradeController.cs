@@ -11,6 +11,6 @@ class DamageMultiplierUpgradeController : UpgradeControllerBase
     public override void Initialize()
     {
         base.Initialize();
-        _upgradeEnum = UpgradeEnums.DamageMultiplier;
+        _upgradeEnum = UpgradeEnums.DamageMultiplierUpgrade;
     }
 }

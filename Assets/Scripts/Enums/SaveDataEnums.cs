@@ -5,8 +5,9 @@ public enum SaveDataEnums
 {
     Level,
     Money,
-    HealthUpgradeLevel,
-    DamageMultiplierUpgradeLevel,
-    ReloadSpeedUpgradeLevel,
-    MagazineCapacityUpgradeLevel,
+
+    HealthUpgrade,
+    DamageMultiplierUpgrade,
+    ReloadSpeedUpgrade,
+    MagazineCapacityUpgrade,
 }

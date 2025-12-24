@@ -36,7 +36,7 @@ public class PlayerAnimationController : PlayerAnimationControllerBase
     {
         if (nextAnimation == PlayerAnimationStates.Reload)
         {
-            animator.speed = _settings.Settings[UpgradeEnums.ReloadSpeed];
+            animator.speed = _settings.Settings[UpgradeEnums.ReloadSpeedUpgrade];
         }
         else
         {

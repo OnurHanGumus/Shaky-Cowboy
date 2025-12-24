@@ -3,8 +3,9 @@ using System;
 [Serializable]
 public enum UpgradeEnums
 {
-    Health,
-    DamageMultiplier,
-    MagazineCapacity,
-    ReloadSpeed,
+    HealthUpgrade,
+    DamageMultiplierUpgrade,
+    MagazineCapacityUpgrade,
+    ReloadSpeedUpgrade,
+    Count,
 }

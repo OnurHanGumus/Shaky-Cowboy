@@ -11,6 +11,6 @@ class MagazineCapacityUpgradeController : UpgradeControllerBase
     public override void Initialize()
     {
         base.Initialize();
-        _upgradeEnum = UpgradeEnums.MagazineCapacity;
+        _upgradeEnum = UpgradeEnums.MagazineCapacityUpgrade;
     }
 }

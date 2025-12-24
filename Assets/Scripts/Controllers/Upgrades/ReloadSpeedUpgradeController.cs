@@ -11,6 +11,6 @@ class ReloadSpeedUpgradeController : UpgradeControllerBase
     public override void Initialize()
     {
         base.Initialize();
-        _upgradeEnum = UpgradeEnums.ReloadSpeed;
+        _upgradeEnum = UpgradeEnums.ReloadSpeedUpgrade;
     }
 }

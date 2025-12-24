@@ -12933,6 +12933,7 @@ MonoBehaviour:
   _shootDelaySettings: {fileID: 11400000, guid: aa8129698db6bcc429f635b497441058, type: 2}
   _gameOptions: {fileID: 11400000, guid: 10948f1421ffc2347bab08c73dcf4a10, type: 2}
   _playerSettings: {fileID: 11400000, guid: 4518f7a90d8d537449706057189f0043, type: 2}
+  _playerDefaultSettings: {fileID: 11400000, guid: b433e2ec4e4168845a9242c56d142ad6, type: 2}
   _upgradeSettings: {fileID: 11400000, guid: 89b6fa391a2831248ba06d035c5408da, type: 2}
 --- !u!1 &1823729671
 GameObject:

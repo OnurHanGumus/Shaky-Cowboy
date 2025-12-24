@@ -14,6 +14,7 @@ namespace Installers.Scenes
         [SerializeField] private EnemyShootDelaySettings _shootDelaySettings;
         [SerializeField] private GameOptions _gameOptions;
         [SerializeField] private PlayerSettings _playerSettings;
+        [SerializeField] private PlayerSettings _playerDefaultSettings;
 
         [SerializeField] private UpgradeSettings _upgradeSettings;
 
@@ -32,7 +33,8 @@ namespace Installers.Scenes
             Container.BindInstance(_levelSignals).AsSingle();
             Container.BindInstance(_shootDelaySettings).AsSingle();
             Container.BindInstance(_gameOptions).AsSingle();
-            Container.BindInstance(_playerSettings).AsSingle();
+            Container.BindInstance(_playerSettings).AsTransient();
+            Container.BindInstance(_playerDefaultSettings).WithId("PlayerDefaultSettings").AsTransient();
 
             Container.BindInstance(_upgradeSettings).AsSingle();
 
@@ -48,6 +50,7 @@ namespace Installers.Scenes
 
             Container.Bind<LoadGameDataCommand>().AsSingle();
             Container.Bind<SaveGameCommand>().AsSingle();
+            Container.Bind<EnumCastCommand>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<TumbleweedSpawnManager>().AsSingle();
 

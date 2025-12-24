@@ -11,6 +11,6 @@ class HealthUpgradeController : UpgradeControllerBase
     public override void Initialize()
     {
         base.Initialize();
-        _upgradeEnum = UpgradeEnums.Health;
+        _upgradeEnum = UpgradeEnums.HealthUpgrade;
     }
 }

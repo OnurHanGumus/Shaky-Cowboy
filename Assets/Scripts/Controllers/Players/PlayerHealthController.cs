@@ -57,7 +57,7 @@ class PlayerHealthController : MonoBehaviour
 
     private void UpdateHealth()
     {
-        CurrentHealth = (int)_settings.Settings[UpgradeEnums.Health];
+        CurrentHealth = (int)_settings.Settings[UpgradeEnums.HealthUpgrade];
         healthBarManager.InitHealthValue(CurrentHealth);
     }
 
@@ -91,6 +91,6 @@ class PlayerHealthController : MonoBehaviour
     protected void OnRestart()
     {
         _isLevelSuccessful = false;
-        CurrentHealth = (int)_settings.Settings[UpgradeEnums.Health];
+        CurrentHealth = (int)_settings.Settings[UpgradeEnums.HealthUpgrade];
     }
 }

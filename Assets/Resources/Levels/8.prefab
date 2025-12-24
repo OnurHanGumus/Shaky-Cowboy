@@ -305,6 +305,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sherif
       objectReference: {fileID: 0}
+    - target: {fileID: 6860786824384771476, guid: 839564e8b95bbbb408aeaa2b1eba6a65, type: 3}
+      propertyPath: _enemySettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 951df368b6584af40b2286ab83a1cafe, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -323,6 +327,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5175494144074148516}
     m_Modifications:
+    - target: {fileID: 894211814683434503, guid: 24c10dd4ad4848e4187f14e8013add2d, type: 3}
+      propertyPath: _enemySettings
+      value: 
+      objectReference: {fileID: 11400000, guid: d897d46ca3a065c4ea093b518a917f39, type: 2}
     - target: {fileID: 5803188353528402544, guid: 24c10dd4ad4848e4187f14e8013add2d, type: 3}
       propertyPath: m_RootOrder
       value: 1
