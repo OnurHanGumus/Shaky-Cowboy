@@ -2145,8 +2145,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1339333866}
-        m_TargetAssemblyTypeName: AdInterstitialManager, Assembly-CSharp
+      - m_Target: {fileID: 1339333867}
+        m_TargetAssemblyTypeName: MyAdInterstitalManager, Assembly-CSharp
         m_MethodName: ShowAd
         m_Mode: 1
         m_Arguments:
@@ -2666,8 +2666,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1339333866}
-        m_TargetAssemblyTypeName: AdInterstitialManager, Assembly-CSharp
+      - m_Target: {fileID: 1339333867}
+        m_TargetAssemblyTypeName: MyAdInterstitalManager, Assembly-CSharp
         m_MethodName: ShowAd
         m_Mode: 1
         m_Arguments:
@@ -9910,7 +9910,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1339333865}
-  - component: {fileID: 1339333866}
+  - component: {fileID: 1339333867}
   m_Layer: 0
   m_Name: InterstitialAds
   m_TagString: Untagged
@@ -9933,7 +9933,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1774585478}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1339333866
+--- !u!114 &1339333867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9942,9 +9942,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1339333864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d703ba7d6b7070f4d99dbf3b400b5a5f, type: 3}
+  m_Script: {fileID: 11500000, guid: a6c4015374530444d95e027a70e20478, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyAdInterstitalManager
   isTest: 0
 --- !u!1 &1373315033
 GameObject:

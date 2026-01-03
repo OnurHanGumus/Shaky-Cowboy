@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783645a0c88996446b2217df115ca128, type: 3}
   m_Name: 43
   m_EditorClassIdentifier: 
-  Health: 195
+  Health: 300
   DamageMultiplier: 1
-  ReloadSpeed: 1.7
-  MagazineCapacity: 4
-  ShootDelayEnum: 3
+  ReloadSpeed: 2.7
+  MagazineCapacity: 6
+  ShootDelayEnum: 7

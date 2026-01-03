@@ -19,6 +19,7 @@ class EnemyHealthController : MonoBehaviour
 
     [SerializeField] private GameObject colliders;
     [SerializeField] private HealthBarManager healthBarManager;
+    [SerializeField] private GameObject levelText;
 
     #region Event Subscription
     protected void OnEnable()
@@ -65,6 +66,7 @@ class EnemyHealthController : MonoBehaviour
             ScoreSignals.onAmountChanged?.Invoke(value);
             colliders.SetActive(false);
             healthBarManager.gameObject.SetActive(false);
+            levelText.SetActive(false);
         }
 
         ChangeHealthBar();

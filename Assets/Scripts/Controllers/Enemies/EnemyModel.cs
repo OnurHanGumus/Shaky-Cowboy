@@ -7,4 +7,5 @@ using System.Threading.Tasks;
 class EnemyModel
 {
     public bool IsDead = false;
+    public int Level { get; set; } = 0;
 }

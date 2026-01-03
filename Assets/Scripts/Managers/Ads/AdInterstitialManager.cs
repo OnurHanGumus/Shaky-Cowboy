@@ -12,44 +12,44 @@ using Zenject;
 
 public class AdInterstitialManager : MonoBehaviour
 {
-    [SerializeField] private bool isTest = true;
+    [SerializeField] protected bool isTest = true;
 
-    private string _testInterstitialId = "ca-app-pub-3940256099942544/1033173712",
+    protected string _testInterstitialId = "ca-app-pub-3940256099942544/1033173712",
                        _interstitialId = "ca-app-pub-4708991160900195/3885741590";
-    private InterstitialAd _interstitialAd = null;
-    private AdRequest _adRequest = null;
-    private bool _isFirstTime = true;
-    [Inject] private CoreGameSignals CoreGameSignals { get; set; }
+    protected InterstitialAd _interstitialAd = null;
+    protected AdRequest _adRequest = null;
+    protected bool _isFirstTime = true;
+    [Inject] protected CoreGameSignals _coreGameSignals { get; set; }
 
-    private void Awake()
+    protected void Awake()
     {
         Init();
         RequestAd();
     }
 
     #region Event Subscription
-    private void OnEnable()
+    protected void OnEnable()
     {
         SubscribeEvents();
     }
 
-    private void SubscribeEvents()
+    protected void SubscribeEvents()
     {
-        CoreGameSignals.onPlay += OnPlay;
+        _coreGameSignals.onPlay += OnPlay;
     }
 
-    private void UnsubscribeEvents()
+    protected void UnsubscribeEvents()
     {
-        CoreGameSignals.onPlay -= OnPlay;
+        _coreGameSignals.onPlay -= OnPlay;
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         UnsubscribeEvents();
     }
     #endregion
 
-    private void OnPlay()
+    protected void OnPlay()
     {
         if (!_isFirstTime)
         {
@@ -58,12 +58,12 @@ public class AdInterstitialManager : MonoBehaviour
         _isFirstTime = false;
     }
 
-    private void Init()
+    protected void Init()
     {
         MobileAds.Initialize((InitializationStatus initStatus) => { });
     }
 
-    private void RequestAd()
+    protected void RequestAd()
     {
         if (_interstitialAd != null)
         {
@@ -85,7 +85,7 @@ public class AdInterstitialManager : MonoBehaviour
           });
     }
 
-    public void ShowAd()
+    public virtual void ShowAd()
     {
         if (_interstitialAd != null && _interstitialAd.CanShowAd())
         {
@@ -97,7 +97,7 @@ public class AdInterstitialManager : MonoBehaviour
     /// <summary>
     /// listen to events the banner may raise.
     /// </summary>
-    private void ListenToAdEvents(InterstitialAd ad)
+    protected void ListenToAdEvents(InterstitialAd ad)
     {
         // Raised when the ad closed full screen content.
         ad.OnAdFullScreenContentClosed += () =>

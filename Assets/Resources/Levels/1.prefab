@@ -123,7 +123,7 @@ PrefabInstance:
     - target: {fileID: 894211814683434503, guid: 24c10dd4ad4848e4187f14e8013add2d, type: 3}
       propertyPath: _enemySettings
       value: 
-      objectReference: {fileID: 11400000, guid: a638d01df3aa4b14da27db27875e6206, type: 2}
+      objectReference: {fileID: 11400000, guid: c75c50711253cd247ad7aeb022f5f5c0, type: 2}
     - target: {fileID: 5803188353528402544, guid: 24c10dd4ad4848e4187f14e8013add2d, type: 3}
       propertyPath: m_RootOrder
       value: 0

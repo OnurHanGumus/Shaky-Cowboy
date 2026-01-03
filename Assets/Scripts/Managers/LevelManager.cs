@@ -16,7 +16,7 @@ namespace Managers
         [Inject] private CoreGameSignals CoreGameSignals { get; set; }
         [Inject] private PlayerSignals PlayerSignals { get; set; }
         [Inject] private LevelSignals LevelSignals { get; set; }
-        [Inject] private SaveSignals SaveSignals { get; set; }
+        [Inject] private SaveGameCommand _saveCommand { get; set; }
         [Inject] DiContainer Container;
         #endregion
         #region Public Variables
@@ -115,7 +115,7 @@ namespace Managers
             _levelID++;
             CoreGameSignals.onClearActiveLevel?.Invoke();
             CoreGameSignals.onRestart?.Invoke();
-            SaveSignals.onSave(_levelID, SaveLoadStates.Level, SaveFiles.SaveFile);
+            _saveCommand.OnSaveData(SaveDataEnums.Level, _levelID);
         }
 
         private void OnRestartLevel()

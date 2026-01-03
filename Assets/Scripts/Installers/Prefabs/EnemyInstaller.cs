@@ -8,12 +8,20 @@ namespace Installers.Prefabs
     public class EnemyInstaller : MonoInstaller<EnemyInstaller>
     {
         [SerializeField] private EnemySettings _enemySettings;
-
+        [SerializeField] private bool isAdditional = false;
+        [Inject] private LoadGameDataCommand _loadCommand { get; set; }
         public override void InstallBindings()
         {
             Container.Bind<EnemySignals>().AsSingle();
-            Container.Bind<EnemyModel>().AsSingle();
 
+            int levelId = _loadCommand.OnLoadGameData<int>(SaveDataEnums.Level) + 1;
+            levelId = isAdditional ? levelId - 1 : levelId;
+
+            EnemyModel model = new EnemyModel();
+            model.Level = levelId;
+            Container.BindInstance(model).AsSingle();
+
+            _enemySettings = Resources.Load<EnemySettings>("Data/Enemies/" + levelId.ToString());
             Container.BindInstance(_enemySettings).AsSingle();
         }
     }

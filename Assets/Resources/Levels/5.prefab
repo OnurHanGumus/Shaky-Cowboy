@@ -56,6 +56,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2689529073645610237}
     m_Modifications:
     - target: {fileID: 894211814683434503, guid: 24c10dd4ad4848e4187f14e8013add2d, type: 3}
+      propertyPath: isAdditional
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 894211814683434503, guid: 24c10dd4ad4848e4187f14e8013add2d, type: 3}
       propertyPath: _enemySettings
       value: 
       objectReference: {fileID: 11400000, guid: 667f66e21cf20734fa15cc20a1a3e7b7, type: 2}
