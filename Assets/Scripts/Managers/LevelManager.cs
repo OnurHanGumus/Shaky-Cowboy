@@ -27,7 +27,6 @@ namespace Managers
         #region Serialized Variables
 
         [Space] [SerializeField] private GameObject levelHolder;
-        [SerializeField] private LevelLoaderCommand levelLoader;
         [SerializeField] private ClearActiveLevelCommand levelClearer;
 
         #endregion
@@ -35,7 +34,6 @@ namespace Managers
         #region Private Variables
 
         private int _levelID;
-        private LevelData _data;
         private int _currentModdedLevel = 0;
 
         private int _killedEnemyCount = 0;
@@ -54,10 +52,8 @@ namespace Managers
         private void Init()
         {
             _levelID = GetActiveLevel();
-            _data = GetData();
         }
 
-        private LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
         private int GetActiveLevel()
         {
             if (!ES3.FileExists()) return 0;
@@ -100,10 +96,12 @@ namespace Managers
 
             PlayerSignals.onDie -= OnPlayerDie;
         }
+
         private void OnDisable()
         {
             UnsubscribeEvents();
         }
+
         #endregion
         private void Start()
         {
@@ -144,7 +142,9 @@ namespace Managers
             GameObject level = Container.InstantiatePrefabResource("Levels/" + (_currentModdedLevel + 1).ToString()); /*episodeFactory.Create().gameObject;*/
             level.transform.parent = levelHolder.transform;
             level.transform.localPosition = Vector3.zero;
-            
+            GameObject levelDesign = Container.InstantiatePrefabResource("LevelDesign/" + 1.ToString()); /*episodeFactory.Create().gameObject;*/
+            levelDesign.transform.parent = levelHolder.transform;
+            levelDesign.transform.localPosition = Vector3.zero;
 
         }
 

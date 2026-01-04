@@ -958,7 +958,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelHolder: {fileID: 1978109402}
-  levelLoader: {fileID: 117400445}
   levelClearer: {fileID: 117400444}
 --- !u!1 &161189130
 GameObject:
