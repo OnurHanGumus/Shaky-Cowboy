@@ -2,6 +2,7 @@ using Zenject;
 using UnityEngine;
 using Data.MetaData;
 using Signals;
+using System;
 
 namespace Installers.Scenes
 {
@@ -15,6 +16,7 @@ namespace Installers.Scenes
         [SerializeField] private GameOptions _gameOptions;
         [SerializeField] private PlayerSettings _playerSettings;
         [SerializeField] private PlayerSettings _playerDefaultSettings;
+        [SerializeField] private ApprovementPanelSettings _approvementPanelSettings;
 
         [SerializeField] private UpgradeSettings _upgradeSettings;
 
@@ -35,7 +37,7 @@ namespace Installers.Scenes
             Container.BindInstance(_gameOptions).AsSingle();
             Container.BindInstance(_playerSettings).AsTransient();
             Container.BindInstance(_playerDefaultSettings).WithId("PlayerDefaultSettings").AsTransient();
-
+            Container.BindInstance(_approvementPanelSettings).AsSingle();
             Container.BindInstance(_upgradeSettings).AsSingle();
 
 
@@ -51,6 +53,8 @@ namespace Installers.Scenes
             Container.Bind<LoadGameDataCommand>().AsSingle();
             Container.Bind<SaveGameCommand>().AsSingle();
             Container.Bind<EnumCastCommand>().AsSingle();
+            Container.Bind<ApproveModel>().AsSingle();
+            Container.Bind<ApprovementInternalSignals>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<TumbleweedSpawnManager>().AsSingle();
 
@@ -58,6 +62,7 @@ namespace Installers.Scenes
             Container.Bind(typeof(UpgradeControllerBase), typeof(IInitializable)).To<ReloadSpeedUpgradeController>().AsSingle();
             Container.Bind(typeof(UpgradeControllerBase), typeof(IInitializable)).To<MagazineCapacityUpgradeController>().AsSingle();
             Container.Bind(typeof(UpgradeControllerBase), typeof(IInitializable)).To<DamageMultiplierUpgradeController>().AsSingle();
+            Container.Bind(typeof(IInitializable), typeof(IApprovement), typeof(IDisposable)).To<ApproveController>().AsSingle();
         }
 
         private void BindSettings()

@@ -15,7 +15,9 @@ class UpgradeButtonController : IInitializable
     [Inject] private SaveGameCommand _saveCommand { get; set; }
     [Inject] private UpgradeSettings _upgradeSettings { get; set; }
     [Inject] private ScoreSignals _scoreSignals { get; set; }
+    [Inject] private IApprovement _approvement { get; set; }
 
+    private int _upgradeIdTemp = 0;
     public void Initialize()
     {
         SubscribeEvents();
@@ -32,6 +34,7 @@ class UpgradeButtonController : IInitializable
         //checks  if it fully upgraded
         //if not, checks if player has enough money
         //if he has, lowers money, increases its level and fires onUpgradePurchased signal
+        _upgradeIdTemp = upgradeId;
         int currentLevel =_loadCommand.OnLoadGameData<int>(_model.SaveDataEnum);
         if (currentLevel >= _upgradeSettings.Skills[_model.UpgradeEnum].Count)
         {
@@ -43,9 +46,20 @@ class UpgradeButtonController : IInitializable
         {
             return;
         }
+        else
+        {
+            _approvement.SetApprovementCondition(UpgradeProcess);
+        }
+
+    }
+
+    private void UpgradeProcess()
+    {
+        int currentLevel = _loadCommand.OnLoadGameData<int>(_model.SaveDataEnum);
+        int price = _upgradeSettings.Skills[_model.UpgradeEnum][currentLevel].UpgradePrices;
         _scoreSignals.onAmountChanged?.Invoke(-price);
         _saveCommand.OnSaveData<int>(_model.SaveDataEnum, ++currentLevel);
-        _coreGameSignals.onUpgradePurchased?.Invoke((UpgradeEnums)upgradeId, currentLevel);
+        _coreGameSignals.onUpgradePurchased?.Invoke((UpgradeEnums)_upgradeIdTemp, currentLevel);
 
 
         UpdateTexts();
