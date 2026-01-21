@@ -17,6 +17,7 @@ namespace Managers
         [Inject] private PlayerSignals PlayerSignals { get; set; }
         [Inject] private LevelSignals LevelSignals { get; set; }
         [Inject] private SaveGameCommand _saveCommand { get; set; }
+        [Inject] private LoadGameDataCommand _loadCommand { get; set; }
         [Inject] DiContainer Container;
         #endregion
         #region Public Variables
@@ -33,7 +34,8 @@ namespace Managers
 
         #region Private Variables
 
-        private int _levelID;
+        private int _reachedMaksimumLevelId;
+        private int _currentLevelId;
         private int _currentModdedLevel = 0;
 
         private int _killedEnemyCount = 0;
@@ -51,13 +53,8 @@ namespace Managers
 
         private void Init()
         {
-            _levelID = GetActiveLevel();
-        }
-
-        private int GetActiveLevel()
-        {
-            if (!ES3.FileExists()) return 0;
-            return ES3.KeyExists("Level") ? ES3.Load<int>("Level") : 0;
+            _reachedMaksimumLevelId = _loadCommand.OnLoadGameData<int>(SaveDataEnums.Level) + 1;
+            _currentLevelId = _reachedMaksimumLevelId;
         }
 
         #region Event Subscription
@@ -68,7 +65,6 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            CoreGameSignals.onLevelInitialize += OnInitializeLevel;
             CoreGameSignals.onClearActiveLevel += OnClearActiveLevel;
             CoreGameSignals.onNextLevel += OnNextLevel;
             CoreGameSignals.onRestart += OnRestartLevel;
@@ -77,13 +73,13 @@ namespace Managers
             LevelSignals.onEnemyArrived += OnEnemyArrived;
             LevelSignals.onEnemyDied += OnEnemyDie;
             LevelSignals.onGetLevelHolder += OnGetLevelHolder;
+            LevelSignals.onPreviousLevelOpened += OnPreviousLevelOpened;
 
             PlayerSignals.onDie += OnPlayerDie;
         }
 
         private void UnsubscribeEvents()
         {
-            CoreGameSignals.onLevelInitialize -= OnInitializeLevel;
             CoreGameSignals.onClearActiveLevel -= OnClearActiveLevel;
             CoreGameSignals.onNextLevel -= OnNextLevel;
             CoreGameSignals.onRestart -= OnRestartLevel;
@@ -92,6 +88,7 @@ namespace Managers
             LevelSignals.onEnemyArrived -= OnEnemyArrived;
             LevelSignals.onEnemyDied -= OnEnemyDie;
             LevelSignals.onGetLevelHolder -= OnGetLevelHolder;
+            LevelSignals.onPreviousLevelOpened -= OnPreviousLevelOpened;
 
 
             PlayerSignals.onDie -= OnPlayerDie;
@@ -105,15 +102,31 @@ namespace Managers
         #endregion
         private void Start()
         {
-            OnInitializeLevel();
+            OnInitializeLevel(_reachedMaksimumLevelId);
         }
 
         private void OnNextLevel()
         {
-            _levelID++;
+            if (_currentLevelId!=_reachedMaksimumLevelId)
+            {
+                _currentLevelId = _reachedMaksimumLevelId;
+            }
+            else
+            {
+                _reachedMaksimumLevelId++;
+                _currentLevelId = _reachedMaksimumLevelId;
+                _saveCommand.OnSaveData(SaveDataEnums.Level, _reachedMaksimumLevelId);
+
+            }
             CoreGameSignals.onClearActiveLevel?.Invoke();
             CoreGameSignals.onRestart?.Invoke();
-            _saveCommand.OnSaveData(SaveDataEnums.Level, _levelID);
+        }
+
+        private void OnPreviousLevelOpened(int levelId)
+        {
+            _currentLevelId = levelId;
+            CoreGameSignals.onClearActiveLevel?.Invoke();
+            CoreGameSignals.onRestart?.Invoke();
         }
 
         private void OnRestartLevel()
@@ -122,21 +135,22 @@ namespace Managers
             CoreGameSignals.onReset?.Invoke();
             _killedEnemyCount = 0;
             _currentLevelEnemyCount = 0;
-            CoreGameSignals.onLevelInitialize?.Invoke();
             _isPlayerDead = false;
+            CoreGameSignals.onLevelInitialize?.Invoke();
+            OnInitializeLevel(_currentLevelId);
 
         }
 
         private int OnGetLevelId()
         {
-            return _levelID;
+            return _currentModdedLevel;
         }
 
-        private void OnInitializeLevel()
+        private void OnInitializeLevel(int levelId)
         {
 
             UnityEngine.Object[] Levels = Resources.LoadAll("Levels");
-            int newLevelId = _levelID % Levels.Length;
+            int newLevelId = levelId % Levels.Length;
             _currentModdedLevel = newLevelId;
             //levelLoader.InitializeLevel((GameObject)Levels[newLevelId], levelHolder.transform);
             GameObject level = Container.InstantiatePrefabResource("Levels/" + (_currentModdedLevel + 1).ToString()); /*episodeFactory.Create().gameObject;*/

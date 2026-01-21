@@ -24,6 +24,8 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
     [SerializeField] private RevolverManagerAbs manager;
     [SerializeField] protected Vector3 revolverInitializePos;
     [SerializeField] protected Vector3 revolverInitializeRot;
+    [SerializeField] protected ParticleSystem smokeParicle;
+
     #endregion
     #region Protected Variables
     protected bool _isReloading = false;
@@ -61,6 +63,9 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
         bullet.transform.position = bulletPointTransform.position;
         bullet.transform.eulerAngles = transform.eulerAngles;
         bullet.SetActive(true);
+
+        smokeParicle.Play();
+
     }
 
     protected void SetRevolverPosition()

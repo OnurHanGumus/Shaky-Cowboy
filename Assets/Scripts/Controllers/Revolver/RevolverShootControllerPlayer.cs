@@ -16,6 +16,7 @@ public class RevolverShootControllerPlayer : RevolverShootControllerAbs, IGun
     #region Public Variables
     #endregion
     #region Serializefield Variables
+
     #endregion
     #region Private Variables
     #endregion

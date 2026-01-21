@@ -149,6 +149,7 @@ namespace Managers
             UISignals.onClosePanel?.Invoke(UIPanels.FailPanel);
             UISignals.onClosePanel?.Invoke(UIPanels.LevelPanel);
             UISignals.onOpenPanel?.Invoke(UIPanels.StartPanel);
+
         }
 
         public void PauseButton()

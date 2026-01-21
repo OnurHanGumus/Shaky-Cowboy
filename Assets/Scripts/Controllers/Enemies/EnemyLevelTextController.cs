@@ -14,6 +14,6 @@ class EnemyLevelTextController : MonoBehaviour
     private void Awake()
     {
         int episodeLevel = _model.Level;
-        _text.text = "Lvl: " + (episodeLevel + 1).ToString();
+        _text.text = "Lvl: " + (episodeLevel).ToString();
     }
 }

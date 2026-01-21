@@ -23,7 +23,6 @@ public abstract class RevolverManagerAbs : MonoBehaviour
     #region Serializefield Variables
     [SerializeField] protected RevolverMovementController movementController;
     [SerializeField] protected RevolverShootControllerAbs revolverShootControllerAbs;
-
     #endregion
     #region Protected Variables
     #endregion

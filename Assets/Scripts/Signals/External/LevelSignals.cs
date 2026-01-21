@@ -15,6 +15,7 @@ namespace Signals
         public UnityAction onEnemyArrived = delegate { };
         public UnityAction onStageComplated = delegate { };
         public UnityAction<Transform> onLastEnemyDied = delegate { };
+        public UnityAction<int> onPreviousLevelOpened = delegate { };
 
     }
 }

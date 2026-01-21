@@ -26,7 +26,6 @@ public class LevelPanelController : MonoBehaviour
     [SerializeField] private UIManager manager;
     #endregion
     #region Private Variables
-    private int _levelId = 0;
 
     #endregion
     #endregion
@@ -37,23 +36,21 @@ public class LevelPanelController : MonoBehaviour
 
     private void Init()
     {
-        _levelId = LevelSignals.onGetLevelId();
         UpdateText();
     }
 
     public void OnLevelSuccessful()
     {
-        ++_levelId;
         UpdateText();
     }
 
     private void UpdateText()
     {
-        levelText.text = "Level " + _levelId.ToString();
+        levelText.text = "Level " + LevelSignals.onGetLevelId();
     }
 
     public void OnRestartLevel()
     {
-
+        UpdateText();
     }
 }

@@ -10,11 +10,12 @@ namespace Installers.Prefabs
         [SerializeField] private EnemySettings _enemySettings;
         [SerializeField] private bool isAdditional = false;
         [Inject] private LoadGameDataCommand _loadCommand { get; set; }
+        [Inject] private LevelSignals _levelSignals { get; set; }
         public override void InstallBindings()
         {
             Container.Bind<EnemySignals>().AsSingle();
 
-            int levelId = _loadCommand.OnLoadGameData<int>(SaveDataEnums.Level) + 1;
+            int levelId = _levelSignals.onGetLevelId();
             levelId = isAdditional ? levelId - 1 : levelId;
 
             EnemyModel model = new EnemyModel();
