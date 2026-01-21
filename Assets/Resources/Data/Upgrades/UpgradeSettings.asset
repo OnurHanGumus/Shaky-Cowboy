@@ -28,6 +28,8 @@ MonoBehaviour:
       Value:
       - UpgradeValue: 1.5
         UpgradePrices: 2000
+      - UpgradeValue: 2
+        UpgradePrices: 2000
     - Key: 2
       Value:
       - UpgradeValue: 3

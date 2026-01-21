@@ -16,6 +16,7 @@ class UpgradeButtonController : IInitializable
     [Inject] private UpgradeSettings _upgradeSettings { get; set; }
     [Inject] private ScoreSignals _scoreSignals { get; set; }
     [Inject] private IApprovement _approvement { get; set; }
+    [Inject] private PlayerSettings _playerSettings { get; set; }
 
     private int _upgradeIdTemp = 0;
     public void Initialize()
@@ -74,10 +75,22 @@ class UpgradeButtonController : IInitializable
         if (currentLevel < abilityMaxLevel)
         {
             _model.PriceText.text = _upgradeSettings.Skills[_model.UpgradeEnum][currentLevel].UpgradePrices.ToString();
+            if (!_loadCommand.CheckIfKeyInitialized(_model.SaveDataEnum))
+            {
+                _model.DescriptionText.text = _playerSettings.Settings[_model.UpgradeEnum] + " > " + _upgradeSettings.Skills[_model.UpgradeEnum][currentLevel].UpgradeValue.ToString();
+
+            }
+            else
+            {
+                _model.DescriptionText.text = _upgradeSettings.Skills[_model.UpgradeEnum][currentLevel-1].UpgradeValue.ToString() + " > " + _upgradeSettings.Skills[_model.UpgradeEnum][currentLevel].UpgradeValue.ToString();
+            }
+
         }
         else
         {
             _model.PriceText.text = "MAX";
+            _model.DescriptionText.text = _upgradeSettings.Skills[_model.UpgradeEnum][currentLevel-1].UpgradeValue.ToString();
         }
+
     }
 }
