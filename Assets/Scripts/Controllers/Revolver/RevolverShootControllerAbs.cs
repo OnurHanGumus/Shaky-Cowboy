@@ -15,6 +15,7 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
     [Inject] private PoolSignals _poolSignals { get; set; }
     [Inject] protected CoreGameSignals _coreGameSignals { get; set; }
     [Inject] protected AudioSignals _audioSignals { get; set; }
+    [Inject] protected IHaptic _haptic { get; set; }
     #endregion
     #region Public Variables
     #endregion
@@ -60,6 +61,7 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
             return;
         }
 
+        _haptic.CheckBeforePlay(HapticEnums.Fire);
         GameObject bullet = _poolSignals.onGetObject?.Invoke(PoolEnums.Bullet, transform.position);
         bullet.transform.position = bulletPointTransform.position;
         bullet.transform.eulerAngles = transform.eulerAngles;

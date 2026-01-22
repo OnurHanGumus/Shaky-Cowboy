@@ -17,6 +17,7 @@ namespace Installers.Scenes
         [SerializeField] private PlayerSettings _playerSettings;
         [SerializeField] private PlayerSettings _playerDefaultSettings;
         [SerializeField] private ApprovementPanelSettings _approvementPanelSettings;
+        [SerializeField] private HapticSettings _hapticSettings;
 
         [SerializeField] private UpgradeSettings _upgradeSettings;
 
@@ -39,7 +40,7 @@ namespace Installers.Scenes
             Container.BindInstance(_playerDefaultSettings).WithId("PlayerDefaultSettings").AsTransient();
             Container.BindInstance(_approvementPanelSettings).AsSingle();
             Container.BindInstance(_upgradeSettings).AsSingle();
-
+            Container.BindInstance(_hapticSettings).AsSingle();
 
             Container.Bind<InputSignals>().AsSingle();
             Container.Bind<UISignals>().AsSingle();
@@ -57,6 +58,7 @@ namespace Installers.Scenes
             Container.Bind<ApprovementInternalSignals>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<TumbleweedSpawnManager>().AsSingle();
+            Container.BindInterfacesAndSelfTo<HapticManager>().AsSingle();
 
             Container.Bind(typeof(UpgradeControllerBase), typeof(IInitializable)).To<HealthUpgradeController>().AsSingle();
             Container.Bind(typeof(UpgradeControllerBase), typeof(IInitializable)).To<ReloadSpeedUpgradeController>().AsSingle();

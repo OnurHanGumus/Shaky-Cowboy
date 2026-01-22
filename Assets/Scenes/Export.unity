@@ -22439,6 +22439,7 @@ MonoBehaviour:
   _playerSettings: {fileID: 11400000, guid: 4518f7a90d8d537449706057189f0043, type: 2}
   _playerDefaultSettings: {fileID: 11400000, guid: b433e2ec4e4168845a9242c56d142ad6, type: 2}
   _approvementPanelSettings: {fileID: 11400000, guid: 67f8965c0bc8d6942870a30c3383814c, type: 2}
+  _hapticSettings: {fileID: 11400000, guid: 564d130871afb5d4dbfa09a508b57ed4, type: 2}
   _upgradeSettings: {fileID: 11400000, guid: 89b6fa391a2831248ba06d035c5408da, type: 2}
 --- !u!1 &1823729671
 GameObject:
