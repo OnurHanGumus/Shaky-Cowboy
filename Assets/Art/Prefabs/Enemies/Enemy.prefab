@@ -4292,7 +4292,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6070105327163104019, guid: 5e566ac65951d0046970ac750d786fb1, type: 2}
+  - {fileID: 4135778806565347380, guid: dbf54701b2e83fe44b1373fd7b7ddbe2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4337,8 +4337,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Lvl: 5'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5e566ac65951d0046970ac750d786fb1, type: 2}
-  m_sharedMaterial: {fileID: 6070105327163104019, guid: 5e566ac65951d0046970ac750d786fb1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dbf54701b2e83fe44b1373fd7b7ddbe2, type: 2}
+  m_sharedMaterial: {fileID: 4135778806565347380, guid: dbf54701b2e83fe44b1373fd7b7ddbe2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4665,15 +4665,23 @@ PrefabInstance:
     - target: {fileID: 1304907989684369928, guid: 4dc6beb6fcb1a4a4ab5475f89324ff0d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 6070105327163104019, guid: 5e566ac65951d0046970ac750d786fb1, type: 2}
+      objectReference: {fileID: 4135778806565347380, guid: dbf54701b2e83fe44b1373fd7b7ddbe2, type: 2}
+    - target: {fileID: 1304907989684369929, guid: 4dc6beb6fcb1a4a4ab5475f89324ff0d, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1304907989684369929, guid: 4dc6beb6fcb1a4a4ab5475f89324ff0d, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 5e566ac65951d0046970ac750d786fb1, type: 2}
+      objectReference: {fileID: 11400000, guid: dbf54701b2e83fe44b1373fd7b7ddbe2, type: 2}
+    - target: {fileID: 1304907989684369929, guid: 4dc6beb6fcb1a4a4ab5475f89324ff0d, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1304907989684369929, guid: 4dc6beb6fcb1a4a4ab5475f89324ff0d, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 6070105327163104019, guid: 5e566ac65951d0046970ac750d786fb1, type: 2}
+      objectReference: {fileID: 4135778806565347380, guid: dbf54701b2e83fe44b1373fd7b7ddbe2, type: 2}
     - target: {fileID: 1304907989684369929, guid: 4dc6beb6fcb1a4a4ab5475f89324ff0d, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0

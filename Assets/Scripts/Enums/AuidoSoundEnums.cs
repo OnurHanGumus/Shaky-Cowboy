@@ -12,5 +12,7 @@ namespace Enums
         Reload,
         HitStickMan,
         HitReplaceable,
+        ReloadStart,
+        ReloadEnd,
     }
 }

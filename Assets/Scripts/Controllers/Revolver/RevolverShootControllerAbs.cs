@@ -14,6 +14,7 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
 
     [Inject] private PoolSignals _poolSignals { get; set; }
     [Inject] protected CoreGameSignals _coreGameSignals { get; set; }
+    [Inject] protected AudioSignals _audioSignals { get; set; }
     #endregion
     #region Public Variables
     #endregion

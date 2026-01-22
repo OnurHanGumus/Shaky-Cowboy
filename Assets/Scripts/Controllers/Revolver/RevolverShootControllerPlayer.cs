@@ -58,9 +58,11 @@ public class RevolverShootControllerPlayer : RevolverShootControllerAbs, IGun
         {
             _isReloading = true;
             RevolverOnHand();
+            _audioSignals.onPlaySound?.Invoke(AudioSoundEnums.ReloadStart);
 
             PlayerSignals.onReload?.Invoke();
             yield return wait2_4f;
+            _audioSignals.onPlaySound?.Invoke(AudioSoundEnums.ReloadEnd);
 
             SetRevolverPosition();
 
@@ -70,6 +72,7 @@ public class RevolverShootControllerPlayer : RevolverShootControllerAbs, IGun
             _isReloading = false;
             CurrentBulletCount = AmmoCapacity;
         }
+
     }
 
     private void OnPlay()
