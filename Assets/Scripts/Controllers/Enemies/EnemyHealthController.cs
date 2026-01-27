@@ -10,7 +10,7 @@ using Zenject;
 
 class EnemyHealthController : MonoBehaviour
 {
-    public int CurrentHealth = 100;
+    public float CurrentHealth = 100;
     [Inject] private EnemySignals EnemySignals { get; set; }
     [Inject] private LevelSignals LevelSignals { get; set; }
     [Inject] private ScoreSignals ScoreSignals { get; set; }
@@ -31,7 +31,7 @@ class EnemyHealthController : MonoBehaviour
     private void UpdateHealth()
     {
         CurrentHealth = _settings.Health;
-        healthBarManager.InitHealthValue(CurrentHealth);
+        healthBarManager.InitHealthValue((int)CurrentHealth);
     }
 
     protected void SubscribeEvents()
@@ -50,7 +50,7 @@ class EnemyHealthController : MonoBehaviour
     }
     #endregion
 
-    public void OnHitted(int value, StickmanBodyPartEnums bodyPart)
+    public void OnHitted(float value, StickmanBodyPartEnums bodyPart)
     {
         if (_model.IsDead)
         {
@@ -63,7 +63,7 @@ class EnemyHealthController : MonoBehaviour
             _model.IsDead = true;
             LevelSignals.onEnemyDied.Invoke(transform);
             EnemySignals.onDie?.Invoke(bodyPart);
-            ScoreSignals.onAmountChanged?.Invoke(value);
+            ScoreSignals.onAmountChanged?.Invoke((int)value);
             colliders.SetActive(false);
             healthBarManager.gameObject.SetActive(false);
             levelText.SetActive(false);
@@ -74,6 +74,6 @@ class EnemyHealthController : MonoBehaviour
 
     private void ChangeHealthBar()
     {
-        healthBarManager.ChangeHealthbar(CurrentHealth);
+        healthBarManager.ChangeHealthbar((int)CurrentHealth);
     }
 }

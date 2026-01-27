@@ -28,7 +28,8 @@ namespace Controllers {
         private void OnDisable()
         {
         }
-        void IAttackable.OnWeaponTriggerEnter(int value)
+
+        void IAttackable.OnWeaponTriggerEnter(float value)
         {
             PlayerSignals.onHitted?.Invoke(value * criticalDamageValue, stickmanBodyPartEnums);
         }

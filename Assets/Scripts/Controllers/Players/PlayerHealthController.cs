@@ -10,7 +10,7 @@ using Zenject;
 
 class PlayerHealthController : MonoBehaviour
 {
-    public int CurrentHealth = 100;
+    public float CurrentHealth = 100;
     [Inject] private PlayerSettings _settings { get; set; }
     [Inject] private PlayerSignals PlayerSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
@@ -59,10 +59,10 @@ class PlayerHealthController : MonoBehaviour
     private void UpdateHealth()
     {
         CurrentHealth = (int)_settings.Settings[UpgradeEnums.HealthUpgrade];
-        healthBarManager.InitHealthValue(CurrentHealth);
+        healthBarManager.InitHealthValue((int)CurrentHealth);
     }
 
-    public void OnHitted(int value, StickmanBodyPartEnums bodyPart)
+    public void OnHitted(float value, StickmanBodyPartEnums bodyPart)
     {
         CurrentHealth -= value;
 
@@ -83,7 +83,7 @@ class PlayerHealthController : MonoBehaviour
 
     private void ChangeHealthBar()
     {
-        healthBarManager.ChangeHealthbar(CurrentHealth);
+        healthBarManager.ChangeHealthbar((int)CurrentHealth);
     }
 
     public void OnLevelSuccessful()

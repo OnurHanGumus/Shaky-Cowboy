@@ -12,7 +12,7 @@ namespace Signals
         public UnityAction<Vector3> onPlayerMove;
         public UnityAction<IAttackable> onEnemyShooted;
         public UnityAction onShoot;
-        public UnityAction<int, StickmanBodyPartEnums> onHitted = delegate { };
+        public UnityAction<float, StickmanBodyPartEnums> onHitted = delegate { };
         public UnityAction<StickmanBodyPartEnums> onDie = delegate { };
         public UnityAction onReload;
         public UnityAction onReloaded;

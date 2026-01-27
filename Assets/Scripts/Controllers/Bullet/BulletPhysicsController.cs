@@ -12,8 +12,9 @@ public class BulletPhysicsController : MonoBehaviour, IPoolType
 {
     #region Self Variables
     #region Inject Variables
-    [Inject] private PlayerSignals PlayerSignals { get; set; }
-    [Inject] private AudioSignals AudioSignals { get; set; }
+    [Inject] private PlayerSignals _playerSignals { get; set; }
+    [Inject] private AudioSignals _audioSignals { get; set; }
+    [Inject] private PlayerSettings _playerSettings { get; set; }
     #endregion
     #region Public Variables
     #endregion
@@ -58,15 +59,15 @@ public class BulletPhysicsController : MonoBehaviour, IPoolType
     {
         replaceable.OnShooted(rig.linearVelocity);
         Hitted();
-        AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.HitReplaceable);
+        _audioSignals.onPlaySound?.Invoke(AudioSoundEnums.HitReplaceable);
     }
 
     private void EnemyHitted(IAttackable attackable)
     {
-        PlayerSignals.onEnemyShooted?.Invoke(attackable);
+        _playerSignals.onEnemyShooted?.Invoke(attackable);
         Hitted();
-        attackable.OnWeaponTriggerEnter(1);
-        AudioSignals.onPlaySound?.Invoke(AudioSoundEnums.HitStickMan);
+        attackable.OnWeaponTriggerEnter(_playerSettings.Settings[UpgradeEnums.DamageMultiplierUpgrade]);
+        _audioSignals.onPlaySound?.Invoke(AudioSoundEnums.HitStickMan);
     }
 
     private IEnumerator BulletLifeTime()

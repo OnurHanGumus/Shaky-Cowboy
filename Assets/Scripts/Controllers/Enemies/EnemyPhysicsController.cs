@@ -26,7 +26,7 @@ namespace Controllers {
         #endregion
         #endregion
 
-        void IAttackable.OnWeaponTriggerEnter(int value)
+        void IAttackable.OnWeaponTriggerEnter(float value)
         {
             EnemySignals.onHitted?.Invoke(value * criticalDamageValue, stickmanBodyPartEnums);
         }

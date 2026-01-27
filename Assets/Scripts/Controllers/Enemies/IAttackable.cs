@@ -5,6 +5,6 @@ namespace Components.Enemies
 {
     public interface IAttackable
     {
-        void OnWeaponTriggerEnter(int value);
+        void OnWeaponTriggerEnter(float value);
     }
 }

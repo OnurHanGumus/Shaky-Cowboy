@@ -143,7 +143,6 @@ namespace Managers
 
         private int OnGetLevelId()
         {
-            Debug.Log(_currentModdedLevel);
             return _currentModdedLevel;
         }
 
