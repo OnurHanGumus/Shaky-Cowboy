@@ -32,17 +32,19 @@ class MusicController : MonoBehaviour
 
     private void OnRestart()
     {
+        StopAllCoroutines();
         StartCoroutine(MusicVolumeIncreaser());
     }
 
     private void OnPlay()
     {
+        StopAllCoroutines();
         StartCoroutine(MusicVolumeDecreaser());
     }
 
     private IEnumerator MusicVolumeIncreaser()
     {
-        while (_audioSource.volume < 1)
+        while (_audioSource.volume < 0.5f)
         {
             yield return _seconds;
             _audioSource.volume += 0.1f;
@@ -51,7 +53,7 @@ class MusicController : MonoBehaviour
 
     private IEnumerator MusicVolumeDecreaser()
     {
-        while (_audioSource.volume > 0)
+        while (_audioSource.volume > 0.3f)
         {
             yield return _seconds;
             _audioSource.volume -= 0.1f;

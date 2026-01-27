@@ -38,6 +38,12 @@ public class RevolverShootControllerPlayer : RevolverShootControllerAbs, IGun
     public override void OnShoot()
     {
         base.OnShoot();
+        if (_isReloading)
+        {
+            return;
+        }
+
+        _haptic.CheckBeforePlay(HapticEnums.Fire);
     }
 
     public override void OnDie(StickmanBodyPartEnums bodyPart)

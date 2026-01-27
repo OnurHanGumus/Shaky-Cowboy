@@ -14,6 +14,7 @@ class PlayerHealthController : MonoBehaviour
     [Inject] private PlayerSettings _settings { get; set; }
     [Inject] private PlayerSignals PlayerSignals { get; set; }
     [Inject] private CoreGameSignals CoreGameSignals { get; set; }
+    [Inject] protected IHaptic _haptic { get; set; }
 
     [SerializeField] private HealthBarManager healthBarManager;
     private bool _isLevelSuccessful = false;
@@ -73,6 +74,8 @@ class PlayerHealthController : MonoBehaviour
         {
             PlayerSignals.onDie?.Invoke(bodyPart);
             CoreGameSignals.onLevelFailed?.Invoke();
+            _haptic.CheckBeforePlay(HapticEnums.Die);
+
         }
 
         ChangeHealthBar();

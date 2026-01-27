@@ -143,6 +143,7 @@ namespace Managers
 
         private int OnGetLevelId()
         {
+            Debug.Log(_currentModdedLevel);
             return _currentModdedLevel;
         }
 
@@ -152,6 +153,10 @@ namespace Managers
             UnityEngine.Object[] Levels = Resources.LoadAll("Levels");
             int newLevelId = levelId % Levels.Length;
             _currentModdedLevel = newLevelId;
+            if (_currentModdedLevel == 0)
+            {
+                _currentModdedLevel = 1;
+            }
             //levelLoader.InitializeLevel((GameObject)Levels[newLevelId], levelHolder.transform);
             GameObject level = Container.InstantiatePrefabResource("Levels/" + (_currentModdedLevel + 1).ToString()); /*episodeFactory.Create().gameObject;*/
             level.transform.parent = levelHolder.transform;

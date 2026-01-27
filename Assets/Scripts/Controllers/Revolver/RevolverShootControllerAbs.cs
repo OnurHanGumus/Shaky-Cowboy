@@ -61,7 +61,6 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
             return;
         }
 
-        _haptic.CheckBeforePlay(HapticEnums.Fire);
         GameObject bullet = _poolSignals.onGetObject?.Invoke(PoolEnums.Bullet, transform.position);
         bullet.transform.position = bulletPointTransform.position;
         bullet.transform.eulerAngles = transform.eulerAngles;
