@@ -15,14 +15,16 @@ public class RevolverMovementController : MonoBehaviour
     #endregion
     #region Serializefield Variables
     [SerializeField] Transform revolverTargetTransform;
-
+    [SerializeField] private float amplitude = 3f;
+    [SerializeField] private float targetPosY = -2.96f;
+    [SerializeField] private float movementDuration = 1.5f;
+    [SerializeField] private Ease movementEase = Ease.Linear;
 
     #endregion
     #region Private Variables
     private Tween _patrollingTween = null;
     private float _direction = 1f;
-    private float _amplitude = 3f;
-    private float _targetPosY = -2.96f;
+
     #endregion
     #endregion
 
@@ -33,7 +35,7 @@ public class RevolverMovementController : MonoBehaviour
 
     private void Init()
     {
-        revolverTargetTransform.position = new Vector3(revolverTargetTransform.position.x, _targetPosY, revolverTargetTransform.position.z);
+        revolverTargetTransform.position = new Vector3(revolverTargetTransform.position.x, targetPosY, revolverTargetTransform.position.z);
     }
 
     public void OnPlay()
@@ -51,15 +53,17 @@ public class RevolverMovementController : MonoBehaviour
         _direction *= -1;
         _patrollingTween = revolverTargetTransform.DOPath(new Vector3[3]
         {
-            new Vector3(revolverTargetTransform.position.x, _targetPosY + (_amplitude * _direction), revolverTargetTransform.position.z),
-            new Vector3(revolverTargetTransform.position.x, _targetPosY - (_amplitude * _direction), revolverTargetTransform.position.z),
-            new Vector3(revolverTargetTransform.position.x, _targetPosY, revolverTargetTransform.position.z),
-        }, 1.5f).OnComplete(() =>
+            new Vector3(revolverTargetTransform.position.x, targetPosY + (amplitude * _direction), revolverTargetTransform.position.z),
+            new Vector3(revolverTargetTransform.position.x, targetPosY - (amplitude * _direction), revolverTargetTransform.position.z),
+            new Vector3(revolverTargetTransform.position.x, targetPosY, revolverTargetTransform.position.z),
+        }, movementDuration).OnComplete(() =>
         {
             _patrollingTween.Restart();
+            //SetTween();
         }
-        ).SetEase(Ease.Linear);
+        ).SetEase(movementEase);
     }
+
     public void OnRestart()
     {
         _patrollingTween.Pause();

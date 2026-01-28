@@ -4,6 +4,7 @@ using UnityEngine;
 using Controllers;
 using System;
 using Zenject;
+using DG.Tweening;
 
 [CreateAssetMenu(fileName = "EnemySettings", menuName = "MySettings/EnemySettings", order = 0)]
 public class EnemySettings : ScriptableObject
