@@ -1826,6 +1826,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   revolverTargetTransform: {fileID: 7464371875332465553}
+  amplitude: 5
+  targetPosY: -3.5
+  movementDuration: 1
+  movementEase: 1
 --- !u!114 &1576879709222569188
 MonoBehaviour:
   m_ObjectHideFlags: 0

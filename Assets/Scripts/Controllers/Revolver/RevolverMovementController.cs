@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using DG.Tweening;
+using System;
 
 public class RevolverMovementController : MonoBehaviour
 {
     #region Self Variables
     #region Inject Variables
-
+    [Inject] private CoreGameSignals _coreGameSignals { get; set; }
     #endregion
     #region Public Variables
     #endregion
@@ -31,6 +32,24 @@ public class RevolverMovementController : MonoBehaviour
     private void Awake()
     {
         Init();
+        SubscribeEvents();
+    }
+
+    private void SubscribeEvents()
+    {
+        _coreGameSignals.onBulletTimeAnimationCompleted += OnBulletTimeAnimationCompleted;
+    }
+
+    private void OnBulletTimeAnimationCompleted()
+    {
+        if (_coreGameSignals.isBulletTimeActivated())
+        {
+            movementDuration = 0.5f;
+        }
+        else
+        {
+            movementDuration = 1;
+        }
     }
 
     private void Init()
@@ -50,7 +69,7 @@ public class RevolverMovementController : MonoBehaviour
 
     private void SetTween()
     {
-        _direction *= -1;
+        //_direction *= -1;
         _patrollingTween = revolverTargetTransform.DOPath(new Vector3[3]
         {
             new Vector3(revolverTargetTransform.position.x, targetPosY + (amplitude * _direction), revolverTargetTransform.position.z),
@@ -58,14 +77,15 @@ public class RevolverMovementController : MonoBehaviour
             new Vector3(revolverTargetTransform.position.x, targetPosY, revolverTargetTransform.position.z),
         }, movementDuration).OnComplete(() =>
         {
-            _patrollingTween.Restart();
-            //SetTween();
+            //_patrollingTween.Restart();
+            SetTween();
         }
         ).SetEase(movementEase);
     }
 
     public void OnRestart()
     {
+        movementDuration = 1;
         _patrollingTween.Pause();
     }
 }

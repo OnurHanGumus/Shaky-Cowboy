@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class CoreGameSignals
@@ -15,7 +16,9 @@ public class CoreGameSignals
     public UnityAction onStorePanelClosed = delegate { };
     public UnityAction<UpgradeEnums,int> onUpgradePurchased = delegate { };
     public UnityAction<UpgradeEnums> onUpgradePurchasedEnded = delegate { };
-
+    public UnityAction onBulletTimeActivated = delegate { };
+    public UnityAction onBulletTimeAnimationCompleted = delegate { };
+    public Func<bool> isBulletTimeActivated = delegate { return false; };
     public readonly struct InputUpdate
     {
         public readonly Vector3 TerrainPos;

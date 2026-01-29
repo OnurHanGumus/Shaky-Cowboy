@@ -16,11 +16,8 @@ namespace Managers
     {
         #region Self Variables
         #region Injected Variables
-        [Inject] private CoreGameSignals CoreGameSignals { get; set; }
-        [Inject] private AudioSignals AudioSignals { get; set; }
-        [Inject] private SaveSignals SaveSignals { get; set; }
-        [Inject] private ScoreSignals ScoreSignals { get; set; }
-        [Inject] private UISignals UISignals { get; set; }
+        [Inject] private CoreGameSignals _coreGameSignals { get; set; }
+        [Inject] private UISignals _uISignals { get; set; }
         #endregion
         #region Public Variables
         #region Array struct
@@ -73,24 +70,24 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            UISignals.onOpenPanel += OnOpenPanel;
-            UISignals.onClosePanel += OnClosePanel;
-            CoreGameSignals.onPlay += OnPlay;
-            CoreGameSignals.onLevelFailed += OnLevelFailed;
-            CoreGameSignals.onLevelSuccessful += OnLevelSuccessful;
-            CoreGameSignals.onLevelSuccessful += levelPanelController.OnLevelSuccessful;
-            CoreGameSignals.onRestart += levelPanelController.OnRestartLevel;
+            _uISignals.onOpenPanel += OnOpenPanel;
+            _uISignals.onClosePanel += OnClosePanel;
+            _coreGameSignals.onPlay += OnPlay;
+            _coreGameSignals.onLevelFailed += OnLevelFailed;
+            _coreGameSignals.onLevelSuccessful += OnLevelSuccessful;
+            _coreGameSignals.onLevelSuccessful += levelPanelController.OnLevelSuccessful;
+            _coreGameSignals.onRestart += levelPanelController.OnRestartLevel;
         }
 
         private void UnsubscribeEvents()
         {
-            UISignals.onOpenPanel -= OnOpenPanel;
-            UISignals.onClosePanel -= OnClosePanel;
-            CoreGameSignals.onPlay -= OnPlay;
-            CoreGameSignals.onLevelFailed -= OnLevelFailed;
-            CoreGameSignals.onLevelSuccessful -= OnLevelSuccessful;
-            CoreGameSignals.onLevelSuccessful -= levelPanelController.OnLevelSuccessful;
-            CoreGameSignals.onRestart -= levelPanelController.OnRestartLevel;
+            _uISignals.onOpenPanel -= OnOpenPanel;
+            _uISignals.onClosePanel -= OnClosePanel;
+            _coreGameSignals.onPlay -= OnPlay;
+            _coreGameSignals.onLevelFailed -= OnLevelFailed;
+            _coreGameSignals.onLevelSuccessful -= OnLevelSuccessful;
+            _coreGameSignals.onLevelSuccessful -= levelPanelController.OnLevelSuccessful;
+            _coreGameSignals.onRestart -= levelPanelController.OnRestartLevel;
         }
 
         private void OnDisable()
@@ -112,59 +109,65 @@ namespace Managers
 
         private void OnPlay()
         {
-            UISignals.onClosePanel?.Invoke(UIPanels.StartPanel);
-            UISignals.onOpenPanel?.Invoke(UIPanels.LevelPanel);
+            _uISignals.onClosePanel?.Invoke(UIPanels.StartPanel);
+            _uISignals.onOpenPanel?.Invoke(UIPanels.LevelPanel);
         }
 
         private void OnLevelFailed()
         {
-            UISignals.onClosePanel?.Invoke(UIPanels.LevelPanel);
-            UISignals.onOpenPanel?.Invoke(UIPanels.FailPanel);
+            _uISignals.onClosePanel?.Invoke(UIPanels.LevelPanel);
+            _uISignals.onOpenPanel?.Invoke(UIPanels.FailPanel);
             //gameOverPanelController.ShowThePanel();
         }
 
         private void OnLevelSuccessful()
         {
-            UISignals.onClosePanel?.Invoke(UIPanels.LevelPanel);
-            UISignals.onOpenPanel?.Invoke(UIPanels.WinPanel);
+            _uISignals.onClosePanel?.Invoke(UIPanels.LevelPanel);
+            _uISignals.onOpenPanel?.Invoke(UIPanels.WinPanel);
         }
 
         public void Play()
         {
-            CoreGameSignals.onPlay?.Invoke();
-            UISignals.onClosePanel?.Invoke(UIPanels.StorePanel);
-            UISignals.onClosePanel?.Invoke(UIPanels.StartPanel);
+            _coreGameSignals.onPlay?.Invoke();
+            _uISignals.onClosePanel?.Invoke(UIPanels.StorePanel);
+            _uISignals.onClosePanel?.Invoke(UIPanels.StartPanel);
         }
 
         public void NextLevel()
         {
-            CoreGameSignals.onNextLevel?.Invoke();
-            UISignals.onClosePanel?.Invoke(UIPanels.WinPanel);
-            UISignals.onOpenPanel?.Invoke(UIPanels.StartPanel);
+            _coreGameSignals.onNextLevel?.Invoke();
+            _uISignals.onClosePanel?.Invoke(UIPanels.WinPanel);
+            _uISignals.onOpenPanel?.Invoke(UIPanels.StartPanel);
         }
 
         public void RestartLevel()
         {
-            CoreGameSignals.onRestart?.Invoke();
-            UISignals.onClosePanel?.Invoke(UIPanels.FailPanel);
-            UISignals.onClosePanel?.Invoke(UIPanels.LevelPanel);
-            UISignals.onOpenPanel?.Invoke(UIPanels.StartPanel);
+            _coreGameSignals.onRestart?.Invoke();
+            _uISignals.onClosePanel?.Invoke(UIPanels.FailPanel);
+            _uISignals.onClosePanel?.Invoke(UIPanels.LevelPanel);
+            _uISignals.onOpenPanel?.Invoke(UIPanels.StartPanel);
 
         }
 
         public void PauseButton()
         {
-            UISignals.onOpenPanel?.Invoke(UIPanels.PausePanel);
+            _uISignals.onOpenPanel?.Invoke(UIPanels.PausePanel);
             Time.timeScale = 0f;
         }
 
         public void HighScoreButton()
         {
-            UISignals.onClosePanel?.Invoke(UIPanels.StartPanel);
+            _uISignals.onClosePanel?.Invoke(UIPanels.StartPanel);
         }
+
+        public void BulletTimeButton()
+        {
+            _coreGameSignals.onBulletTimeActivated?.Invoke();
+        }
+
         public void OptionsButton()
         {
-            UISignals.onOpenPanel?.Invoke(UIPanels.OptionsPanel);
+            _uISignals.onOpenPanel?.Invoke(UIPanels.OptionsPanel);
             //Debug.Log("Clicked");
         }
 
@@ -172,11 +175,11 @@ namespace Managers
         {
             if (!_isStorePanelOpened)
             {
-                UISignals.onOpenPanel?.Invoke(UIPanels.StorePanel);
+                _uISignals.onOpenPanel?.Invoke(UIPanels.StorePanel);
             }
             else
             {
-                UISignals.onClosePanel?.Invoke(UIPanels.StorePanel);
+                _uISignals.onClosePanel?.Invoke(UIPanels.StorePanel);
             }
             _isStorePanelOpened = !_isStorePanelOpened;
 
