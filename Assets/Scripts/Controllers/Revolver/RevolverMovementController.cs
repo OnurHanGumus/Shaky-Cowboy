@@ -18,13 +18,15 @@ public class RevolverMovementController : MonoBehaviour
     [SerializeField] Transform revolverTargetTransform;
     [SerializeField] private float amplitude = 3f;
     [SerializeField] private float targetPosY = -2.96f;
-    [SerializeField] private float movementDuration = 1.5f;
+    [SerializeField] private float movementDurationDefault = 1.5f;
+    [SerializeField] private float movementDurationBulletTime = 1f;
     [SerializeField] private Ease movementEase = Ease.Linear;
 
     #endregion
     #region Private Variables
     private Tween _patrollingTween = null;
     private float _direction = 1f;
+    private float _movementDuration = 1.5f;
 
     #endregion
     #endregion
@@ -44,16 +46,17 @@ public class RevolverMovementController : MonoBehaviour
     {
         if (_coreGameSignals.isBulletTimeActivated())
         {
-            movementDuration = 0.5f;
+            _movementDuration = movementDurationBulletTime;
         }
         else
         {
-            movementDuration = 1;
+            _movementDuration = movementDurationDefault;
         }
     }
 
     private void Init()
     {
+        _movementDuration = movementDurationDefault;
         revolverTargetTransform.position = new Vector3(revolverTargetTransform.position.x, targetPosY, revolverTargetTransform.position.z);
     }
 
@@ -75,7 +78,7 @@ public class RevolverMovementController : MonoBehaviour
             new Vector3(revolverTargetTransform.position.x, targetPosY + (amplitude * _direction), revolverTargetTransform.position.z),
             new Vector3(revolverTargetTransform.position.x, targetPosY - (amplitude * _direction), revolverTargetTransform.position.z),
             new Vector3(revolverTargetTransform.position.x, targetPosY, revolverTargetTransform.position.z),
-        }, movementDuration).OnComplete(() =>
+        }, _movementDuration).OnComplete(() =>
         {
             //_patrollingTween.Restart();
             SetTween();
@@ -85,7 +88,7 @@ public class RevolverMovementController : MonoBehaviour
 
     public void OnRestart()
     {
-        movementDuration = 1;
+        _movementDuration = movementDurationDefault;
         _patrollingTween.Pause();
     }
 }

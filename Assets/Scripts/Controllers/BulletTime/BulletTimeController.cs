@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
+using DG.Tweening;
 
 class BulletTimeController : MonoBehaviour
 {
@@ -15,6 +16,8 @@ class BulletTimeController : MonoBehaviour
     [SerializeField] private bool isBulletTimeActivated = false;
     [SerializeField] private float delay = 0.05f;
     [SerializeField] private float increaseAmountOfEveryDelay = 0.05f;
+
+    [SerializeField] private SpriteRenderer skyFader, groundFader;
 
     private WaitForSeconds _waitForSeconds;
 
@@ -68,21 +71,32 @@ class BulletTimeController : MonoBehaviour
 
     IEnumerator EnterAnimation()
     {
+        ChangeFaderColors(0.15f, 0.42f);
+
         while (Time.timeScale > bulletTimeTimeScale)
         {
             yield return _waitForSeconds;
             Time.timeScale -= increaseAmountOfEveryDelay;
         }
         _coreGameSignals.onBulletTimeAnimationCompleted?.Invoke();
+
     }
 
     IEnumerator ExitAnimation()
     {
+        ChangeFaderColors(0, 0);
+
         while (Time.timeScale < 1f)
         {
             yield return _waitForSeconds;
             Time.timeScale += increaseAmountOfEveryDelay;
         }
         _coreGameSignals.onBulletTimeAnimationCompleted?.Invoke();
+    }
+
+    private void ChangeFaderColors(float groundFaderEndValue, float skyFaderEndValue)
+    {
+        skyFader.DOFade(skyFaderEndValue, 0.2f).SetEase(Ease.Linear);
+        groundFader.DOFade(groundFaderEndValue, 0.2f).SetEase(Ease.Linear);
     }
 }
