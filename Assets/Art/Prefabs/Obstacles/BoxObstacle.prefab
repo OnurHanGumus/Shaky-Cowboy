@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rig: {fileID: 5998848440670016186}
+  health: 2
 --- !u!65 &3742498006356722929
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65,7 +66,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.4650002, y: 1.3775, z: 1.305}
+  m_Size: {x: 2.5951302, y: 1.4057794, z: 1.305}
   m_Center: {x: 0, y: 0.6875, z: 0}
 --- !u!1 &4271903703935447944
 GameObject:

@@ -250,6 +250,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoxObstacle (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7142204211679513256, guid: 92b74eb40b944624c99642c531bd5ae1, type: 3}
+      propertyPath: isUnbreakable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
