@@ -104,7 +104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7796179470828283455, guid: cee7c23c3825e024eafaf8ba1af32f9d, type: 3}
       propertyPath: isUnbreakable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -253,6 +253,10 @@ PrefabInstance:
     - target: {fileID: 4271903703935447944, guid: 92b74eb40b944624c99642c531bd5ae1, type: 3}
       propertyPath: m_Name
       value: BoxObstacle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142204211679513256, guid: 92b74eb40b944624c99642c531bd5ae1, type: 3}
+      propertyPath: isUnbreakable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
