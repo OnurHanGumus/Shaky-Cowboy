@@ -38,6 +38,7 @@ class BulletTimeController : MonoBehaviour
         _coreGameSignals.onLevelFailed += OnReset;
         _coreGameSignals.onLevelSuccessful += OnReset;
         _coreGameSignals.isBulletTimeActivated += IsBulletTimeActivated;
+        _coreGameSignals.onRestart += OnRestart;
     }
 
     private bool IsBulletTimeActivated()
@@ -99,4 +100,9 @@ class BulletTimeController : MonoBehaviour
         skyFader.DOFade(skyFaderEndValue, 0.2f).SetEase(Ease.Linear);
         groundFader.DOFade(groundFaderEndValue, 0.2f).SetEase(Ease.Linear);
     }
+
+    private void OnRestart()
+    {
+        StartCoroutine(ExitAnimation());
+    } 
 }
