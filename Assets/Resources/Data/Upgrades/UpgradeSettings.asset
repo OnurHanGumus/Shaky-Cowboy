@@ -32,13 +32,13 @@ MonoBehaviour:
         UpgradePrices: 2000
     - Key: 2
       Value:
-      - UpgradeValue: 3
-        UpgradePrices: 1000
-      - UpgradeValue: 4
-        UpgradePrices: 1500
       - UpgradeValue: 5
-        UpgradePrices: 2000
+        UpgradePrices: 1000
       - UpgradeValue: 6
+        UpgradePrices: 1500
+      - UpgradeValue: 7
+        UpgradePrices: 2000
+      - UpgradeValue: 8
         UpgradePrices: 2500
     - Key: 3
       Value:

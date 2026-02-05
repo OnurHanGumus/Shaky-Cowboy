@@ -32,7 +32,7 @@ public abstract class RevolverShootControllerAbs : MonoBehaviour
     #region Protected Variables
     protected bool _isReloading = false;
     protected WaitForSeconds wait2_4f = new WaitForSeconds(2.4f);
-    protected WaitForSeconds wait0_5f = new WaitForSeconds(0.5f);
+    protected WaitForSeconds wait0_5f = new WaitForSeconds(0.3f);
     protected bool _isDied = false;
 
     #endregion
