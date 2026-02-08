@@ -14,5 +14,6 @@ namespace Enums
         HitReplaceable,
         ReloadStart,
         ReloadEnd,
+        Buy,
     }
 }

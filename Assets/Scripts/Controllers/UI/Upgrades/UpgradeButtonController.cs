@@ -17,6 +17,7 @@ class UpgradeButtonController : IInitializable
     [Inject] private ScoreSignals _scoreSignals { get; set; }
     [Inject] private IApprovement _approvement { get; set; }
     [Inject] private PlayerSettings _playerSettings { get; set; }
+    [Inject] private AudioSignals _audioSignals { get; set; }
 
     private int _upgradeIdTemp = 0;
     public void Initialize()
@@ -61,7 +62,7 @@ class UpgradeButtonController : IInitializable
         _scoreSignals.onAmountChanged?.Invoke(-price);
         _saveCommand.OnSaveData<int>(_model.SaveDataEnum, ++currentLevel);
         _coreGameSignals.onUpgradePurchased?.Invoke((UpgradeEnums)_upgradeIdTemp, currentLevel);
-
+        _audioSignals.onPlaySound?.Invoke(Enums.AudioSoundEnums.Buy);
 
         UpdateTexts();
     }

@@ -36,7 +36,7 @@ public class AdBannerManager : MonoBehaviour
         {
             DestroyAd();
         }
-        AdSize adSize = new AdSize(320, 100);
+        AdSize adSize = new AdSize(320, 50);
         _bannerView = new BannerView(isTest ? _testBannerId : _bannerId, adSize, AdPosition.Bottom);
     }
 
