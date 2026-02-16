@@ -55,6 +55,12 @@ class StorePanelController : MonoBehaviour
     {
         _fadingProcessDurationDelay = new WaitForSeconds(_gameOptions.FadingProcessDurationDelay_StorePanel);
         _faderActiveDuration = new WaitForSeconds(_gameOptions.FaderActiveDuration_StorePanel);
+
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            levelTexts.Add(buttons[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>());
+
+        }
     }
 
     public void CloseButton()

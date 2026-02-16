@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 80
   m_EditorClassIdentifier: 
   Health: 510
-  DamageMultiplier: 1.4
+  DamageMultiplier: 1.2
   ReloadSpeed: 4.5
   MagazineCapacity: 8
   ShootDelayEnum: 7
