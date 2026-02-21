@@ -21,25 +21,33 @@ MonoBehaviour:
       - UpgradeValue: 150
         UpgradePrices: 920
       - UpgradeValue: 170
-        UpgradePrices: 1300
+        UpgradePrices: 1100
       - UpgradeValue: 200
+        UpgradePrices: 1620
+      - UpgradeValue: 220
         UpgradePrices: 1800
+      - UpgradeValue: 250
+        UpgradePrices: 2100
+      - UpgradeValue: 275
+        UpgradePrices: 2250
+      - UpgradeValue: 300
+        UpgradePrices: 2500
     - Key: 1
       Value:
       - UpgradeValue: 1.5
-        UpgradePrices: 2000
+        UpgradePrices: 1500
       - UpgradeValue: 2
         UpgradePrices: 2000
     - Key: 2
       Value:
       - UpgradeValue: 5
-        UpgradePrices: 1000
+        UpgradePrices: 800
       - UpgradeValue: 6
-        UpgradePrices: 1500
+        UpgradePrices: 1000
       - UpgradeValue: 7
-        UpgradePrices: 2000
+        UpgradePrices: 1500
       - UpgradeValue: 8
-        UpgradePrices: 2500
+        UpgradePrices: 2000
     - Key: 3
       Value:
       - UpgradeValue: 1.1
@@ -47,8 +55,8 @@ MonoBehaviour:
       - UpgradeValue: 1.2
         UpgradePrices: 400
       - UpgradeValue: 1.3
-        UpgradePrices: 900
+        UpgradePrices: 600
       - UpgradeValue: 1.4
-        UpgradePrices: 1200
+        UpgradePrices: 1000
       - UpgradeValue: 1.5
-        UpgradePrices: 2000
+        UpgradePrices: 1500
