@@ -39,13 +39,10 @@ MonoBehaviour:
     - Richtap.IOS.Editor
     - RichTap
     - CSharpGenerator
-    - Boxophobic.Utils.Editor
-    - Boxophobic.Utils.Scripts
     - AYellowpaper.SerializedCollections.Editor
     - Zenject-TestFramework
     - RichTap.Editor
     - GoogleMobileAds.Editor
-    - Boxophobic.SkyboxCubemapExtended.Editor
     - CSharpGeneratorDemo
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
