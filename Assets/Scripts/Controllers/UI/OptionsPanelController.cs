@@ -11,11 +11,9 @@ public class OptionsPanelController : MonoBehaviour
 {
     #region Self Variables
     #region Injected Variables
-    [Inject] private CoreGameSignals CoreGameSignals { get; set; }
-    [Inject] private AudioSignals AudioSignals { get; set; }
-    [Inject] private SaveSignals SaveSignals { get; set; }
-    [Inject] private ScoreSignals ScoreSignals { get; set; }
-    [Inject] private UISignals UISignals { get; set; }
+    [Inject] private UISignals _uiSignals { get; set; }
+    [Inject] private SaveGameCommand _saveCommand { get; set; }
+    [Inject] private LoadGameDataCommand _loadCommand { get; set; }
     #endregion
 
     #region Public Variables
@@ -31,26 +29,30 @@ public class OptionsPanelController : MonoBehaviour
 
     private void Start()
     {
-        _audioSourceActiveness = SaveSignals.onGetSoundState(SaveLoadStates.SoundState, SaveFiles.GameOptions) == 1;
+        if (!_loadCommand.CheckIfKeyInitialized(SaveDataEnums.Music))
+        {
+            _saveCommand.OnSaveData<int>(SaveDataEnums.Music, 1);
+        }
+
+        _audioSourceActiveness = _loadCommand.OnLoadGameData<int>(SaveDataEnums.Music) == 1;
         soundToggle.isOn = _audioSourceActiveness;
         SetAudioSource();
     }
+
     public void OnValueChanged()
     {
-        SaveSignals.onChangeSoundState?.Invoke(soundToggle.isOn ? 1 : 0, SaveLoadStates.SoundState, SaveFiles.GameOptions);
+        _saveCommand.OnSaveData<int>(SaveDataEnums.Music, soundToggle.isOn ? 1 : 0);
         _audioSourceActiveness = !_audioSourceActiveness;
         SetAudioSource();
     }
+
     public void CloseOptionsPanel()
     {
-        UISignals.onClosePanel?.Invoke(UIPanels.OptionsPanel);
+        _uiSignals.onClosePanel?.Invoke(UIPanels.OptionsPanel);
     }
+
     private void SetAudioSource()
     {
-        //audioSource.enabled = _audioSourceActiveness;
-        //AudioListener.pause = _audioSourceActiveness;
-        AudioListener.volume = _audioSourceActiveness ? 1 : 0;
+        audioSource.mute = !_audioSourceActiveness;
     }
-
-
 }

@@ -10,4 +10,6 @@ public enum SaveDataEnums
     DamageMultiplierUpgrade,
     ReloadSpeedUpgrade,
     MagazineCapacityUpgrade,
+
+    Music,
 }
